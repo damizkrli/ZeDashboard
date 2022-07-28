@@ -1,0 +1,52 @@
+@import "bootstrap";
+
+html, body {
+    background-color: whitesmoke;
+    height: 10vh;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar {
+    background-color: #bf957a !important;
+}
+
+.btn:hover {
+    background-color: #376cdb !important;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.link-pro, .link-tech {
+    color: black;
+    text-decoration: none;
+}
+
+#scroll {
+    height: calc(100vh - 110px);
+    overflow-y: scroll;
+}
+
+.link-pro:hover {
+    background-color: green;
+    color: white;
+    border: solid 2px green;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+.link-tech:hover {
+    background-color: rgba(0, 0, 255, 0.68);
+    color: white;
+    border: solid 2px rgba(0, 0, 255, 0.68);
+    border-radius: 5px;
+    padding: 2px;
+}
+
+$theme-colors: (
+        primary: #376cdb,
+        sucess: #bf957a,
+        danger: #b666d2,
+);
