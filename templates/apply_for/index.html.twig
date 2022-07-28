@@ -6,6 +6,8 @@
     <section>
         <div class="container-fluid">
             <div class="row">
+
+                {# LES LIENS #}
                 <div class="col-2 border-end border-dark mt-4" id="scroll">
                     <h1 class="text-center mb-5">DashBoard</h1>
                     <ul>
@@ -48,9 +50,15 @@
                         <li><a href=""></a></li>
                     </ul>
                 </div>
+
+                {# LES FORMULAIRES #}
                 <div class="col mt-4 px-5 border-end border-dark" id="scroll">
                     <h1 class="text-center mb-5">Ajouter Une Candidature</h1>
                     {{ form(form) }}
+                    <div class="d-flex align-items-center justify-content-center ">
+                        <a class="btn btn-primary me-3" href="#">Ajouter une Plateforme</a>
+                        <a class="btn btn-primary" href="#">Ajouter une Entreprise</a>
+                    </div>
                     <hr>
                     {# Si lettre de motivation est vide, afficher form sinon afficher lettre avec bouton modifier #}
                     <h1>Lettre de Motivation</h1>
@@ -66,6 +74,8 @@
                         <p>Bien cordialement.</p>
                     </div>
                 </div>
+
+                {# CANDIDATURES #}
                 <div class="col mt-4 px-5 order-last" id="scroll">
                     <h1 class="text-center mb-5">Mes Candidatures</h1>
                     {% for appliesFor in applyFor|sort((a, b) => b.id <=> a.id) %}
@@ -104,8 +114,8 @@
                         </div>
                     {% endfor %}
                     <button class="btn btn-danger">Exporter en PDF</button>
-
                 </div>
+
             </div>
         </div>
     </section>

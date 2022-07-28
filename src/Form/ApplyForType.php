@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\ApplyFor;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -14,8 +15,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ApplyForType extends AbstractType
 {
-    const PLATFORM = [
-        'HellowWork' => 'HelloWork',
+    public const PLATFORM = [
+        'HelloWork' => 'HelloWork',
         'Pôle Emploi' => 'Pôle Emploi',
         'Welcome to the Jungle' => 'Welcome to the Jungle',
         'Indeed' => 'Indeed',
@@ -24,16 +25,29 @@ class ApplyForType extends AbstractType
         'Les Jeudis' => 'Les Jeudis'
     ];
 
+    public const COMPANY = [
+        'ManPower' => 'Manpower',
+        'CGI' => 'CGI',
+        'Work&You' => 'Work&You',
+        'EASY PARTNER' => 'EASY PARTNER',
+        'Akema' => 'Akema',
+        'NEO-Soft' => 'NEO-Soft',
+        'Fortil' => 'Fortil',
+        'Web Design Marchand' => 'Web Design Marchand',
+    ];
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('platform', ChoiceType::class, [
-                'placeholder' => 'Selectionnez une plateforme',
+                'placeholder' => 'Sélectionnez une plateforme',
                 'choices' => self::PLATFORM,
                 'label' => "Nom de la plateforme",
                 'required' => false,
             ])
-            ->add('company', TextType::class, [
+            ->add('company', ChoiceType::class, [
+                'placeholder' => 'Sélectionnez une entreprise',
+                'choices' => self::COMPANY,
                 'label' => "Nom de l'entreprise",
             ])
             ->add('jobTitle', TextType::class, [
@@ -52,7 +66,11 @@ class ApplyForType extends AbstractType
                 'mapped' => false,
                 'widget' => 'single_text',
                 ])
-            ->add('isRetained')
+            ->add('isRetained', CheckboxType::class, [
+                'label' => 'Candidature retenue',
+                'help' => 'Cocher la case si votre candidature à été retenue.',
+                'required' => false
+            ])
             ->add('submit', SubmitType::class, [
                 'label' => "Enregistrer",
             ])
