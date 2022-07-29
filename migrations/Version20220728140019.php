@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220727103911 extends AbstractMigration
+final class Version20220728140019 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,12 +20,12 @@ final class Version20220727103911 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE apply_for CHANGE platform platform VARCHAR(100) DEFAULT NULL, CHANGE date_return date_return DATETIME DEFAULT NULL');
+        $this->addSql('ALTER TABLE company ADD link VARCHAR(255) DEFAULT NULL');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE apply_for CHANGE platform platform VARCHAR(100) NOT NULL, CHANGE date_return date_return DATETIME NOT NULL');
+        $this->addSql('ALTER TABLE company DROP link');
     }
 }

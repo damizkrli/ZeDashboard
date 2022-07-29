@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\ApplyFor;
+use App\Entity\Company;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -45,10 +47,12 @@ class ApplyForType extends AbstractType
                 'label' => "Nom de la plateforme",
                 'required' => false,
             ])
-            ->add('company', ChoiceType::class, [
+            ->add('company', EntityType::class, [
+                'class' => Company::class,
                 'placeholder' => 'Sélectionnez une entreprise',
-                'choices' => self::COMPANY,
                 'label' => "Nom de l'entreprise",
+                'multiple' => false,
+                'expanded' => false,
             ])
             ->add('jobTitle', TextType::class, [
                 'label' => "Intitulé du poste"
@@ -61,7 +65,7 @@ class ApplyForType extends AbstractType
                 'widget' => 'single_text',
                 ])
             ->add('dateReturn', DateTimeType::class, [
-                'label' => 'Date de retour',
+                'label' => 'Date retour entreprise',
                 'required' => false,
                 'mapped' => false,
                 'widget' => 'single_text',
@@ -70,9 +74,6 @@ class ApplyForType extends AbstractType
                 'label' => 'Candidature retenue',
                 'help' => 'Cocher la case si votre candidature à été retenue.',
                 'required' => false
-            ])
-            ->add('submit', SubmitType::class, [
-                'label' => "Enregistrer",
             ])
         ;
     }

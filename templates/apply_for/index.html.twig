@@ -9,7 +9,6 @@
 
                 {# LES LIENS #}
                 <div class="col-2 border-end border-dark mt-4" id="scroll">
-                    <h1 class="text-center mb-5">DashBoard</h1>
                     <ul>
                         <h5 class="text-decoration-underline">Liens Professionnels</h5>
                         <li><a class="link-pro" href="https://candidat.pole-emploi.fr/espacepersonnel/" target="_blank">Pôle
@@ -20,10 +19,12 @@
                         <li><a class="link-pro" href="https://www.linkedin.com/" target="_blank">LinkedIn</a></li>
                         <li><a class="link-pro" href="https://www.welcometothejungle.com/fr" target="_blank">Welcome To
                                 the Jungle</a></li>
-                        <li><a class="link-pro"
+                        <li>
+                            <a class="link-pro"
                                href="https://www.talent.io/p/fr-fr/home?utm_source=google&utm_medium=cpc&utm_campaign=%5BS%5D-FR-France-Candidates-FullStack"
                                target="_blank">Talent.io</a></li>
-                        <li><a class="link-pro" href="https://www.lesjeudis.com/" target="_blank">Les Jeudis</a></li>
+                        <li>
+                            <a class="link-pro" href="https://www.lesjeudis.com/" target="_blank">Les Jeudis</a></li>
                         <hr>
                         <h5 class="text-decoration-underline">Lien Techniques</h5>
                         <li><a class="link-tech" href="">Github</a></li>
@@ -38,7 +39,7 @@
                         <li><a class="link-tech" href=""></a></li>
                         <hr>
                         <h5 class="text-decoration-underline">Liens personnels</h5>
-                        <li><a href="">Google</a></li>
+                        <li><a class="link-perso" href="https://www.google.fr" target="_blank">Google</a></li>
                         <li><a href=""></a></li>
                         <li><a href=""></a></li>
                         <li><a href=""></a></li>
@@ -53,12 +54,16 @@
 
                 {# LES FORMULAIRES #}
                 <div class="col mt-4 px-5 border-end border-dark" id="scroll">
-                    <h1 class="text-center mb-5">Ajouter Une Candidature</h1>
+                    <h1 class="mb-3">Ajouter Une Candidature</h1>
+                    {{ form_start(form) }}
                     {{ form(form) }}
-                    <div class="d-flex align-items-center justify-content-center ">
-                        <a class="btn btn-primary me-3" href="#">Ajouter une Plateforme</a>
-                        <a class="btn btn-primary" href="#">Ajouter une Entreprise</a>
+                    <div class="btn-group-sm d-flex align-items-center justify-content-center ">
+                        <button type="submit" class="btn btn-sm btn-outline-dark me-3">Enregistrer</button>
+                        <a class="btn btn-sm btn-outline-dark me-3" href="#">Ajouter une Plateforme</a>
+                        <a class="btn btn-sm btn-outline-dark" href="{{ path('app_company') }}">Ajouter une
+                            Entreprise</a>
                     </div>
+                    {{ form_end(form) }}
                     <hr>
                     {# Si lettre de motivation est vide, afficher form sinon afficher lettre avec bouton modifier #}
                     <h1>Lettre de Motivation</h1>
@@ -76,10 +81,10 @@
                 </div>
 
                 {# CANDIDATURES #}
-                <div class="col mt-4 px-5 order-last" id="scroll">
-                    <h1 class="text-center mb-5">Mes Candidatures</h1>
+                <div class="col mt-4 mb-3 px-5 order-last" id="scroll">
+                    <h1 class="mb-3">Mes Candidatures</h1>
                     {% for appliesFor in applyFor|sort((a, b) => b.id <=> a.id) %}
-                        <div class="card shadow mb-3 {% if appliesFor.isRetained is same as (false) %}border border-danger{% elseif appliesFor is same as (true) %}border border-success {% elseif appliesFor is same as (null) %}{% endif %}">
+                        <div class="card shadow mb-4 {% if appliesFor.isRetained is same as (false) %}border border-danger{% elseif appliesFor is same as (true) %}border border-success {% elseif appliesFor is same as (null) %}{% endif %}">
                             <div class="card-header">
                                 <h5 class="card-title">
                                     {% if appliesFor.platform %}
@@ -98,6 +103,7 @@
                                             class="fst-italic">{{ appliesFor.dateApplyFor|date('d/m/Y') }}</span>
                                 </p>
                                 {% if appliesFor.dateReturn is null %}
+
                                 {% else %}
                                     <p>Date du retour de l'entreprise : <span
                                                 class="fst-italic">{{ appliesFor.dateReturn|date('d/m/Y') }}</span></p>
@@ -105,15 +111,23 @@
                             </div>
                             <div class="card-footer">
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <div class=""><a href="#" target="_blank" class="btn btn-danger">Modifier</a></div>
+                                    <div class="">
+                                        <a href="#" target="_blank" class="btn btn-sm btn-outline-dark">
+                                            Modifier
+                                        </a>
+                                        <a href="#" target="_blank" class="btn btn-sm btn-outline-dark">
+                                            Supprimer
+                                        </a>
+                                    </div>
                                     <div class=""></div>
-                                    <a href="{{ appliesFor.link }}" target="_blank" class="btn btn-primary ">
+                                    <a href="{{ appliesFor.link }}" target="_blank"
+                                       class="btn btn-sm btn-outline-dark ">
                                         Lien vers l'annonce</a>
                                 </div>
                             </div>
                         </div>
                     {% endfor %}
-                    <button class="btn btn-danger">Exporter en PDF</button>
+                    <a class="btn btn-sm btn-outline-dark" href="#">Exporter en PDF</a>
                 </div>
 
             </div>
