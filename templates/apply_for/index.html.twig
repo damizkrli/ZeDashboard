@@ -1,136 +1,118 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ApplyForController!{% endblock %}
+{% block title %}Work DashBoard{% endblock %}
 
 {% block body %}
     <section>
-        <div class="container-fluid">
-            <div class="row">
+           <div class="container-fluid">
 
-                {# LES LIENS #}
-                <div class="col-2 border-end border-dark mt-4" id="scroll">
-                    <ul>
-                        <h5 class="text-decoration-underline">Liens Professionnels</h5>
-                        <li><a class="link-pro" href="https://candidat.pole-emploi.fr/espacepersonnel/" target="_blank">Pôle
-                                Emploi</a></li>
-                        <li><a class="link-pro" href="https://www.hellowork.com/fr-fr/" target="_blank">Hello Work</a>
-                        </li>
-                        <li><a class="link-pro" href="https://fr.indeed.com/" target="_blank">Indeed</a></li>
-                        <li><a class="link-pro" href="https://www.linkedin.com/" target="_blank">LinkedIn</a></li>
-                        <li><a class="link-pro" href="https://www.welcometothejungle.com/fr" target="_blank">Welcome To
-                                the Jungle</a></li>
-                        <li>
-                            <a class="link-pro"
-                               href="https://www.talent.io/p/fr-fr/home?utm_source=google&utm_medium=cpc&utm_campaign=%5BS%5D-FR-France-Candidates-FullStack"
-                               target="_blank">Talent.io</a></li>
-                        <li>
-                            <a class="link-pro" href="https://www.lesjeudis.com/" target="_blank">Les Jeudis</a></li>
-                        <hr>
-                        <h5 class="text-decoration-underline">Lien Techniques</h5>
-                        <li><a class="link-tech" href="">Github</a></li>
-                        <li><a class="link-tech" href="">Gitlab</a></li>
-                        <li><a class="link-tech" href="">CodeWars</a></li>
-                        <li><a class="link-tech" href="">CodinGame</a></li>
-                        <li><a class="link-tech" href="">Symfony</a></li>
-                        <li><a class="link-tech" href="">Symfony Cast</a></li>
-                        <li><a class="link-tech" href="">PHP</a></li>
-                        <li><a class="link-tech" href="">Twig</a></li>
-                        <li><a class="link-tech" href=""></a></li>
-                        <li><a class="link-tech" href=""></a></li>
-                        <hr>
-                        <h5 class="text-decoration-underline">Liens personnels</h5>
-                        <li><a class="link-perso" href="https://www.google.fr" target="_blank">Google</a></li>
-                        <li><a href=""></a></li>
-                        <li><a href=""></a></li>
-                        <li><a href=""></a></li>
-                        <li><a href=""></a></li>
-                        <li><a href=""></a></li>
-                        <li><a href=""></a></li>
-                        <li><a href=""></a></li>
-                        <li><a href=""></a></li>
-                        <li><a href=""></a></li>
-                    </ul>
-                </div>
+               <div class="row">
 
-                {# LES FORMULAIRES #}
-                <div class="col mt-4 px-5 border-end border-dark" id="scroll">
-                    <h1 class="mb-3">Ajouter Une Candidature</h1>
-                    {{ form_start(form) }}
-                    {{ form(form) }}
-                    <div class="btn-group-sm d-flex align-items-center justify-content-center ">
-                        <button type="submit" class="btn btn-sm btn-outline-dark me-3">Enregistrer</button>
-                        <a class="btn btn-sm btn-outline-dark me-3" href="#">Ajouter une Plateforme</a>
-                        <a class="btn btn-sm btn-outline-dark" href="{{ path('app_company') }}">Ajouter une
-                            Entreprise</a>
-                    </div>
-                    {{ form_end(form) }}
-                    <hr>
-                    {# Si lettre de motivation est vide, afficher form sinon afficher lettre avec bouton modifier #}
-                    <h1>Lettre de Motivation</h1>
-                    <div class="border border-dark rounded-3 p-3 mb-3">
-                        <p class="" id="copyToClipboard">Bonjour,</p>
+                   {# LES LIENS #}
+                   <div class="col-2 border-end border-dark mt-4" id="scroll">
+                       <ul>
+                           <h5 class="text-decoration-underline">Liens Professionnels</h5>
+                           <li><a class="link-pro" href="https://candidat.pole-emploi.fr/espacepersonnel/" target="_blank">
+                                   Pôle Emploi
+                               </a>
+                           </li>
+                           <li><a class="link-pro" href="https://www.hellowork.com/fr-fr/" target="_blank">Hello Work</a>
+                           </li>
+                           <li><a class="link-pro" href="https://fr.indeed.com/" target="_blank">Indeed</a></li>
+                           <li><a class="link-pro" href="https://www.linkedin.com/" target="_blank">LinkedIn</a></li>
+                           <li><a class="link-pro" href="https://www.welcometothejungle.com/fr" target="_blank">Welcome To
+                                   the Jungle</a></li>
+                           <li>
+                               <a class="link-pro"
+                                  href="https://www.talent.io/p/fr-fr/home?utm_source=google&utm_medium=cpc&utm_campaign=%5BS%5D-FR-France-Candidates-FullStack"
+                                  target="_blank">Talent.io</a></li>
+                           <li>
+                               <a class="link-pro" href="https://www.lesjeudis.com/" target="_blank">Les Jeudis</a></li>
+                           <hr>
+                           <h5 class="text-decoration-underline">Lien Techniques</h5>
+                           <li><a class="link-tech" href="">Github</a></li>
+                           <li><a class="link-tech" href="">Gitlab</a></li>
+                           <li><a class="link-tech" href="">CodeWars</a></li>
+                           <li><a class="link-tech" href="">CodinGame</a></li>
+                           <li><a class="link-tech" href="">Symfony</a></li>
+                           <li><a class="link-tech" href="">Symfony Cast</a></li>
+                           <li><a class="link-tech" href="">PHP</a></li>
+                           <li><a class="link-tech" href="">Twig</a></li>
+                           <li><a class="link-tech" href=""></a></li>
+                           <li><a class="link-tech" href=""></a></li>
+                           <hr>
+                           <h5 class="text-decoration-underline">Liens personnels</h5>
+                           <li><a class="link-perso" href="https://www.google.fr" target="_blank">Google</a></li>
+                       </ul>
+                   </div>
 
-                        <p>Je vous propose ma candidature pour le poste de Développeur Symfony H/F qui a retenu toute
-                            mon attention.
-                        <p> Vous trouverez mes coordonnées et mon CV en pièce jointe.</p>
-                        <p>Vous trouverez également plus d'informations me concernant à l'adresse suivante :
-                            https://damien-carli.info</a>.</p>
+                   {# LES FORMULAIRES #}
+                   <div class="col mt-4 px-5 border-end border-dark" id="scroll">
+                       <h1 class="mb-3">Ajouter Une Candidature</h1>
+                       {{ form_start(form) }}
+                       {{ form_end(form) }}
+                       <hr>
+                       {# Si lettre de motivation est vide, afficher form sinon afficher lettre avec bouton modifier #}
+                       <h1>Lettre de Motivation</h1>
+                       <div class="border border-dark rounded-3 p-3 mb-3">
+                           <p class="" id="copyToClipboard">Bonjour,</p>
 
-                        <p>Bien cordialement.</p>
-                    </div>
-                </div>
+                           <p>Je vous propose ma candidature pour le poste de Développeur Symfony H/F qui a retenu toute
+                               mon attention.
+                           <p> Vous trouverez mes coordonnées et mon CV en pièce jointe.</p>
+                           <p>Vous trouverez également plus d'informations me concernant à l'adresse suivante :
+                               https://damien-carli.info</a>.</p>
 
-                {# CANDIDATURES #}
-                <div class="col mt-4 mb-3 px-5 order-last" id="scroll">
-                    <h1 class="mb-3">Mes Candidatures</h1>
-                    {% for appliesFor in applyFor|sort((a, b) => b.id <=> a.id) %}
-                        <div class="card shadow mb-4 {% if appliesFor.isRetained is same as (false) %}border border-danger{% elseif appliesFor is same as (true) %}border border-success {% elseif appliesFor is same as (null) %}{% endif %}">
-                            <div class="card-header">
-                                <h5 class="card-title">
-                                    {% if appliesFor.platform %}
-                                        Sur
-                                        {{ appliesFor.platform }},
-                                    {% else %}
-                                    {% endif %}
-                                    {{ appliesFor.company }}
-                                    recherche un
-                                    {{ appliesFor.jobTitle }}
-                                </h5>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">Nom de la plateforme : {{ appliesFor.platform }}</p>
-                                <p>Date de réponse à l'annonce : <span
-                                            class="fst-italic">{{ appliesFor.dateApplyFor|date('d/m/Y') }}</span>
-                                </p>
-                                {% if appliesFor.dateReturn is null %}
+                           <p>Bien cordialement.</p>
+                       </div>
+                   </div>
 
-                                {% else %}
-                                    <p>Date du retour de l'entreprise : <span
-                                                class="fst-italic">{{ appliesFor.dateReturn|date('d/m/Y') }}</span></p>
-                                {% endif %}
-                            </div>
-                            <div class="card-footer">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="">
-                                        <a href="#" target="_blank" class="btn btn-sm btn-outline-dark">
-                                            Modifier
-                                        </a>
-                                        <a href="#" target="_blank" class="btn btn-sm btn-outline-dark">
-                                            Supprimer
-                                        </a>
-                                    </div>
-                                    <div class=""></div>
-                                    <a href="{{ appliesFor.link }}" target="_blank"
-                                       class="btn btn-sm btn-outline-dark ">
-                                        Lien vers l'annonce</a>
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                    <a class="btn btn-sm btn-outline-dark" href="#">Exporter en PDF</a>
-                </div>
+                   {# MES CANDIDATURES #}
+                   <div class="col mt-4 px-5 order-last" id="scroll">
+                       <h1 class="mb-3">Mes Candidatures</h1>
+                       {% for appliesFor in applyFor|sort((a, b) => b.id <=> a.id) %}
+                           <div class="card shadow mb-4">
+                               <div class="card-header">
+                                   <h5 class="card-title">
+                                       {% if appliesFor.platform %}
+                                           Sur
+                                           {{ appliesFor.platform }},
+                                       {% else %}
+                                       {% endif %}
+                                       {{ appliesFor.company }}
+                                       recherche un
+                                       {{ appliesFor.jobTitle }}
+                                   </h5>
+                               </div>
+                               <div class="card-body">
+                                   <p class="card-text">Nom de la plateforme : {{ appliesFor.platform }}</p>
+                                   <p>Date de réponse à l'annonce : <span
+                                               class="fst-italic">{{ appliesFor.dateApplyFor|date('d/m/Y') }}</span>
+                                   </p>
+                                   {% if appliesFor.dateReturn is null %}
 
-            </div>
-        </div>
+                                   {% else %}
+                                       <p>Date du retour de l'entreprise : <span
+                                                   class="fst-italic">{{ appliesFor.dateReturn|date('d/m/Y') }}</span></p>
+                                   {% endif %}
+                               </div>
+                               <div class="card-footer">
+                                   <div class="d-flex align-items-center justify-content-between">
+                                       <div class="">
+                                       </div>
+                                       <div class=""></div>
+                                       <a href="{{ appliesFor.link }}" target="_blank"
+                                          class="btn btn-sm btn-outline-dark ">
+                                           Lien vers l'annonce</a>
+                                   </div>
+                               </div>
+                           </div>
+                       {% endfor %}
+                       <a class="btn btn-sm btn-outline-dark" href="#">Exporter en PDF</a>
+                   </div>
+
+               </div>
+
+           </div>
     </section>
 {% endblock %}

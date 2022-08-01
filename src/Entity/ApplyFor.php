@@ -14,7 +14,7 @@ class ApplyFor
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 100, nullable: false)]
     private ?string $company = null;
 
     #[ORM\Column(length: 100, nullable: true)]
@@ -38,18 +38,6 @@ class ApplyFor
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getCompany(): ?string
-    {
-        return $this->company;
-    }
-
-    public function setCompany(string $company): self
-    {
-        $this->company = $company;
-
-        return $this;
     }
 
     public function getPlatform(): ?string
@@ -122,5 +110,15 @@ class ApplyFor
         $this->link = $link;
 
         return $this;
+    }
+
+    public function getCompany(): ?string
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?string $company): void
+    {
+        $this->company = $company;
     }
 }

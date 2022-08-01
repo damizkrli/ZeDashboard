@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\ApplyFor;
 use App\Form\ApplyForType;
 use App\Repository\ApplyForRepository;
 use Doctrine\ORM\EntityManagerInterface;

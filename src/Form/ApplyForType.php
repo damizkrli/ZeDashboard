@@ -3,8 +3,6 @@
 namespace App\Form;
 
 use App\Entity\ApplyFor;
-use App\Entity\Company;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -23,7 +21,7 @@ class ApplyForType extends AbstractType
         'Welcome to the Jungle' => 'Welcome to the Jungle',
         'Indeed' => 'Indeed',
         'LinkedIn' => 'LinkedIn',
-        'Talen.io' => 'Talen.io',
+        'Talent.io' => 'Talent.io',
         'Les Jeudis' => 'Les Jeudis'
     ];
 
@@ -47,12 +45,11 @@ class ApplyForType extends AbstractType
                 'label' => "Nom de la plateforme",
                 'required' => false,
             ])
-            ->add('company', EntityType::class, [
-                'class' => Company::class,
+            ->add('company', ChoiceType::class, [
+                'choices' => self::COMPANY,
                 'placeholder' => 'Sélectionnez une entreprise',
                 'label' => "Nom de l'entreprise",
-                'multiple' => false,
-                'expanded' => false,
+                'required' => false,
             ])
             ->add('jobTitle', TextType::class, [
                 'label' => "Intitulé du poste"
@@ -74,6 +71,12 @@ class ApplyForType extends AbstractType
                 'label' => 'Candidature retenue',
                 'help' => 'Cocher la case si votre candidature à été retenue.',
                 'required' => false
+            ])
+            ->add('submit', SubmitType::class, [
+                'label' => 'Enregistrer',
+                'attr' => [
+                    'class' => 'btn btn-outline-dark btn-sm',
+                ]
             ])
         ;
     }
