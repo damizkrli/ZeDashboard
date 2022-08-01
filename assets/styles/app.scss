@@ -90,8 +90,14 @@ ul {
     padding: 2px;
 }
 
-.icon,
-.text {
+.action-icon {
+    vertical-align: middle;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+}
+
+.icon {
     vertical-align: middle;
     display: inline-block;
     width: 30px;

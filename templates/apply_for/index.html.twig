@@ -66,8 +66,10 @@
                 {# MES CANDIDATURES #}
                 <div class="col mt-4 px-5 order-last" id="scroll">
                     <h1 class="mb-3"><a href="{{ path('app_apply_for_new') }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            <svg xmlns="http://www.w3.org/2000/svg" class="action-icon" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                      d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
                             Mes Candidatures
                         </a>
@@ -76,14 +78,31 @@
                         <div class="card shadow mb-4">
                             <div class="card-header">
                                 <h5 class="card-title">
-                                    {% if appliesFor.platform %}
-                                        Sur
-                                        {{ appliesFor.platform }},
-                                    {% else %}
-                                    {% endif %}
-                                    {{ appliesFor.company }}
-                                    recherche un
-                                    {{ appliesFor.jobTitle }}
+                                    <div class="d-flex bd-highlight">
+                                        <div class="p-2 w-100 bd-highlight">
+                                            {% if appliesFor.platform %}
+                                                Sur
+                                                {{ appliesFor.platform }},
+                                            {% else %}
+                                            {% endif %}
+                                            {{ appliesFor.company }}
+                                            recherche un
+                                            {{ appliesFor.jobTitle }}</div>
+                                        <div class="p-2 flex-shrink-1 bd-highlight">
+                                            {% if appliesFor.isRetained is null %}
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none"
+                                                     viewBox="0 0 20 24" stroke="red" stroke-width="2">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/>
+                                                </svg>
+                                            {% else %}
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none"
+                                                     viewBox="0 0 20 24" stroke="green" stroke-width="2">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                                </svg>
+                                            {% endif %}</div>
+                                    </div>
                                 </h5>
                             </div>
                             <div class="card-body">
