@@ -60,13 +60,13 @@ class ApplyForType extends AbstractType
             ->add('dateApplyFor', DateTimeType::class, [
                 'label' => 'Date de candidature',
                 'widget' => 'single_text',
-                ])
+            ])
             ->add('dateReturn', DateTimeType::class, [
                 'label' => 'Date retour entreprise',
                 'required' => false,
                 'mapped' => false,
                 'widget' => 'single_text',
-                ])
+            ])
             ->add('isRetained', CheckboxType::class, [
                 'label' => 'Candidature retenue',
                 'help' => 'Cocher la case si votre candidature à été retenue.',
