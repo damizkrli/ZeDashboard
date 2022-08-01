@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit ApplyFor{% endblock %}
+{% block title %}Candidature n°{{ apply_for.id }}{% endblock %}
 
 {% block body %}
-    <h1>Edit ApplyFor</h1>
+<div class="container">
+    <h1 class="mb-3 mt-3 text-center">Modifier Candidature</h1>
 
     {{ include('apply_for/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_apply_for_index') }}">back to list</a>
+    <a class="btn btn-sm btn-outline-dark" href="{{ path('app_apply_for_index') }}">Retour</a>
+</div>
 
-    {{ include('apply_for/_delete_form.html.twig') }}
 {% endblock %}
