@@ -14,19 +14,19 @@
         </tr>
         </thead>
         <tbody>
-        {% for motivation in motivations %}
+        {% for motivations in motivation %}
             <tr>
-                <td>{{ motivation.letter }}</td>
+                <td>{{ motivations.letter | raw }}</td>
                 <td>
                     <div class="d-flex align-items-center justify-content-center">
-                        <a class="btn btn-sm btn-outline-dark me-2" href="{{ path('app_motivation_edit', {'id': motivation.id}) }}">Modifier</a>
-                        <a class="btn btn-sm btn-outline-dark" href="{{ path('app_motivation_delete', {'id': motivation.id}) }}">Supprimer</a>
+                        <a class="btn btn-sm btn-outline-dark me-2" href="{{ path('app_motivation_edit', {'id': motivations.id}) }}">Modifier</a>
+                        <a class="btn btn-sm btn-outline-dark" href="{{ path('app_motivation_delete', {'id': motivations.id}) }}">Supprimer</a>
                     </div>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">Aucune motivation...</td>
             </tr>
         {% endfor %}
         </tbody>

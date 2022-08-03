@@ -17,7 +17,7 @@ class MotivationController extends AbstractController
     public function index(MotivationRepository $motivationRepository): Response
     {
         return $this->render('motivation/index.html.twig', [
-            'motivations' => $motivationRepository->findAll(),
+            'motivation' => $motivationRepository->findAll(),
         ]);
     }
 
@@ -73,6 +73,6 @@ class MotivationController extends AbstractController
             $motivationRepository->remove($motivation, true);
         }
 
-        return $this->redirectToRoute('app_motivation_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_apply_for_index', [], Response::HTTP_SEE_OTHER);
     }
 }

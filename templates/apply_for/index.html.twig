@@ -56,11 +56,11 @@
                             Lettre de Motivation
                         </a>
                     </h1>
+                    {% for motivations in motivation %}
                     <div class="border border-dark rounded-3 p-3 mb-3">
-                        {% for motivations in motivation %}
-                            <p>{{ motivations.letter }}</p>
-                        {% endfor %}
+                            <p>{{ motivations.letter | raw }}</p>
                     </div>
+                    {% endfor %}
 
                 </div>
 
