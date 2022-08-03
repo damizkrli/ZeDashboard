@@ -4,9 +4,11 @@
 
 {% block body %}
 <div class="container">
-    <h1 class="mb-3 mt-3 text-center">Modifier Candidature</h1>
+    <h1>Modifier Candidature</h1>
 
-    {{ include('apply_for/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
 
     <a class="btn btn-sm btn-outline-dark" href="{{ path('app_apply_for_index') }}">Retour</a>
 </div>

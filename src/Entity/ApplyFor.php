@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ApplyForRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -29,11 +30,11 @@ class ApplyFor
     #[ORM\Column(length: 155)]
     private ?string $jobTitle = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?bool $isRetained = null;
-
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $link = null;
+
+    #[ORM\Column(length: 30)]
+    private ?string $status = 'Transmise';
 
     public function getId(): ?int
     {
@@ -88,18 +89,6 @@ class ApplyFor
         return $this;
     }
 
-    public function isIsRetained(): ?bool
-    {
-        return $this->isRetained;
-    }
-
-    public function setIsRetained(bool $isRetained): self
-    {
-        $this->isRetained = null;
-
-        return $this;
-    }
-
     public function getLink(): ?string
     {
         return $this->link;
@@ -120,5 +109,17 @@ class ApplyFor
     public function setCompany(?string $company): void
     {
         $this->company = $company;
+    }
+
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): self
+    {
+        $this->status = $status;
+
+        return $this;
     }
 }

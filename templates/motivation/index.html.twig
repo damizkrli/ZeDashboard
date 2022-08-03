@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Motivation index{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Motivation index</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Lettre de motivation</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for motivation in motivations %}
+            <tr>
+                <td>{{ motivation.letter }}</td>
+                <td>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <a class="btn btn-sm btn-outline-dark me-2" href="{{ path('app_motivation_edit', {'id': motivation.id}) }}">Modifier</a>
+                        <a class="btn btn-sm btn-outline-dark" href="{{ path('app_motivation_delete', {'id': motivation.id}) }}">Supprimer</a>
+                    </div>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-sm btn-outline-dark me-3" href="{{ path('app_motivation_new') }}">Ajouter une lettre de motivation</a>
+    <a class="btn btn-sm btn-outline-dark" href="{{ path('app_apply_for_index') }}">Retour</a>
+</div>
+{% endblock %}

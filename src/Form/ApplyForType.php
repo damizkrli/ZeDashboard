@@ -3,9 +3,11 @@
 namespace App\Form;
 
 use App\Entity\ApplyFor;
+use Doctrine\DBAL\Types\ArrayType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -26,14 +28,24 @@ class ApplyForType extends AbstractType
     ];
 
     public const COMPANY = [
-        'ManPower' => 'Manpower',
-        'CGI' => 'CGI',
-        'Work&You' => 'Work&You',
-        'EASY PARTNER' => 'EASY PARTNER',
-        'Akema' => 'Akema',
-        'NEO-Soft' => 'NEO-Soft',
-        'Fortil' => 'Fortil',
+        'ManPower'            => 'Manpower',
+        'CGI'                 => 'CGI',
+        'Work&You'            => 'Work&You',
+        'EASY PARTNER'        => 'EASY PARTNER',
+        'Akema'               => 'Akema',
+        'NEO-Soft'            => 'NEO-Soft',
+        'Fortil'              => 'Fortil',
         'Web Design Marchand' => 'Web Design Marchand',
+        'Guarani'             => 'Guarani',
+    ];
+
+    public const STATUS = [
+        'Entretien' => 'Entretien',
+        'Entretien Tech' => 'Entretien Tech',
+        'Refusée'   => 'Refusée',
+        'Acceptée'  => 'Acceptée',
+        'En Attente'   => 'En Attente',
+        'Sans réponse'   => 'Sans réponse',
     ];
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -41,9 +53,9 @@ class ApplyForType extends AbstractType
         $builder
             ->add('platform', ChoiceType::class, [
                 'placeholder' => 'Sélectionnez une plateforme',
-                'choices' => self::PLATFORM,
-                'label' => "Nom de la plateforme",
-                'required' => false,
+                'choices'     => self::PLATFORM,
+                'label'       => "Nom de la plateforme",
+                'required'    => false,
             ])
             ->add('company', ChoiceType::class, [
                 'choices' => self::COMPANY,
@@ -58,19 +70,19 @@ class ApplyForType extends AbstractType
                 'label' => "Lien vers l'annonce"
             ])
             ->add('dateApplyFor', DateTimeType::class, [
-                'label' => 'Date de candidature',
+                'label'  => 'Date de candidature',
                 'widget' => 'single_text',
             ])
             ->add('dateReturn', DateTimeType::class, [
-                'label' => 'Date retour entreprise',
+                'label'    => 'Date retour entreprise',
                 'required' => false,
-                'mapped' => false,
-                'widget' => 'single_text',
+                'mapped'   => false,
+                'widget'   => 'single_text',
             ])
-            ->add('isRetained', CheckboxType::class, [
-                'label' => 'Candidature retenue',
-                'help' => 'Cocher la case si votre candidature à été retenue.',
-                'required' => false
+            ->add('status', ChoiceType::class, [
+                'choices' => self::STATUS,
+                'placeholder' => 'Sélectionnez une statut',
+                'label' => "Sélectionnez une statut",
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Enregistrer',
