@@ -17,9 +17,6 @@ class ApplyFor
     #[ORM\Column(length: 100, nullable: false)]
     private ?string $company = null;
 
-    #[ORM\Column(length: 100, nullable: true)]
-    private ?string $platform = null;
-
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateApplyFor = null;
 
@@ -41,18 +38,6 @@ class ApplyFor
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getPlatform(): ?string
-    {
-        return $this->platform;
-    }
-
-    public function setPlatform(string $platform): self
-    {
-        $this->platform = $platform;
-
-        return $this;
     }
 
     public function getDateApplyFor(): ?\DateTimeInterface
