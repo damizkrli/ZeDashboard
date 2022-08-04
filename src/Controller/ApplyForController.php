@@ -6,6 +6,7 @@ use App\Entity\ApplyFor;
 use App\Form\ApplyForType;
 use App\Repository\ApplyForRepository;
 use App\Repository\MotivationRepository;
+use App\Repository\PlatformRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,20 +17,26 @@ class ApplyForController extends AbstractController
 {
     private ApplyForRepository $applyForRepository;
     private MotivationRepository $motivationRepository;
+    private PlatformRepository $platformRepository;
 
-    public function __construct(ApplyForRepository $applyForRepository, MotivationRepository $motivationRepository)
+    public function __construct(
+        ApplyForRepository $applyForRepository,
+        MotivationRepository $motivationRepository,
+        PlatformRepository $platformRepository,
+    )
     {
         $this->applyForRepository = $applyForRepository;
         $this->motivationRepository = $motivationRepository;
+        $this->platformRepository = $platformRepository;
     }
 
     #[Route('/', name: 'app_apply_for_index', methods: ['GET'])]
     public function index(): Response
     {
-
         return $this->render('apply_for/index.html.twig', [
             'apply_for' => $this->applyForRepository->findAll(),
             'motivation' => $this->motivationRepository->findAll(),
+            'platform' => $this->platformRepository->findAll(),
         ]);
     }
 

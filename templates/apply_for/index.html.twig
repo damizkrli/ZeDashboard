@@ -82,37 +82,48 @@
                                 <h5 class="card-title">
                                     <div class="d-flex bd-highlight">
                                         <div class="p-2 w-75 bd-highlight">
-                                            {% if appliesFor.platform %}
-                                                <p> {{ appliesFor.platform }} | {{ appliesFor.company }}
-                                                    | {{ appliesFor.jobTitle }}</p>
-                                            {% else %}
-                                                <p> {{ appliesFor.company }} | {{ appliesFor.jobTitle }}</p>
-                                            {% endif %}
+                                            {% if appliesFor.plateform %}
+                                            <p>{{ appliesFor.plateform.name }} |
+                                                {% endif %}
+                                                {{ appliesFor.company }} | {{ appliesFor.jobTitle }}</p>
                                         </div>
 
                                         <div class="p-2 flex-shrink-1 bd-highlight">
                                             {% if appliesFor.status is same as 'Transmise' %}
                                                 <div class="green">{{ appliesFor.status }}</div>
-                                                {% elseif appliesFor.status is same as 'Refusée' %}
-                                                    <div class="red">{{ appliesFor.status }}</div>
-                                                {% elseif appliesFor.status is same as 'Acceptée' %}
-                                                    <div class="coral">{{ appliesFor.status }}</div>
-                                                {% elseif appliesFor.status is same as 'En Attente' %}
-                                                    <div class="velvet">{{ appliesFor.status }}</div>
-                                                {% elseif appliesFor.status is same as 'Sans réponse' %}
-                                                    <div class="black">{{ appliesFor.status }}</div>
-                                                {% elseif appliesFor.status is same as 'Entretien' %}
-                                                    <div class="red">{{ appliesFor.status }}</div>
-                                                {% elseif appliesFor.status is same as 'Entretien Tech' %}
-                                                    <div class="red">{{ appliesFor.status }}</div>
+                                            {% elseif appliesFor.status is same as 'Refusée' %}
+                                                <div class="red">{{ appliesFor.status }}</div>
+                                            {% elseif appliesFor.status is same as 'Acceptée' %}
+                                                <div class="coral">{{ appliesFor.status }}</div>
+                                            {% elseif appliesFor.status is same as 'En Attente' %}
+                                                <div class="velvet">{{ appliesFor.status }}</div>
+                                            {% elseif appliesFor.status is same as 'Sans réponse' %}
+                                                <div class="black">{{ appliesFor.status }}</div>
+                                            {% elseif appliesFor.status is same as 'Entretien' %}
+                                                <div class="red">{{ appliesFor.status }}</div>
+                                            {% elseif appliesFor.status is same as 'Entretien Tech' %}
+                                                <div class="red">{{ appliesFor.status }}</div>
                                             {% endif %}
                                         </div>
                                     </div>
                                 </h5>
                             </div>
                             <div class="card-body">
-                                {% if appliesFor.platform %}
-                                    <p class="card-text">Nom de la plateforme : {{ appliesFor.platform }}</p>
+                                {% if appliesFor.name %}
+                                    <p class="card-text">Nom de la personne à contacter : {{ appliesFor.name }}</p>
+                                {% else %}
+                                {% endif %}
+
+                                {# Details #}
+                                {% if appliesFor.details %}
+                                    <p class="card-text">Nom de la plateforme : {{ appliesFor.details }}</p>
+                                {% else %}
+
+                                {% endif %}
+
+
+                                {% if appliesFor.plateform %}
+                                    <p class="card-text">Nom de la plateforme : {{ appliesFor.plateform }}</p>
                                 {% else %}
 
                                 {% endif %}

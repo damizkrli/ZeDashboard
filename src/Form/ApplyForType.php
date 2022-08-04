@@ -33,6 +33,7 @@ class ApplyForType extends AbstractType
     ];
 
     public const STATUS = [
+        'Transmise' => 'Transmise',
         'Entretien' => 'Entretien',
         'Entretien Tech' => 'Entretien Tech',
         'Refusée'   => 'Refusée',
@@ -46,6 +47,7 @@ class ApplyForType extends AbstractType
         $builder
             ->add('platform', EntityType::class, [
                 'class' => Platform::class,
+                'placeholder' => 'Sélectionnez une plateforme',
                 'label' => 'Plateforme',
                 'mapped' => false,
                 'required' => false,
@@ -54,6 +56,14 @@ class ApplyForType extends AbstractType
                 'choices' => self::COMPANY,
                 'placeholder' => 'Sélectionnez une entreprise',
                 'label' => "Nom de l'entreprise",
+                'required' => false,
+            ])
+            ->add('name', TextType::class, [
+                'label' => 'Personne à contacter',
+                'required' => false
+            ])
+            ->add('details', TextType::class, [
+                'label' => 'Coordonnées de la personne à contacter',
                 'required' => false,
             ])
             ->add('jobTitle', TextType::class, [
@@ -76,6 +86,7 @@ class ApplyForType extends AbstractType
                 'choices' => self::STATUS,
                 'placeholder' => 'Sélectionnez un statut',
                 'label' => "Statut",
+                'required' => false,
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Enregistrer',

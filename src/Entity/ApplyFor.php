@@ -35,6 +35,12 @@ class ApplyFor
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Platform $plateform = null;
 
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $name;
+
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $details = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -118,6 +124,30 @@ class ApplyFor
     public function setPlateform(?Platform $plateform): self
     {
         $this->plateform = $plateform;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getDetails(): ?string
+    {
+        return $this->details;
+    }
+
+    public function setDetails(?string $details): self
+    {
+        $this->details = $details;
 
         return $this;
     }
