@@ -3,7 +3,9 @@
 namespace App\Form;
 
 use App\Entity\ApplyFor;
+use App\Entity\Platform;
 use Doctrine\DBAL\Types\ArrayType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -17,15 +19,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ApplyForType extends AbstractType
 {
-    public const PLATFORM = [
-        'HelloWork' => 'HelloWork',
-        'Pôle Emploi' => 'Pôle Emploi',
-        'Welcome to the Jungle' => 'Welcome to the Jungle',
-        'Indeed' => 'Indeed',
-        'LinkedIn' => 'LinkedIn',
-        'Talent.io' => 'Talent.io',
-        'Les Jeudis' => 'Les Jeudis'
-    ];
 
     public const COMPANY = [
         'ManPower'            => 'Manpower',
@@ -51,11 +44,11 @@ class ApplyForType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('platform', ChoiceType::class, [
-                'placeholder' => 'Sélectionnez une plateforme',
-                'choices'     => self::PLATFORM,
-                'label'       => "Nom de la plateforme",
-                'required'    => false,
+            ->add('platform', EntityType::class, [
+                'class' => Platform::class,
+                'label' => 'Plateforme',
+                'mapped' => false,
+                'required' => false,
             ])
             ->add('company', ChoiceType::class, [
                 'choices' => self::COMPANY,
@@ -67,22 +60,22 @@ class ApplyForType extends AbstractType
                 'label' => "Intitulé du poste"
             ])
             ->add('link', UrlType::class, [
-                'label' => "Lien vers l'annonce"
+                'label' => "Lien vers l'annonce ou vers l'entreprise"
             ])
             ->add('dateApplyFor', DateTimeType::class, [
                 'label'  => 'Date de candidature',
                 'widget' => 'single_text',
             ])
             ->add('dateReturn', DateTimeType::class, [
-                'label'    => 'Date retour entreprise',
+                'label'    => 'Date retour',
                 'required' => false,
                 'mapped'   => false,
                 'widget'   => 'single_text',
             ])
             ->add('status', ChoiceType::class, [
                 'choices' => self::STATUS,
-                'placeholder' => 'Sélectionnez une statut',
-                'label' => "Sélectionnez une statut",
+                'placeholder' => 'Sélectionnez un statut',
+                'label' => "Statut",
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Enregistrer',

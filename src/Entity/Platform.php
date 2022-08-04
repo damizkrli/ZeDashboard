@@ -16,6 +16,11 @@ class Platform
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $name = null;
 
+    public function __toString(): string
+    {
+        return $this->name;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
