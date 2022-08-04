@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\ApplyForRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -35,6 +34,9 @@ class ApplyFor
 
     #[ORM\Column(length: 30)]
     private ?string $status = 'Transmise';
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Platform $plateform = null;
 
     public function getId(): ?int
     {
@@ -119,6 +121,18 @@ class ApplyFor
     public function setStatus(string $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getPlateform(): ?Platform
+    {
+        return $this->plateform;
+    }
+
+    public function setPlateform(?Platform $plateform): self
+    {
+        $this->plateform = $plateform;
 
         return $this;
     }
