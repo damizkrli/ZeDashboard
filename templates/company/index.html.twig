@@ -4,13 +4,13 @@
 
 {% block body %}
 <div class="container">
-    <h1>MEs Entreprises</h1>
+    <h1>Mes Entreprises</h1>
 
     <table class="table">
         <thead>
         <tr>
-            <th>Name</th>
-            <th>actions</th>
+            <th>Nom de l'entreprise</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -19,7 +19,7 @@
                 <td>{{ company.name }}</td>
                 <td>
                     <div class="d-flex align-items-center justify-content-start">
-                        <a href="{{ path('app_company_edit', {'id': company.id}) }}">Modifier</a>
+                        <a class="btn btn-sm btn-outline-dark me-2" href="{{ path('app_company_edit', {'id': company.id}) }}">Modifier</a>
                         <form method="post" action="{{ path('app_company_delete', {'id': company.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
                             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ company.id) }}">
                             <button class="btn btn-sm btn-outline-dark">Supprimer</button>
