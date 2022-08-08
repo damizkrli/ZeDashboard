@@ -3,13 +3,11 @@
 namespace App\Form;
 
 use App\Entity\ApplyFor;
+use App\Entity\Company;
 use App\Entity\Platform;
-use Doctrine\DBAL\Types\ArrayType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -19,19 +17,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ApplyForType extends AbstractType
 {
-
-    public const COMPANY = [
-        'ManPower'            => 'Manpower',
-        'CGI'                 => 'CGI',
-        'Work&You'            => 'Work&You',
-        'EASY PARTNER'        => 'EASY PARTNER',
-        'Akema'               => 'Akema',
-        'NEO-Soft'            => 'NEO-Soft',
-        'Fortil'              => 'Fortil',
-        'Web Design Marchand' => 'Web Design Marchand',
-        'Guarani'             => 'Guarani',
-    ];
-
     public const STATUS = [
         'Transmise' => 'Transmise',
         'Entretien' => 'Entretien',
@@ -52,11 +37,10 @@ class ApplyForType extends AbstractType
                 'mapped' => false,
                 'required' => false,
             ])
-            ->add('company', ChoiceType::class, [
-                'choices' => self::COMPANY,
+            ->add('company', EntityType::class, [
+                'class' => Company::class,
                 'placeholder' => 'Sélectionnez une entreprise',
                 'label' => "Nom de l'entreprise",
-                'required' => false,
             ])
             ->add('name', TextType::class, [
                 'label' => 'Personne à contacter',

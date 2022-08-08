@@ -44,7 +44,7 @@
                     </ul>
                 </div>
 
-                {# AUTRES #}
+                {# NOTES #}
                 <div class="col mt-4 px-5 border-end border-dark" id="scroll">
                     <h1>
                         <a href="{{ path('app_motivation_index') }}">
@@ -53,7 +53,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                       d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                             </svg>
-                            Lettre de Motivation
+                            Ajouter une note
                         </a>
                     </h1>
                     {% for motivations in motivation %}
@@ -161,8 +161,11 @@
                             </div>
                         </div>
                     {% endfor %}
-                    <a class="btn btn-sm btn-outline-dark" href="#">Exporter en PDF</a>
-                    <a class="btn btn-sm btn-outline-dark" href="{{ path('app_platform_index') }}">Ajouter une plateforme</a>
+                    <div class="mb-5">
+                        <a class="btn btn-sm btn-outline-dark" href="#">Exporter en PDF</a>
+                        <a class="btn btn-sm btn-outline-dark" href="{{ path('app_platform_index') }}">Ajouter une plateforme</a>
+                        <a class="btn btn-sm btn-outline-dark" href="{{ path('app_company_index') }}">Ajouter une entreprise</a>
+                    </div>
                 </div>
 
             </div>
