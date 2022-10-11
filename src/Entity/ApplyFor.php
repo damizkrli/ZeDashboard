@@ -17,11 +17,11 @@ class ApplyFor
     #[ORM\Column(length: 100, nullable: false)]
     private ?string $company = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $dateApplyFor = null;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $dateApplyFor;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $dateReturn = null;
+    private ?\DateTimeInterface $dateReturn;
 
     #[ORM\Column(length: 155)]
     private ?string $jobTitle = null;

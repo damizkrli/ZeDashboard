@@ -57,8 +57,10 @@
                         </a>
                     </h1>
                     {% for motivations in motivation %}
-                    <div class="border border-dark rounded-3 p-3 mb-3">
-                            <p>{{ motivations.letter | raw }}</p>
+                        <div class="border border-dark rounded-3 p-3 mb-3">
+                            {% if '/https/' %}
+                                <p>{{ motivations.letter | raw }}</p>
+                        {% endif %}
                     </div>
                     {% endfor %}
 
