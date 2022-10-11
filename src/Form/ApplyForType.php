@@ -59,6 +59,7 @@ class ApplyForType extends AbstractType
             ->add('dateApplyFor', DateTimeType::class, [
                 'label'  => 'Date de candidature',
                 'widget' => 'single_text',
+                'required' => false
             ])
             ->add('dateReturn', DateTimeType::class, [
                 'label'    => 'Date retour',
