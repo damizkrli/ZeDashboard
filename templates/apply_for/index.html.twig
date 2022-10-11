@@ -10,38 +10,36 @@
 
                 {# LES LIENS #}
                 <div class="col-2 border-end border-dark mt-4" id="scroll">
+
+                    <h5 class="text-decoration-underline">
+                        <a href="{{ path('app_add_professional_link') }}">Liens Professionnels</a>
+                    </h5>
+                    {% for proLinks in proLink %}
                     <ul>
-                        <h5 class="text-decoration-underline">Liens Professionnels</h5>
-                        <li><a class="link-pro" href="https://candidat.pole-emploi.fr/espacepersonnel/" target="_blank">
-                                Pôle Emploi
+                        <li><a class="link-pro" href="{{ proLinks.link }}" target="_blank">
+                                {{ proLinks.name }}
                             </a>
                         </li>
-                        <li><a class="link-pro" href="https://www.hellowork.com/fr-fr/" target="_blank">Hello Work</a>
-                        </li>
-                        <li><a class="link-pro" href="https://fr.indeed.com/" target="_blank">Indeed</a></li>
-                        <li><a class="link-pro" href="https://www.linkedin.com/" target="_blank">LinkedIn</a></li>
-                        <li><a class="link-pro" href="https://www.welcometothejungle.com/fr" target="_blank">Welcome To
-                                the Jungle</a></li>
-                        <li>
-                            <a class="link-pro"
-                               href="https://www.talent.io/p/fr-fr/home?utm_source=google&utm_medium=cpc&utm_campaign=%5BS%5D-FR-France-Candidates-FullStack"
-                               target="_blank">Talent.io</a></li>
-                        <li>
-                            <a class="link-pro" href="https://www.lesjeudis.com/" target="_blank">Les Jeudis</a></li>
-                        <hr>
-                        <h5 class="text-decoration-underline">Lien Techniques</h5>
-                        <li><a class="link-tech" href="">Github</a></li>
-                        <li><a class="link-tech" href="">Gitlab</a></li>
-                        <li><a class="link-tech" href="">CodeWars</a></li>
-                        <li><a class="link-tech" href="">CodinGame</a></li>
-                        <li><a class="link-tech" href="">Symfony</a></li>
-                        <li><a class="link-tech" href="">Symfony Cast</a></li>
-                        <li><a class="link-tech" href="">PHP</a></li>
-                        <li><a class="link-tech" href="">Twig</a></li>
-                        <hr>
-                        <h5 class="text-decoration-underline">Liens personnels</h5>
-                        <li><a class="link-perso" href="https://www.google.fr" target="_blank">Google</a></li>
                     </ul>
+                    {% endfor %}
+
+                    <h5 class="text-decoration-underline">Lien Techniques</h5>
+{#                      {% for techLinks in techLink %}#}
+                            <ul>
+                                {#<li>
+                                    <a href="{{ tecLink.link }}">{{ techLink.name }}</a>
+                                  </li>#}
+                            </ul>
+{#                      {% endfor %}#}
+
+                    <h5 class="text-decoration-underline">Liens personnels</h5>
+{#                      {% for persoLinks in persoLink %}#}
+                            <ul>
+                                {#<li>
+                                    <a class="link-perso" href="{{ persoLink.link }}" target="_blank">{{ persoLink.name }}</a>
+                                  </li>#}
+                            </ul>
+{#                      {% endfor %}#}
                 </div>
 
                 {# NOTES #}
