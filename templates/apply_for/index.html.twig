@@ -53,11 +53,12 @@
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                       d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                             </svg>
-                            Ajouter une note
+                            Mes notes
                         </a>
                     </h1>
                     {% for motivations in motivation %}
-                        <div class="border border-dark rounded-3 p-3 mb-3">
+
+                        <div class="border border-dark rounded-0 p-3 mb-3">
                             {% if '/https/' %}
                                 <p>{{ motivations.letter | raw }}</p>
                         {% endif %}
@@ -79,7 +80,7 @@
                         </a>
                     </h1>
                     {% for appliesFor in apply_for|sort((a, b) => b.id <=> a.id) %}
-                        <div class="card shadow mb-4">
+                        <div class="card shadow mb-4 rounded-1">
                             <div class="card-header">
                                 <h5 class="card-title">
                                     <div class="d-flex bd-highlight">
@@ -157,16 +158,16 @@
                                         </form>
                                     </div>
                                     <a href="{{ appliesFor.link }}" target="_blank"
-                                       class="btn btn-sm btn-outline-dark ">
+                                       class="btn btn-sm btn-outline-dark rounded-0">
                                         Lien vers l'annonce</a>
                                 </div>
                             </div>
                         </div>
                     {% endfor %}
                     <div class="mb-5">
-                        <a class="btn btn-sm btn-outline-dark" href="#">Exporter en PDF</a>
-                        <a class="btn btn-sm btn-outline-dark" href="{{ path('app_platform_index') }}">Ajouter une plateforme</a>
-                        <a class="btn btn-sm btn-outline-dark" href="{{ path('app_company_index') }}">Ajouter une entreprise</a>
+                        <a class="btn btn-sm btn-outline-dark rounded-0" href="#">Exporter en PDF</a>
+                        <a class="btn btn-sm btn-outline-dark rounded-0" href="{{ path('app_platform_index') }}">Ajouter une plateforme</a>
+                        <a class="btn btn-sm btn-outline-dark rounded-0" href="{{ path('app_company_index') }}">Ajouter une entreprise</a>
                     </div>
                 </div>
 
