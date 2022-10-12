@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Motivation;
+use App\Entity\Note;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Motivation>
+ * @extends ServiceEntityRepository<Note>
  *
- * @method Motivation|null find($id, $lockMode = null, $lockVersion = null)
- * @method Motivation|null findOneBy(array $criteria, array $orderBy = null)
- * @method Motivation[]    findAll()
- * @method Motivation[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Note|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Note|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Note[]    findAll()
+ * @method Note[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class MotivationRepository extends ServiceEntityRepository
+class NoteRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Motivation::class);
+        parent::__construct($registry, Note::class);
     }
 
-    public function add(Motivation $entity, bool $flush = false): void
+    public function add(Note $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class MotivationRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Motivation $entity, bool $flush = false): void
+    public function remove(Note $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class MotivationRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Motivation[] Returns an array of Motivation objects
+//     * @return Note[] Returns an array of Note objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class MotivationRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Motivation
+//    public function findOneBySomeField($value): ?Note
 //    {
 //        return $this->createQueryBuilder('m')
 //            ->andWhere('m.exampleField = :val')

@@ -7,7 +7,7 @@ use App\Entity\ProfessionalLink;
 use App\Form\ApplyForType;
 use App\Form\ProfessionalLinkType;
 use App\Repository\ApplyForRepository;
-use App\Repository\MotivationRepository;
+use App\Repository\NoteRepository;
 use App\Repository\PlatformRepository;
 use App\Repository\ProfessionalLinkRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,14 +19,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class ApplyForController extends AbstractController
 {
     private ApplyForRepository $applyForRepository;
-    private MotivationRepository $motivationRepository;
+    private NoteRepository $motivationRepository;
     private PlatformRepository $platformRepository;
     private ProfessionalLinkRepository $professionalLinkRepository;
 
     public function __construct(
-        ApplyForRepository $applyForRepository,
-        MotivationRepository $motivationRepository,
-        PlatformRepository $platformRepository,
+        ApplyForRepository         $applyForRepository,
+        NoteRepository             $motivationRepository,
+        PlatformRepository         $platformRepository,
         ProfessionalLinkRepository $professionalLinkRepository
     )
     {
@@ -41,7 +41,7 @@ class ApplyForController extends AbstractController
     {
         return $this->render('apply_for/index.html.twig', [
             'apply_for' => $this->applyForRepository->findAll(),
-            'motivation' => $this->motivationRepository->findAll(),
+            'note' => $this->motivationRepository->findAll(),
             'platform' => $this->platformRepository->findAll(),
             'proLink' => $this->professionalLinkRepository->findAll(),
         ]);

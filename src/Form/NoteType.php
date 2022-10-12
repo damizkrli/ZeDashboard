@@ -2,16 +2,15 @@
 
 namespace App\Form;
 
-use App\Entity\Motivation;
+use App\Entity\Note;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class MotivationType extends AbstractType
+class NoteType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -20,7 +19,7 @@ class MotivationType extends AbstractType
                 'label' => 'Titre'
 
             ])
-            ->add('letter', CKEditorType::class, [
+            ->add('note', CKEditorType::class, [
                 'label' => false,
             ])
             ->add('submit', SubmitType::class, [
@@ -35,7 +34,7 @@ class MotivationType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Motivation::class,
+            'data_class' => Note::class,
         ]);
     }
 }

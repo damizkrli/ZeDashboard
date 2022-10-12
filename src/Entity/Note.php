@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\MotivationRepository;
+use App\Repository\NoteRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
-#[ORM\Entity(repositoryClass: MotivationRepository::class)]
-class Motivation
+#[ORM\Entity(repositoryClass: NoteRepository::class)]
+class Note
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -24,7 +24,7 @@ class Motivation
     private ?string $name;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $letter = null;
+    private ?string $note = null;
 
     public function getId(): ?int
     {
@@ -41,14 +41,14 @@ class Motivation
         $this->name = $name;
     }
 
-    public function getLetter(): ?string
+    public function getNote(): ?string
     {
-        return $this->letter;
+        return $this->note;
     }
 
-    public function setLetter(string $letter): self
+    public function setNote(string $note): self
     {
-        $this->letter = $letter;
+        $this->note = $note;
 
         return $this;
     }
