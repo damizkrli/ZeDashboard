@@ -1,46 +1,47 @@
 @import "bootstrap";
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Ubuntu:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+$h1-title: 'Patrick Hand', cursive;
+$h3-title: 'Roboto Condensed', sans-serif;
+$text: 'Nanum Gothic', sans-serif;
 
 $white: #ffffff;
-$black: #000000a3;
-$success: #bf957a;
-$primary: #376cdb;
-$danger: #dc3545;
-$pink: #db7093;
-$velvet: #800080;
-
-$theme-colors: (
-        primary: #376cdb,
-        sucess: #bf957a,
-        danger: #dc3545,
-        dark: #000000a3,
-
-);
+$black: #323539;
+$text-color: #198754;
+$color-link: #0dcaf0;
 
 html, body {
     height: 10vh;
     padding: 0;
     margin: 0;
+    background-color: $black;
 }
 
 h1 {
-    font-family: 'Patrick Hand', cursive;
+    font-family: $h3-title;
     text-align: end;
     margin-bottom: 1rem;
     margin-top: 1rem;
 }
 
+h3 {
+    color: $text-color;
+}
+
 a {
     text-decoration: none;
-    color: $black;
+    color: $text-color;
 
     &:hover {
-        color: $success;
+        color: $color-link;
     }
 }
 
 p {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: $text;
+    color: #198754;
     margin: 0;
     padding: 0;
 }
@@ -77,30 +78,6 @@ ul {
     overflow-y: scroll;
 }
 
-.link-pro:hover {
-    background-color: #bf957a;
-    color: $white;
-    border: solid 2px #bf957a;
-    border-radius: 2px;
-    padding: 2px;
-}
-
-.link-tech:hover {
-    background-color: #b666d2;
-    color: $white;
-    border: solid 2px #b666d2;
-    border-radius: 2px;
-    padding: 2px;
-}
-
-.link-perso:hover {
-    background-color: #dc3545;
-    color: $white;
-    border: solid 2px #dc3545;
-    border-radius: 2px;
-    padding: 2px;
-}
-
 .action-icon {
     vertical-align: middle;
     display: inline-block;
@@ -117,34 +94,6 @@ ul {
 
 .btn:hover {
     border: none;
-}
-
-.green {
-    color: $white;
-    background-color: $success;
-    border-radius: 2px;
-    padding: 0.25rem;
-}
-
-.red {
-    color: $white;
-    background-color: $danger;
-    border-radius: 2px;
-    padding: 0.25rem;
-}
-
-.coral {
-    color: $white;
-    background-color: $pink;
-    border-radius: 2px;
-    padding: 0.25rem;
-}
-
-.velvet {
-    color: $white;
-    background-color: $velvet;
-    border-radius: 2px;
-    padding: 0.25rem;
 }
 
 .black {

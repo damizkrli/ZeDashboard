@@ -9,7 +9,7 @@
             <div class="row">
 
                 {# LES LIENS #}
-                <div class="col-2 border-end border-dark mt-4" id="scroll">
+                <div class="col-2 border-end border-success mt-4" id="scroll">
 
                     <h1>
                         <a href="{{ path('app_note_index') }}">
@@ -22,20 +22,20 @@
                     </h1>
 
                     <h5 class="text-decoration-underline">
-                        <a href="{{ path('app_index_pro_link') }}">
-                            Liens Professionnels
-                        </a>
+                        <a href="{{ path('app_index_pro_link') }}">Liens Professionnels</a>
                     </h5>
                     {% for proLinks in proLink %}
-                    <ul>
-                        <li><a class="link-pro" href="{{ proLinks.link }}" target="_blank">
-                                {{ proLinks.name }}
-                            </a>
-                        </li>
-                    </ul>
+                        <ul>
+                            <li><a class="btn-outline-info p-2" href="{{ proLinks.link }}" target="_blank">
+                                    {{ proLinks.name }}
+                                </a>
+                            </li>
+                        </ul>
                     {% endfor %}
 
-                    <h5 class="text-decoration-underline">Lien Techniques</h5>
+                    <h5 class="text-decoration-underline">
+                        <a href="#">Lien Techniques</a>
+                    </h5>
 {#                      {% for techLinks in techLink %}#}
                             <ul>
                                 {#<li>
@@ -44,7 +44,9 @@
                             </ul>
 {#                      {% endfor %}#}
 
-                    <h5 class="text-decoration-underline">Liens personnels</h5>
+                    <h5 class="text-decoration-underline">
+                        <a href="#">Liens personnels</a>
+                    </h5>
 {#                      {% for persoLinks in persoLink %}#}
                             <ul>
                                 {#<li>
@@ -55,7 +57,7 @@
                 </div>
 
                 {# NOTES #}
-                <div class="col mt-4 px-5 border-end border-dark" id="scroll">
+                <div class="col mt-4 px-5 border-end border-success" id="scroll">
                     <h1>
                         <a href="{{ path('app_note_index') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="action-icon">
@@ -65,12 +67,13 @@
                             Mes notes
                         </a>
                     </h1>
+
                     {% for notes in note %}
 
                         <h3>{{ notes.name }}</h3>
-                        <div class="border border-dark rounded-0 p-3 mb-3">
+                        <div class="border border-success rounded-0 p-3 mb-3">
                             {% if '/https/' %}
-                                <p>{{ notes.letter | raw }}</p>
+                                <p>{{ notes.note | raw }}</p>
                         {% endif %}
                     </div>
                     {% endfor %}
@@ -90,32 +93,32 @@
                         </a>
                     </h1>
                     {% for appliesFor in apply_for|sort((a, b) => b.id <=> a.id) %}
-                        <div class="card shadow mb-4 rounded-1">
+                        <div class="card shadow mb-4 rounded-1 bg-transparent">
                             <div class="card-header">
                                 <h5 class="card-title">
                                     <div class="d-flex bd-highlight">
-                                        <div class="p-2 w-75 bd-highlight">
+                                        <p class="p-2 w-75 bd-highlight">
                                             {% if appliesFor.plateform %}
                                             <p>{{ appliesFor.plateform.name }} |
                                                 {% endif %}
                                                 {{ appliesFor.company }} | {{ appliesFor.jobTitle }}</p>
-                                        </div>
+                                        </p>
 
                                         <div class="p-2 flex-shrink-1 bd-highlight">
                                             {% if appliesFor.status is same as 'Transmise' %}
-                                                <div class="green">{{ appliesFor.status }}</div>
+                                                <div class="bg-success p-2 rounded-3">{{ appliesFor.status }}</div>
                                             {% elseif appliesFor.status is same as 'Refusée' %}
-                                                <div class="red">{{ appliesFor.status }}</div>
+                                                <div class="bg-danger p-2 rounded-3">{{ appliesFor.status }}</div>
                                             {% elseif appliesFor.status is same as 'Acceptée' %}
-                                                <div class="coral">{{ appliesFor.status }}</div>
+                                                <div class="bg-secondary p-2 rounded-3">{{ appliesFor.status }}</div>
                                             {% elseif appliesFor.status is same as 'En Attente' %}
-                                                <div class="velvet">{{ appliesFor.status }}</div>
+                                                <div class="bg-danger p-2 rounded-3">{{ appliesFor.status }}</div>
                                             {% elseif appliesFor.status is same as 'Sans réponse' %}
-                                                <div class="black">{{ appliesFor.status }}</div>
+                                                <div class="bg-info p-2 rounded-3">{{ appliesFor.status }}</div>
                                             {% elseif appliesFor.status is same as 'Entretien' %}
-                                                <div class="red">{{ appliesFor.status }}</div>
+                                                <div class="bg-warning p-2 rounded-3">{{ appliesFor.status }}</div>
                                             {% elseif appliesFor.status is same as 'Entretien Tech' %}
-                                                <div class="red">{{ appliesFor.status }}</div>
+                                                <div class="bg-warning p-2 rounded-3">{{ appliesFor.status }}</div>
                                             {% endif %}
                                         </div>
                                     </div>
@@ -168,16 +171,16 @@
                                         </form>
                                     </div>
                                     <a href="{{ appliesFor.link }}" target="_blank"
-                                       class="btn btn-sm btn-outline-dark rounded-0">
+                                       class="btn btn-sm btn-outline-success rounded-0">
                                         Lien vers l'annonce</a>
                                 </div>
                             </div>
                         </div>
                     {% endfor %}
                     <div class="mb-5">
-                        <a class="btn btn-sm btn-outline-dark rounded-0" href="#">Exporter en PDF</a>
-                        <a class="btn btn-sm btn-outline-dark rounded-0" href="{{ path('app_platform_index') }}">Ajouter une plateforme</a>
-                        <a class="btn btn-sm btn-outline-dark rounded-0" href="{{ path('app_company_index') }}">Ajouter une entreprise</a>
+                        <a class="btn btn-sm btn-outline-success rounded-0" href="#">Exporter en PDF</a>
+                        <a class="btn btn-sm btn-outline-success rounded-0" href="{{ path('app_platform_index') }}">Ajouter une plateforme</a>
+                        <a class="btn btn-sm btn-outline-success rounded-0" href="{{ path('app_company_index') }}">Ajouter une entreprise</a>
                     </div>
                 </div>
 

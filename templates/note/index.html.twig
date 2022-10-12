@@ -3,10 +3,10 @@
 {% block title %}Mes Notes{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h1>Mes notes</h1>
+    <div class="container-fluid">
+        <h1 style="color: #198754">Mes notes</h1>
 
-        <table class="table">
+        <table class="table table-dark table-hover table-bordered border-success">
             <thead>
             <tr>
                 <th>Titre</th>
@@ -21,10 +21,10 @@
                     <td>{{ note.note | raw }}</td>
                     <td>
                         <div class="d-flex align-items-center justify-content-center">
-                            <a class="btn btn-sm btn-outline-dark me-2 rounded-0" href="{{ path('app_note_edit', {'id': note.id}) }}">Modifier</a>
+                            <a class="btn btn-sm btn-outline-success me-2 rounded-0" href="{{ path('app_note_edit', {'id': note.id}) }}">Modifier</a>
                             <form method="post" action="{{ path('app_note_delete', {'id': note.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
                                 <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ note.id) }}">
-                                <button class="btn btn-sm btn-outline-dark rounded-0">Supprimer</button>
+                                <button class="btn btn-sm btn-outline-success rounded-0">Supprimer</button>
                             </form>
                         </div>
                     </td>
@@ -37,7 +37,10 @@
             </tbody>
         </table>
 
-        <a class="btn btn-sm btn-outline-dark me-3 rounded-0" href="{{ path('app_note_new') }}">Ajouter une note</a>
-        <a class="btn btn-sm btn-outline-dark rounded-0" href="{{ path('app_apply_for_index') }}">Retour</a>
+        <div class="btn-group mb-5">
+            <a class="btn btn-sm btn-outline-success me-3 rounded-0" href="{{ path('app_note_new') }}">Ajouter une note</a>
+            <a class="btn btn-sm btn-outline-success rounded-0" href="{{ path('app_apply_for_index') }}">Retour</a>
+        </div>
+
     </div>
 {% endblock %}
