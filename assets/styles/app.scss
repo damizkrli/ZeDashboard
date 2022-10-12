@@ -24,6 +24,7 @@ h1 {
     text-align: center;
     margin-bottom: 1rem;
     margin-top: 1rem;
+    color: $text-color;
 }
 
 h3 {
@@ -101,4 +102,26 @@ ul {
     background-color: $black;
     border-radius: 2px;
     padding: 0.25rem;
+}
+
+.form-label {
+    color: $text-color;
+}
+
+.form-select {
+    background-color: $black;
+    border: 1px solid $text-color;
+    color: $text-color;
+}
+
+.form-control {
+    background-color: $black;
+    border: 1px solid $text-color;
+    color: $text-color;
+
+    &:hover {
+        background-color: $black;
+        border: 1px solid $text-color;
+        color: $text-color;
+    }
 }

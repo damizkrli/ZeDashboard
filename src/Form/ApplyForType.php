@@ -77,7 +77,7 @@ class ApplyForType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => 'Enregistrer',
                 'attr' => [
-                    'class' => 'btn btn-outline-dark btn-sm',
+                    'class' => 'btn btn-outline-success btn-sm',
                 ]
             ])
         ;
