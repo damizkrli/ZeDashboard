@@ -94,7 +94,17 @@ class ApplyForController extends AbstractController
         return $this->redirectToRoute('app_apply_for_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/add/link', name: 'app_add_professional_link', methods: ['GET', 'POST'])]
+    #[Route('/index/link/pro', name: 'app_index_pro_link', methods: ['GET', 'POST'])]
+    public function indexProfessionalLink(): Response
+    {
+        $links = $this->professionalLinkRepository->findAll();
+
+        return $this->render('link/professional/index.html.twig', [
+            'links' => $links,
+        ]);
+    }
+
+    #[Route('/add/professional/link', name: 'app_add_professional_link', methods: ['GET', 'POST'])]
     public function newProfessionalLink(Request $request): Response
     {
         $proLink = new ProfessionalLink();
@@ -111,5 +121,33 @@ class ApplyForController extends AbstractController
             'proLink' => $proLink,
             'form' => $form,
         ]);
+    }
+
+    #[Route('/{id}/edit/link/professional', name: 'app_edit_professional_link', methods: ['GET', 'POST'])]
+    public function editProfessionalLink(Request $request, ProfessionalLink $professionalLink): Response
+    {
+        $form = $this->createForm(ProfessionalLinkType::class, $professionalLink);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->professionalLinkRepository->add($professionalLink, true);
+
+            return $this->redirectToRoute('app_index_pro_link', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('link/professional/edit.html.twig', [
+            'professionalLink' => $professionalLink,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}/pro/link', name: 'app_delete_pro_link', methods: ['POST'])]
+    public function deleteProfessionalLink(Request $request, ProfessionalLink $professionalLink): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$professionalLink->getId(), $request->request->get('_token'))) {
+            $this->professionalLinkRepository->remove($professionalLink, true);
+        }
+
+        return $this->redirectToRoute('app_index_pro_link', [], Response::HTTP_SEE_OTHER);
     }
 }
