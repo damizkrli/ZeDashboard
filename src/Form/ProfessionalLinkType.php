@@ -22,7 +22,10 @@ class ProfessionalLinkType extends AbstractType
                 'label' => 'URL'
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Enregistrer'
+                'label' => 'Enregistrer',
+                'attr' => [
+                    'class' => 'btn btn-sm btn-outline-dark rounded-0'
+                ]
             ])
         ;
     }
