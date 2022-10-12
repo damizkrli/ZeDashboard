@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajouter une lettre{% endblock %}
+{% block title %}Ajouter une note{% endblock %}
 
 {% block body %}
-<div class="container">
-    <h1>Ajouter une lettre de motivation</h1>
+    <div class="container">
+        <h1>Ajouter une note</h1>
 
-    {{ include('motivation/_form.html.twig') }}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
 
-    <a class="btn btn-sm btn-outline-dark" href="{{ path('app_motivation_index') }}">Retour</a>
-</div>
+        <a class="btn btn-sm btn-outline-dark rounded-0" href="{{ path('app_motivation_index') }}">Retour</a>
+    </div>
 {% endblock %}

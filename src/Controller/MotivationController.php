@@ -17,7 +17,7 @@ class MotivationController extends AbstractController
     public function index(MotivationRepository $motivationRepository): Response
     {
         return $this->render('motivation/index.html.twig', [
-            'motivation' => $motivationRepository->findAll(),
+            'motivations' => $motivationRepository->findAll(),
         ]);
     }
 
@@ -37,14 +37,6 @@ class MotivationController extends AbstractController
         return $this->renderForm('motivation/new.html.twig', [
             'motivation' => $motivation,
             'form' => $form,
-        ]);
-    }
-
-    #[Route('/{id}', name: 'app_motivation_show', methods: ['GET'])]
-    public function show(Motivation $motivation): Response
-    {
-        return $this->render('motivation/index.html.twig', [
-            'motivation' => $motivation,
         ]);
     }
 
@@ -73,6 +65,6 @@ class MotivationController extends AbstractController
             $motivationRepository->remove($motivation, true);
         }
 
-        return $this->redirectToRoute('app_apply_for_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_motivation_index', [], Response::HTTP_SEE_OTHER);
     }
 }

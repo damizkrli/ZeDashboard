@@ -4,10 +4,10 @@
 
 {% block body %}
     <div class="container">
-        <h1>Edit Motivation</h1>
+        <h1>Modifier "{{ motivation.name }}"</h1>
 
         {{ include('motivation/_form.html.twig') }}
 
-        <a class="btn btn-sm btn-outline-dark" href="{{ path('app_motivation_index') }}">Retour</a>
+        <a class="btn btn-sm btn-outline-dark rounded-0" href="{{ path('app_motivation_index') }}">Retour</a>
     </div>
 {% endblock %}
