@@ -3,13 +3,9 @@
 {% block title %}New Platform{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h1>Ajouter une nouvelle Plateforme</h1>
+    <h1>Create new Platform</h1>
 
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        {{ form_end(form) }}
+    {{ include('platform/_form.html.twig') }}
 
-        <a class="btn btn-sm btn-outline-dark" href="{{ path('app_platform_index') }}">Retour</a>
-    </div>
+    <a href="{{ path('app_platform_index') }}">back to list</a>
 {% endblock %}

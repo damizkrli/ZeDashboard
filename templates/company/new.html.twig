@@ -1,15 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Entreprise{% endblock %}
+{% block title %}New Company{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h1>Ajouter une nouvelle Entreprise</h1>
+    <h1>Create new Company</h1>
 
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        {{ form_end(form) }}
+    {{ include('company/_form.html.twig') }}
 
-        <a class="btn btn-sm btn-outline-dark" href="{{ path('app_company_index') }}">Retour</a>
-    </div>
+    <a href="{{ path('app_company_index') }}">back to list</a>
 {% endblock %}

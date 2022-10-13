@@ -29,7 +29,7 @@ class CompanyController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $companyRepository->add($company, true);
+            $companyRepository->save($company, true);
 
             return $this->redirectToRoute('app_company_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -40,6 +40,14 @@ class CompanyController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}', name: 'app_company_show', methods: ['GET'])]
+    public function show(Company $company): Response
+    {
+        return $this->render('company/show.html.twig', [
+            'company' => $company,
+        ]);
+    }
+
     #[Route('/{id}/edit', name: 'app_company_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Company $company, CompanyRepository $companyRepository): Response
     {
@@ -47,7 +55,7 @@ class CompanyController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $companyRepository->add($company, true);
+            $companyRepository->save($company, true);
 
             return $this->redirectToRoute('app_company_index', [], Response::HTTP_SEE_OTHER);
         }

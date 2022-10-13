@@ -14,9 +14,6 @@ class ApplyFor
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100, nullable: false)]
-    private ?string $company = null;
-
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateApplyFor;
 
@@ -32,14 +29,17 @@ class ApplyFor
     #[ORM\Column(length: 30)]
     private ?string $status = 'Transmise';
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Platform $plateform = null;
-
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $name;
 
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $details = null;
+
+    #[ORM\ManyToOne]
+    private ?Company $company;
+
+    #[ORM\ManyToOne]
+    private ?Platform $platform;
 
     public function getId(): ?int
     {
@@ -94,16 +94,6 @@ class ApplyFor
         return $this;
     }
 
-    public function getCompany(): ?string
-    {
-        return $this->company;
-    }
-
-    public function setCompany(?string $company): void
-    {
-        $this->company = $company;
-    }
-
     public function getStatus(): string
     {
         return $this->status;
@@ -112,18 +102,6 @@ class ApplyFor
     public function setStatus(string $status): self
     {
         $this->status = $status;
-
-        return $this;
-    }
-
-    public function getPlateform(): ?Platform
-    {
-        return $this->plateform;
-    }
-
-    public function setPlateform(?Platform $plateform): self
-    {
-        $this->plateform = $plateform;
 
         return $this;
     }
@@ -151,4 +129,29 @@ class ApplyFor
 
         return $this;
     }
+
+    public function getCompany(): ?Company
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?Company $company): self
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    public function getPlatform(): ?Platform
+    {
+        return $this->platform;
+    }
+
+    public function setPlatform(?Platform $platform): self
+    {
+        $this->platform = $platform;
+
+        return $this;
+    }
+
 }

@@ -29,7 +29,7 @@ class PlatformController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $platformRepository->add($platform, true);
+            $platformRepository->save($platform, true);
 
             return $this->redirectToRoute('app_platform_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -55,7 +55,7 @@ class PlatformController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $platformRepository->add($platform, true);
+            $platformRepository->save($platform, true);
 
             return $this->redirectToRoute('app_platform_index', [], Response::HTTP_SEE_OTHER);
         }

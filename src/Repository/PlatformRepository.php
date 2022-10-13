@@ -21,7 +21,7 @@ class PlatformRepository extends ServiceEntityRepository
         parent::__construct($registry, Platform::class);
     }
 
-    public function add(Platform $entity, bool $flush = false): void
+    public function save(Platform $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 

@@ -1,43 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mes Plateformes{% endblock %}
+{% block title %}Platform index{% endblock %}
 
 {% block body %}
-   <div class="container">
-       <h1>Mes Plateformes</h1>
+    <h1>Platform index</h1>
 
-       <table class="table">
-           <thead>
-           <tr>
-               <th>Nom de la plateforme</th>
-               <th>actions</th>
-           </tr>
-           </thead>
-           <tbody>
-           {% for platform in platforms %}
-               <tr>
-                   <td>{{ platform.name }}</td>
-                   <td>
-                       <div class="d-flex align-items-center justify-content-start">
-                           <a class="btn btn-sm btn-outline-dark me-2"
-                              href="{{ path('app_platform_edit', {'id': platform.id}) }}">Modifier</a>
-                           <form method="post" action="{{ path('app_platform_delete', {'id': platform.id}) }}"
-                                 onsubmit="return confirm('Are you sure you want to delete this item?');">
-                               <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ platform.id) }}">
-                               <button class="btn btn-sm btn-outline-dark">Supprimer</button>
-                           </form>
-                       </div>
-                   </td>
-               </tr>
-           {% else %}
-               <tr>
-                   <td class="text-center p-5" colspan="3">Aucune Plateforme trouvée</td>
-               </tr>
-           {% endfor %}
-           </tbody>
-       </table>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for platform in platforms %}
+            <tr>
+                <td>{{ platform.id }}</td>
+                <td>{{ platform.name }}</td>
+                <td>
+                    <a href="{{ path('app_platform_show', {'id': platform.id}) }}">show</a>
+                    <a href="{{ path('app_platform_edit', {'id': platform.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-       <a class="btn btn-sm btn-outline-dark" href="{{ path('app_platform_new') }}">Ajouter une Plateforme</a>
-       <a class="btn btn-sm btn-outline-dark" href="{{ path('app_apply_for_index') }}">Retour</a>
-   </div>
+    <a href="{{ path('app_platform_new') }}">Create new</a>
 {% endblock %}

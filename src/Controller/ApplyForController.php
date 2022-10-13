@@ -3,10 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\ApplyFor;
+use App\Entity\Company;
+use App\Entity\Platform;
 use App\Entity\ProfessionalLink;
 use App\Form\ApplyForType;
 use App\Form\ProfessionalLinkType;
 use App\Repository\ApplyForRepository;
+use App\Repository\CompanyRepository;
 use App\Repository\NoteRepository;
 use App\Repository\PlatformRepository;
 use App\Repository\ProfessionalLinkRepository;
@@ -20,20 +23,23 @@ class ApplyForController extends AbstractController
 {
     private ApplyForRepository $applyForRepository;
     private NoteRepository $motivationRepository;
-    private PlatformRepository $platformRepository;
     private ProfessionalLinkRepository $professionalLinkRepository;
+    private CompanyRepository $companyRepository;
+    private PlatformRepository $platformRepository;
 
     public function __construct(
         ApplyForRepository         $applyForRepository,
         NoteRepository             $motivationRepository,
-        PlatformRepository         $platformRepository,
-        ProfessionalLinkRepository $professionalLinkRepository
+        ProfessionalLinkRepository $professionalLinkRepository,
+        CompanyRepository $companyRepository,
+        PlatformRepository $platformRepository,
     )
     {
         $this->applyForRepository = $applyForRepository;
         $this->motivationRepository = $motivationRepository;
-        $this->platformRepository = $platformRepository;
         $this->professionalLinkRepository = $professionalLinkRepository;
+        $this->companyRepository = $companyRepository;
+        $this->platformRepository = $platformRepository;
     }
 
     #[Route('/', name: 'app_apply_for_index', methods: ['GET', 'POST'])]
@@ -42,8 +48,9 @@ class ApplyForController extends AbstractController
         return $this->render('apply_for/index.html.twig', [
             'apply_for' => $this->applyForRepository->findAll(),
             'note' => $this->motivationRepository->findAll(),
-            'platform' => $this->platformRepository->findAll(),
             'proLink' => $this->professionalLinkRepository->findAll(),
+            'company' => $this->companyRepository->findAll(),
+            'platform' => $this->platformRepository->findAll()
         ]);
     }
 

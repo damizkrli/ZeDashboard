@@ -57,7 +57,7 @@
                 </div>
 
                 {# NOTES #}
-                <div class="col mt-4 px-5 border-end border-success" id="scroll">
+                <div class="col mt-4 px-5 border-end border-info" id="scroll">
                     <h1>
                         <a href="{{ path('app_note_index') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="action-icon">
@@ -71,7 +71,7 @@
                     {% for notes in note %}
 
                         <h3>{{ notes.name }}</h3>
-                        <div class="border border-success rounded-0 p-3 mb-3">
+                        <div class="border border-info rounded-0 p-3 mb-3">
                             {% if '/https/' %}
                                 <p>{{ notes.note | raw }}</p>
                         {% endif %}
@@ -98,15 +98,13 @@
                                 <h5 class="card-title">
                                     <div class="d-flex bd-highlight">
                                         <p class="p-2 w-75 bd-highlight">
-                                            {% if appliesFor.plateform %}
-                                            <p>{{ appliesFor.plateform.name }} |
-                                                {% endif %}
-                                                {{ appliesFor.company }} | {{ appliesFor.jobTitle }}</p>
+                                            {{ appliesFor.jobTitle }} chez {{ appliesFor.company.name }}
+                                            <small class="fst-italic">via {{ appliesFor.platform.name }}</small>
                                         </p>
 
                                         <div class="p-2 flex-shrink-1 bd-highlight">
                                             {% if appliesFor.status is same as 'Transmise' %}
-                                                <div class="bg-success p-2 rounded-3">{{ appliesFor.status }}</div>
+                                                <div class="bg-info p-2 rounded-3">{{ appliesFor.status }}</div>
                                             {% elseif appliesFor.status is same as 'Refusée' %}
                                                 <div class="bg-danger p-2 rounded-3">{{ appliesFor.status }}</div>
                                             {% elseif appliesFor.status is same as 'Acceptée' %}
@@ -126,23 +124,17 @@
                             </div>
                             <div class="card-body">
                                 {% if appliesFor.name %}
-                                    <p class="card-text">Nom de la personne à contacter : {{ appliesFor.name }}</p>
+                                    <p class="card-text">Personne à contacter : {{ appliesFor.name }}</p>
                                 {% else %}
                                 {% endif %}
 
                                 {# Details #}
                                 {% if appliesFor.details %}
-                                    <p class="card-text">Nom de la plateforme : {{ appliesFor.details }}</p>
+                                    <p class="card-text">Coordonnées : {{ appliesFor.details }}</p>
                                 {% else %}
 
                                 {% endif %}
 
-
-                                {% if appliesFor.plateform %}
-                                    <p class="card-text">Nom de la plateforme : {{ appliesFor.plateform }}</p>
-                                {% else %}
-
-                                {% endif %}
                                 <p>Date de candidature : <span
                                             class="fst-italic">{{ appliesFor.dateApplyFor|date('d/m/Y') }}</span>
                                 </p>

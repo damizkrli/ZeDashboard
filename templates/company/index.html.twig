@@ -1,42 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mes Entreprises{% endblock %}
+{% block title %}Company index{% endblock %}
 
 {% block body %}
-<div class="container">
-    <h1>Mes Entreprises</h1>
+    <h1>Company index</h1>
 
     <table class="table">
         <thead>
-        <tr>
-            <th>Nom de l'entreprise</th>
-            <th>Actions</th>
-        </tr>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
         </thead>
         <tbody>
         {% for company in companies %}
             <tr>
+                <td>{{ company.id }}</td>
                 <td>{{ company.name }}</td>
                 <td>
-                    <div class="d-flex align-items-center justify-content-start">
-                        <a class="btn btn-sm btn-outline-dark me-2" href="{{ path('app_company_edit', {'id': company.id}) }}">Modifier</a>
-                        <form method="post" action="{{ path('app_company_delete', {'id': company.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
-                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ company.id) }}">
-                            <button class="btn btn-sm btn-outline-dark">Supprimer</button>
-                        </form>
-                    </div>
-
+                    <a href="{{ path('app_company_show', {'id': company.id}) }}">show</a>
+                    <a href="{{ path('app_company_edit', {'id': company.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">Aucune Entreprise trouvée.</td>
+                <td colspan="3">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a class="btn btn-sm btn-outline-dark" href="{{ path('app_company_new') }}">Ajouter une entreprise</a>
-    <a class="btn btn-sm btn-outline-dark" href="{{ path('app_apply_for_index') }}">Retour</a>
-</div>
+    <a href="{{ path('app_company_new') }}">Create new</a>
 {% endblock %}

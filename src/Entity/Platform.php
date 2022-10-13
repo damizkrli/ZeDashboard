@@ -13,12 +13,12 @@ class Platform
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100, nullable: true)]
-    private ?string $name = null;
+    #[ORM\Column(length: 70)]
+    private ?string $name;
 
     public function __toString(): string
     {
-        return $this->name;
+        return $this->getName();
     }
 
     public function getId(): ?int

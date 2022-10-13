@@ -14,11 +14,11 @@ class Company
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
-    private ?string $name = null;
+    private ?string $name;
 
     public function __toString(): string
     {
-        return $this->name;
+        return $this->getName();
     }
 
     public function getId(): ?int
@@ -31,7 +31,7 @@ class Company
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(?string $name): self
     {
         $this->name = $name;
 

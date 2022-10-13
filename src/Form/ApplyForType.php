@@ -34,14 +34,12 @@ class ApplyForType extends AbstractType
                 'class' => Platform::class,
                 'placeholder' => 'Sélectionnez une plateforme',
                 'label' => 'Plateforme',
-                'mapped' => false,
                 'required' => false,
             ])
             ->add('company', EntityType::class, [
                 'class' => Company::class,
                 'placeholder' => 'Sélectionnez une entreprise',
                 'label' => "Nom de l'entreprise",
-                'mapped' => false
             ])
             ->add('name', TextType::class, [
                 'label' => 'Personne à contacter',
