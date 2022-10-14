@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau lien{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1>Ajouter un lien Technique</h1>
+
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+
+        <a class="btn btn-sm btn-outline-success rounded-0" href="{{ path('app_index_tech_link') }}">Retour</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit TechnicalLink{% endblock %}
+
+{% block body %}
+    <h1>Edit TechnicalLink</h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+    <a href="{{ path('app_index_tech_link') }}">back to list</a>
+
+{% endblock %}

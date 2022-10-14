@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Liens{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Mes liens techniques</h1>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="text-bg-info">Nom</th>
+                <th class="text-bg-info">URL</th>
+                <th class="text-bg-info">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for tech in techs %}
+                <tr>
+                    <td>
+                        <p>{{ tech.name }}</p>
+                    </td>
+                    <td>
+                        <p>{{ tech.url }}</p>
+                    </td>
+                    <td>
+                        <div class="d-flex align-items-center justify-content-start">
+                            <a class="btn btn-sm btn-outline-success me-2 rounded-0" href="{{ path('app_edit_tech_link', {'id': tech.id}) }}">Modifier</a>
+                            <form method="post" action="{{ path('app_delete_tech_link', {'id': tech.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ tech.id) }}">
+                                <button class="btn btn-outline-success btn-sm rounded-0">Supprimer</button>
+                            </form>
+                        </div>
+
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">
+                        <h2 class="fst-italic p-3" style="color: whitesmoke">
+                            <i class="fa fa-arrow-down"></i> Commencez par ajouter un lien
+                        </h2>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a class="btn btn-sm btn-outline-success rounded-0" href="{{ path('app_add_tech_link') }}">Ajouter un lien</a>
+        <a class="btn btn-sm btn-outline-success rounded-0" href="{{ path('app_apply_for_index') }}">Retour</a>
+    </div>
+{% endblock %}

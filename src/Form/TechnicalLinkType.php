@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\ProfessionalLink;
+use App\Entity\TechnicalLink;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -10,15 +10,15 @@ use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ProfessionalLinkType extends AbstractType
+class TechnicalLinkType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Nom du lien'
+                'label' => 'Nom'
             ])
-            ->add('link', UrlType::class, [
+            ->add('url', UrlType::class, [
                 'label' => 'URL'
             ])
             ->add('submit', SubmitType::class, [
@@ -30,10 +30,10 @@ class ProfessionalLinkType extends AbstractType
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => ProfessionalLink::class,
+            'data_class' => TechnicalLink::class,
         ]);
     }
 }

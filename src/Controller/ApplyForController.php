@@ -3,16 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\ApplyFor;
-use App\Entity\Company;
-use App\Entity\Platform;
 use App\Entity\ProfessionalLink;
+use App\Entity\TechnicalLink;
 use App\Form\ApplyForType;
 use App\Form\ProfessionalLinkType;
+use App\Form\TechnicalLinkType;
 use App\Repository\ApplyForRepository;
 use App\Repository\CompanyRepository;
 use App\Repository\NoteRepository;
 use App\Repository\PlatformRepository;
 use App\Repository\ProfessionalLinkRepository;
+use App\Repository\TechnicalLinkRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,6 +27,7 @@ class ApplyForController extends AbstractController
     private ProfessionalLinkRepository $professionalLinkRepository;
     private CompanyRepository $companyRepository;
     private PlatformRepository $platformRepository;
+    private TechnicalLinkRepository $technicalLinkRepository;
 
     public function __construct(
         ApplyForRepository         $applyForRepository,
@@ -33,6 +35,7 @@ class ApplyForController extends AbstractController
         ProfessionalLinkRepository $professionalLinkRepository,
         CompanyRepository $companyRepository,
         PlatformRepository $platformRepository,
+        TechnicalLinkRepository $technicalLinkRepository
     )
     {
         $this->applyForRepository = $applyForRepository;
@@ -40,8 +43,10 @@ class ApplyForController extends AbstractController
         $this->professionalLinkRepository = $professionalLinkRepository;
         $this->companyRepository = $companyRepository;
         $this->platformRepository = $platformRepository;
+        $this->technicalLinkRepository = $technicalLinkRepository;
     }
 
+/* -------------------------------- APPLY FOR ------------------------------------------------ */
     #[Route('/', name: 'app_apply_for_index', methods: ['GET', 'POST'])]
     public function index(): Response
     {
@@ -50,7 +55,8 @@ class ApplyForController extends AbstractController
             'note' => $this->motivationRepository->findAll(),
             'proLink' => $this->professionalLinkRepository->findAll(),
             'company' => $this->companyRepository->findAll(),
-            'platform' => $this->platformRepository->findAll()
+            'platform' => $this->platformRepository->findAll(),
+            'techLink' => $this->technicalLinkRepository->findAll(),
         ]);
     }
 
@@ -101,17 +107,18 @@ class ApplyForController extends AbstractController
         return $this->redirectToRoute('app_apply_for_index', [], Response::HTTP_SEE_OTHER);
     }
 
+/* -------------------------------- PROFESSIONAL LINK ------------------------------------------------ */
     #[Route('/index/link/pro', name: 'app_index_pro_link', methods: ['GET', 'POST'])]
     public function indexProfessionalLink(): Response
     {
-        $links = $this->professionalLinkRepository->findAll();
+        $pros = $this->professionalLinkRepository->findAll();
 
         return $this->render('link/professional/index.html.twig', [
-            'links' => $links,
+            'pros' => $pros,
         ]);
     }
 
-    #[Route('/add/professional/link', name: 'app_add_professional_link', methods: ['GET', 'POST'])]
+    #[Route('/add/link/pro', name: 'app_add_professional_link', methods: ['GET', 'POST'])]
     public function newProfessionalLink(Request $request): Response
     {
         $proLink = new ProfessionalLink();
@@ -130,7 +137,7 @@ class ApplyForController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit/link/professional', name: 'app_edit_professional_link', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit/link/pro', name: 'app_edit_professional_link', methods: ['GET', 'POST'])]
     public function editProfessionalLink(Request $request, ProfessionalLink $professionalLink): Response
     {
         $form = $this->createForm(ProfessionalLinkType::class, $professionalLink);
@@ -157,4 +164,66 @@ class ApplyForController extends AbstractController
 
         return $this->redirectToRoute('app_index_pro_link', [], Response::HTTP_SEE_OTHER);
     }
+
+/* -------------------------------- TECHNICAL LINK ------------------------------------------------ */
+    #[Route('/index/link/tech', name: 'app_index_tech_link', methods: ['GET'])]
+    public function indexTechnicalLink(): Response
+    {
+        $techs = $this->technicalLinkRepository->findAll();
+
+        return $this->render('link/technical/index.html.twig', [
+            'techs' => $techs,
+        ]);
+    }
+
+    #[Route('/add/link/tech', name: 'app_add_tech_link', methods: ['GET', 'POST'])]
+    public function newTechnicalLink(Request $request, TechnicalLinkRepository $technicalLinkRepository): Response
+    {
+        $technicalLink = new TechnicalLink();
+        $form = $this->createForm(TechnicalLinkType::class, $technicalLink);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $technicalLinkRepository->save($technicalLink, true);
+
+            return $this->redirectToRoute('app_index_tech_link', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('link/technical/new.html.twig', [
+            'technical' => $technicalLink,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}/edit/link/tech', name: 'app_edit_tech_link', methods: ['GET', 'POST'])]
+    public function editTechnicalLink(Request $request, TechnicalLink $technicalLink, TechnicalLinkRepository $technicalLinkRepository): Response
+    {
+        $form = $this->createForm(TechnicalLinkType::class, $technicalLink);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $technicalLinkRepository->save($technicalLink, true);
+
+            return $this->redirectToRoute('app_index_tech_link', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('link/technical/edit.html.twig', [
+            'technical' => $technicalLink,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}/tech/link', name: 'app_delete_tech_link', methods: ['POST'])]
+    public function deleteTechnicalLink(Request $request, TechnicalLink $technicalLink, TechnicalLinkRepository $technicalLinkRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$technicalLink->getId(), $request->request->get('_token'))) {
+            $technicalLinkRepository->remove($technicalLink, true);
+        }
+
+        return $this->redirectToRoute('app_index_tech_link', [], Response::HTTP_SEE_OTHER);
+    }
+
+/* -------------------------------- PERSONAL LINK ------------------------------------------------ */
+
+
 }
