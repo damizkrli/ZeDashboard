@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\ApplyFor;
+use App\Entity\PersonalLink;
 use App\Entity\ProfessionalLink;
 use App\Entity\TechnicalLink;
 use App\Form\ApplyForType;
+use App\Form\PersonalLinkType;
 use App\Form\ProfessionalLinkType;
 use App\Form\TechnicalLinkType;
 use App\Repository\ApplyForRepository;
@@ -251,6 +253,43 @@ class ApplyForController extends AbstractController
 
         return $this->render('link/personal/index.html.twig', [
             'persos' => $persos,
+        ]);
+    }
+
+    #[Route('/add/link/perso', name: 'app_add_perso_link', methods: ['GET', 'POST'])]
+    public function addPersonalLink(Request $request, PersonalLinkRepository $personalLinkRepository): Response
+    {
+        $personalLink = new PersonalLink();
+        $form = $this->createForm(PersonalLinkType::class, $personalLink);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $personalLinkRepository->save($personalLink, true);
+
+            return $this->redirectToRoute('app_index_perso_link', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('link/personal/new.html.twig', [
+            'persoLink' => $personalLink,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}/edit/link/perso', name: 'app_edit_perso_link', methods: ['GET', 'POST'])]
+    public function editPersonalLink(Request $request, PersonalLink $personalLink): Response
+    {
+        $form = $this->createForm(PersonalLinkType::class, $personalLink);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->personalLinkRepository->save($personalLink, true);
+
+            return $this->redirectToRoute('app_index_perso_link', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('link/edit.html.twig', [
+            'personalLink' => $personalLink,
+            'form' => $form
         ]);
     }
 
