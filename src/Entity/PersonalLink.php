@@ -2,18 +2,17 @@
 
 namespace App\Entity;
 
-use App\Repository\ProfessionalLinkRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ProfessionalLinkRepository::class)]
-class ProfessionalLink
+#[ORM\Entity(repositoryClass: PersonalLinkRepository::Class)]
+class PersonalLink
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 75)]
+    #[ORM\Column(length: 50)]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
@@ -26,10 +25,10 @@ class ProfessionalLink
 
     public function getName(): ?string
     {
-        return $this->name;
+        return  $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(?string $name): self
     {
         $this->name = $name;
 
@@ -41,7 +40,7 @@ class ProfessionalLink
         return $this->url;
     }
 
-    public function setUrl(string $url): self
+    public function setUrl(?string $url): self
     {
         $this->url = $url;
 

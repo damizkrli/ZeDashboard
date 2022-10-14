@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Notes{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 style="color: #198754">Mes Liens Professionnels</h1>
+
+        <table class="table table-dark table-hover table-bordered border-success">
+            <thead>
+            <tr>
+                <th class="text-bg-info">Nom</th>
+                <th class="text-bg-info">URL</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for linksPros in linksPro %}
+                <tr>
+                    <td>{{ linksPros.name }}</td>
+                    <td>{{ linksPros.url }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Aucuns liens...</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="btn-group mb-5">
+            <a class="btn btn-sm btn-outline-success me-3 rounded-0" href="{{ path('app_index_pro_link') }}">Gestion des liens Professionnels</a>
+            <a class="btn btn-sm btn-outline-success rounded-0" href="{{ path('app_apply_for_index') }}">Retour</a>
+        </div>
+    </div>
+    <div class="container">
+        <h1 style="color: #198754">Mes Liens Technique</h1>
+
+        <table class="table table-dark table-hover table-bordered border-success">
+            <thead>
+            <tr>
+                <th class="text-bg-info">Nom</th>
+                <th class="text-bg-info">URL</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for linksTechs in linksTech %}
+                <tr>
+                    <td>{{ linksTechs.name }}</td>
+                    <td>{{ linksTechs.url }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Aucuns liens...</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="btn-group mb-5">
+            <a class="btn btn-sm btn-outline-success me-3 rounded-0" href="{{ path('app_note_new') }}">Ajouter une note</a>
+            <a class="btn btn-sm btn-outline-success rounded-0" href="{{ path('app_apply_for_index') }}">Retour</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 style="color: #198754">Mes Liens Personnels</h1>
+
+        <table class="table table-dark table-hover table-bordered border-success">
+            <thead>
+            <tr>
+                <th class="text-bg-info">Nom</th>
+                <th class="text-bg-info">URL</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for linksPersos in linksPerso %}
+                <tr>
+                    <td>{{ linksPersos.name }}</td>
+                    <td>{{ linksPersos.url }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Aucuns liens...</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="btn-group mb-5">
+            <a class="btn btn-sm btn-outline-success me-3 rounded-0" href="{{ path('app_note_new') }}">Ajouter une note</a>
+            <a class="btn btn-sm btn-outline-success rounded-0" href="{{ path('app_apply_for_index') }}">Retour</a>
+        </div>
+    </div>
+
+{% endblock %}

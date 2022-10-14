@@ -11,6 +11,7 @@ use App\Form\TechnicalLinkType;
 use App\Repository\ApplyForRepository;
 use App\Repository\CompanyRepository;
 use App\Repository\NoteRepository;
+use App\Repository\PersonalLinkRepository;
 use App\Repository\PlatformRepository;
 use App\Repository\ProfessionalLinkRepository;
 use App\Repository\TechnicalLinkRepository;
@@ -28,6 +29,7 @@ class ApplyForController extends AbstractController
     private CompanyRepository $companyRepository;
     private PlatformRepository $platformRepository;
     private TechnicalLinkRepository $technicalLinkRepository;
+    private PersonalLinkRepository $personalLinkRepository;
 
     public function __construct(
         ApplyForRepository         $applyForRepository,
@@ -35,7 +37,8 @@ class ApplyForController extends AbstractController
         ProfessionalLinkRepository $professionalLinkRepository,
         CompanyRepository $companyRepository,
         PlatformRepository $platformRepository,
-        TechnicalLinkRepository $technicalLinkRepository
+        TechnicalLinkRepository $technicalLinkRepository,
+        PersonalLinkRepository $personalLinkRepository,
     )
     {
         $this->applyForRepository = $applyForRepository;
@@ -44,6 +47,7 @@ class ApplyForController extends AbstractController
         $this->companyRepository = $companyRepository;
         $this->platformRepository = $platformRepository;
         $this->technicalLinkRepository = $technicalLinkRepository;
+        $this->personalLinkRepository = $personalLinkRepository;
     }
 
 /* -------------------------------- APPLY FOR ------------------------------------------------ */
@@ -105,6 +109,22 @@ class ApplyForController extends AbstractController
         }
 
         return $this->redirectToRoute('app_apply_for_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+/* -------------------------------- LINKS ------------------------------------------------ */
+
+    #[Route('/links/index', name: 'app_link_index', methods: ['GET', 'POST'])]
+    public function linksIndex(): Response
+    {
+        $linksPro = $this->professionalLinkRepository->findAll();
+        $linksTech = $this->technicalLinkRepository->findAll();
+        $linksPerso = $this->personalLinkRepository->findAll();
+
+        return $this->render('link/links.html.twig', [
+            'linksPro' => $linksPro,
+            'linksPerso' => $linksPerso,
+            'linksTech' => $linksTech
+        ]);
     }
 
 /* -------------------------------- PROFESSIONAL LINK ------------------------------------------------ */
@@ -224,6 +244,14 @@ class ApplyForController extends AbstractController
     }
 
 /* -------------------------------- PERSONAL LINK ------------------------------------------------ */
+    #[Route('/index/link/perso', name: 'app_index_perso_link', methods: ['GET'])]
+    public function indexPersonalLink(): Response
+    {
+        $persos = $this->personalLinkRepository->findAll();
 
+        return $this->render('link/personal/index.html.twig', [
+            'persos' => $persos,
+        ]);
+    }
 
 }
