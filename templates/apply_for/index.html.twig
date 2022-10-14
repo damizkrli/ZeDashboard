@@ -41,16 +41,16 @@
                             </ul>
                       {% endfor %}
 
-                    <h5 class="text-decoration-underline">
+                    <h5 class="text-decoration-underline mb-3">
                         <a href="{{ path('app_index_perso_link') }}">Liens personnels</a>
                     </h5>
-{#                      {% for persos in perso %}#}
+                      {% for persoLinks in persoLink %}
                             <ul>
-                                {#<li>
-                                    <a class="link-perso" href="{{ persoLink.link }}" target="_blank">{{ persoLink.name }}</a>
-                                  </li>#}
+                                <li>
+                                    <a class="btn-outline-info p-2 rounded-3" class="link-perso" href="{{ persoLinks.url }}" target="_blank">{{ persoLinks.name }}</a>
+                                </li>
                             </ul>
-{#                      {% endfor %}#}
+                      {% endfor %}
                 </div>
 
                 {# NOTES #}

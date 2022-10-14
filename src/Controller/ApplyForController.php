@@ -63,6 +63,7 @@ class ApplyForController extends AbstractController
             'company' => $this->companyRepository->findAll(),
             'platform' => $this->platformRepository->findAll(),
             'techLink' => $this->technicalLinkRepository->findAll(),
+            'persoLink' => $this->personalLinkRepository->findAll(),
         ]);
     }
 
