@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Repository\PersonalLinkRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PersonalLinkRepository::Class)]
