@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ApplyForRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ApplyForRepository::class)]
 class ApplyFor
@@ -14,13 +15,16 @@ class ApplyFor
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Type(\DateTime::class)]
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateApplyFor;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateReturn;
 
-    #[ORM\Column(length: 155)]
+    #[Assert\NotBlank]
+    #[ORM\Column(length: 155, )]
     private ?string $jobTitle = null;
 
     #[ORM\Column(length: 255, nullable: true)]

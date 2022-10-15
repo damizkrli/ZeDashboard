@@ -17,7 +17,6 @@ use App\Repository\PersonalLinkRepository;
 use App\Repository\PlatformRepository;
 use App\Repository\ProfessionalLinkRepository;
 use App\Repository\TechnicalLinkRepository;
-use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

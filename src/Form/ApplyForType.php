@@ -42,18 +42,18 @@ class ApplyForType extends AbstractType
                 'label' => "Nom de l'entreprise",
             ])
             ->add('name', TextType::class, [
-                'label' => 'Personne à contacter',
+                'label' => 'Contact',
                 'required' => false
             ])
             ->add('details', TextType::class, [
-                'label' => 'Coordonnées de la personne à contacter',
+                'label' => 'Coordonnées',
                 'required' => false,
             ])
             ->add('jobTitle', TextType::class, [
                 'label' => "Intitulé du poste"
             ])
             ->add('link', UrlType::class, [
-                'label' => "Lien vers l'annonce ou vers l'entreprise"
+                'label' => "Lien vers l'annonce"
             ])
             ->add('dateApplyFor', DateTimeType::class, [
                 'label'  => 'Date de candidature',
@@ -75,7 +75,7 @@ class ApplyForType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => 'Enregistrer',
                 'attr' => [
-                    'class' => 'btn btn-outline-success btn-sm rounded-0',
+                    'class' => 'btn btn-outline-success btn-sm rounded-0 mb-5',
                 ]
             ])
         ;
