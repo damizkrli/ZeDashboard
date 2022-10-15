@@ -6,9 +6,15 @@
 
     <div class="container">
         <h1>Ajouter une candidature</h1>
-        {# TODO : !!HERE!! ajouter une div pour mettre les deux boutons sous le titre #}
-        {#        <a class="btn btn-sm btn-outline-success rounded-0" href="{{ path('app_platform_index') }}">Ajouter une plateforme</a> #}
-        {#        <a class="btn btn-sm btn-outline-success rounded-0" href="{{ path('app_company_index') }}">Ajouter une entreprise</a> #}
+        <div class="row">
+
+        </div>
+        <div class="">
+            <a class="btn btn-sm btn-outline-success rounded-0" href="{{ path('app_platform_index') }}">Ajouter une
+                plateforme</a>
+            <a class="btn btn-sm btn-outline-success rounded-0" href="{{ path('app_company_index') }}">Ajouter une
+                entreprise</a>
+        </div>
 
         {# TODO : refaire le formulaire pour qu'il soit plus compact #}
         {{ form_start(form) }}

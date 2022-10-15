@@ -4,13 +4,13 @@
 
 {% block body %}
 <div class="container">
-    <h1>Modifier Candidature</h1>
+    <h1>{{ apply_for.jobTitle }} chez {{ apply_for.company }}</h1>
 
     {{ form_start(form) }}
     {{ form_widget(form) }}
     {{ form_end(form) }}
 
-    <a class="btn btn-sm btn-outline-dark" href="{{ path('app_apply_for_index') }}">Retour</a>
+    <a class="btn btn-sm btn-outline-success mb-5 rounded-0" href="{{ path('app_apply_for_index') }}">Retour</a>
 </div>
 
 {% endblock %}
