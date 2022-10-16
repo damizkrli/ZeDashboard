@@ -1,22 +1,67 @@
 @import "bootstrap";
+
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Ubuntu:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap');
 
 $h1-title: 'Patrick Hand', cursive;
 $h3-title: 'Roboto Condensed', sans-serif;
 $text: 'Nanum Gothic', sans-serif;
+$app-name: 'Syne Mono', monospace;
 
-$white: #ffffff;
-$black: #323539;
-$text-color: #198754;
-$color-link: #0dcaf0;
+// Black & White
+$light: #FAF9F9;
+$dark: #3D414C;
+// Background color
+$background: #9999A7;
+// TextColor
+$text-color: #787284;
+// LinkColor
+$link: #A07D70;
+
+.app-name {
+    font-family: $app-name;
+}
+
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: $dark;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+.sidebar a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+}
+
+.sidebar a.active {
+    background-color: #04AA6D;
+    color: white;
+}
+
+.sidebar a:hover:not(.active) {
+    background-color: $light;
+    color: $dark;
+}
+
+div.content {
+    margin-left: 200px;
+    padding: 1px 16px;
+    height: 1000px;
+}
 
 html, body {
     height: 10vh;
     padding: 0;
     margin: 0;
-    background-color: $black;
+    background-color: $background;
 }
 
 h1 {
@@ -36,7 +81,7 @@ a {
     color: $text-color;
 
     &:hover {
-        color: $color-link;
+        color: $link;
     }
 }
 
@@ -48,11 +93,11 @@ p {
 }
 
 .navbar {
-    background-color: $black !important;
+    background-color: $light !important;
 }
 
 .name {
-    color: $white;
+    color: $light;
 }
 
 ul {
@@ -62,16 +107,16 @@ ul {
 
 .link {
     text-decoration : none;
-    color: $white;
+    color: $light;
 
     &:hover {
         text-decoration: none;
-        color: $black;
+        color: $dark;
     }
 }
 
 .link-pro, .link-tech, .link-perso {
-    color: $black;
+    color: $dark;
     text-decoration: none;
 }
 
@@ -99,8 +144,8 @@ ul {
 }
 
 .black {
-    color: $white;
-    background-color: $black;
+    color: $light;
+    background-color: $dark;
     border-radius: 2px;
     padding: 0.25rem;
 }
@@ -110,19 +155,36 @@ ul {
 }
 
 .form-select {
-    background-color: $black;
+    background-color: $dark;
     border: 1px solid $text-color;
     color: $text-color;
 }
 
 .form-control {
-    background-color: $black;
+    background-color: $dark;
     border: 1px solid $text-color;
     color: $text-color;
 
     &:hover {
-        background-color: $black;
+        background-color: $dark;
         border: 1px solid $text-color;
         color: $text-color;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    .sidebar a {float: left;}
+    div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+    .sidebar a {
+        text-align: center;
+        float: none;
     }
 }
