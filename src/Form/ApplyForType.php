@@ -23,7 +23,6 @@ class ApplyForType extends AbstractType
         'Entretien Tech' => 'Entretien Tech',
         'Refusée'   => 'Refusée',
         'Acceptée'  => 'Acceptée',
-        'En Attente'   => 'En Attente',
         'Sans réponse'   => 'Sans réponse',
     ];
 

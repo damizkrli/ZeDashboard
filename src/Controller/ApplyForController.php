@@ -40,7 +40,7 @@ class ApplyForController extends AbstractController
     }
 
 /* -------------------------------- APPLY FOR ------------------------------------------------ */
-    #[Route('/apply', name: 'app_apply_for_index', methods: ['GET', 'POST'])]
+    #[Route('/apply/', name: 'app_apply_for_index', methods: ['GET', 'POST'])]
     public function index(): Response
     {
         return $this->render('apply_for/index.html.twig', [
