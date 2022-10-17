@@ -25,11 +25,11 @@ h2 {
 }
 
 h3 {
-    color: $light;
+    color: $dark;
 }
 
 p {
-    font-family: $text;
+    font-family: $text !important;
     color: $light;
     margin: 0;
     padding: 0;
@@ -50,7 +50,7 @@ ul {
 }
 
 .border {
-    color: $dark;
+    color: $link !important;
     border-radius: $radius;
 }
 
