@@ -1,61 +1,7 @@
-@import "bootstrap";
-
-@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Ubuntu:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap');
-
-$h1-title: 'Patrick Hand', cursive;
-$h3-title: 'Roboto Condensed', sans-serif;
-$text: 'Nanum Gothic', sans-serif;
-$app-name: 'Syne Mono', monospace;
-
-// Black & White
-$light: #FAF9F9;
-$dark: #3D414C;
-// Background color
-$background: #9999A7;
-// TextColor
-$text-color: #787284;
-// LinkColor
-$link: #A07D70;
-
-.app-name {
-    font-family: $app-name;
-}
-
-.sidebar {
-    margin: 0;
-    padding: 0;
-    width: 200px;
-    background-color: $dark;
-    position: fixed;
-    height: 100%;
-    overflow: auto;
-}
-
-.sidebar a {
-    display: block;
-    color: black;
-    padding: 16px;
-    text-decoration: none;
-}
-
-.sidebar a.active {
-    background-color: #04AA6D;
-    color: white;
-}
-
-.sidebar a:hover:not(.active) {
-    background-color: $light;
-    color: $dark;
-}
-
-div.content {
-    margin-left: 200px;
-    padding: 1px 16px;
-    height: 1000px;
-}
+@import "variables";
+@import "sidebar";
+@import "button";
+@import "form";
 
 html, body {
     height: 10vh;
@@ -72,32 +18,30 @@ h1 {
     color: $text-color;
 }
 
+h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 h3 {
     color: $text-color;
 }
 
-a {
-    text-decoration: none;
-    color: $text-color;
-
-    &:hover {
-        color: $link;
-    }
-}
-
 p {
     font-family: $text;
-    color: #198754;
+    color: $dark;
     margin: 0;
     padding: 0;
 }
 
-.navbar {
-    background-color: $light !important;
-}
+a {
+    text-decoration: none;
+    color: $dark !important;
 
-.name {
-    color: $light;
+    &:hover {
+        color: $light !important;
+    }
 }
 
 ul {
@@ -105,24 +49,9 @@ ul {
     padding: 0 !important;
 }
 
-.link {
-    text-decoration : none;
-    color: $light;
-
-    &:hover {
-        text-decoration: none;
-        color: $dark;
-    }
-}
-
-.link-pro, .link-tech, .link-perso {
+.border {
     color: $dark;
-    text-decoration: none;
-}
-
-#scroll {
-    height: calc(100vh - 110px);
-    overflow-y: scroll;
+    border-radius: $radius;
 }
 
 .action-icon {
@@ -130,46 +59,6 @@ ul {
     display: inline-block;
     width: 30px;
     height: 30px;
-}
-
-.icon {
-    vertical-align: middle;
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-}
-
-.btn:hover {
-    border: none;
-}
-
-.black {
-    color: $light;
-    background-color: $dark;
-    border-radius: 2px;
-    padding: 0.25rem;
-}
-
-.form-label {
-    color: $text-color;
-}
-
-.form-select {
-    background-color: $dark;
-    border: 1px solid $text-color;
-    color: $text-color;
-}
-
-.form-control {
-    background-color: $dark;
-    border: 1px solid $text-color;
-    color: $text-color;
-
-    &:hover {
-        background-color: $dark;
-        border: 1px solid $text-color;
-        color: $text-color;
-    }
 }
 
 @media screen and (max-width: 700px) {

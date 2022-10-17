@@ -1,0 +1,27 @@
+@import "bootstrap";
+
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Ubuntu:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap');
+
+$h1-title: 'Patrick Hand', cursive;
+$h3-title: 'Roboto Condensed', sans-serif;
+$text: 'Nanum Gothic', sans-serif;
+$app-name: 'Syne Mono', monospace;
+
+// Black & White
+$light: #FAF9F9;
+$dark: #3D414C;
+// Background color
+$background: #9999A7;
+// TextColor
+$text-color: #787284;
+// LinkColor
+$link: #A07D70;
+// Other
+$radius: 5px;
+$padding: 3px;
+$padding-side: 8px;
+$margin: 3px;
+$border: 3px

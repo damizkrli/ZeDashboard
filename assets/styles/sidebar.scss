@@ -1,0 +1,38 @@
+@import "variables";
+
+.app-name {
+  font-family: $app-name;
+}
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: $dark;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+.sidebar a {
+  display: block;
+  color: $light !important;
+  padding: 16px;
+  text-decoration: none;
+}
+
+.sidebar a.active {
+  background-color: #04AA6D;
+  color: $light
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: $link;
+  color: $light !important;
+}
+
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}

@@ -1,0 +1,19 @@
+@import "variables";
+
+.button {
+  background-color: $background;
+  color: $link;
+  border: 1px solid $link;
+  padding: $padding $padding-side;
+  margin: $margin;
+  border-radius: $radius;
+
+  &:hover {
+    background-color: $link;
+    color: $light;
+    border: 1px solid $link;
+    padding: $padding $padding-side;
+    margin: $margin;
+    border-radius: $radius;
+  }
+}
