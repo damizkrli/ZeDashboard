@@ -10,16 +10,29 @@
                 <h1 class="d-flex align-items-end justify-content-end">
                     Bienvenu [nom_utilisateur]
                 </h1>
+
                 <h2>Les dernières notes</h2>
                 {% for notes in note %}
-                        <h3>{{ notes.name }}</h3>
-                        <div class="border p-3 mb-3">
-                            {% if '/https/' %}
-                                <p>{{ notes.note | raw }}</p>
+                    <h3>{{ notes.name }}</h3>
+                    <div class="border p-3 mb-3">
+                        {% if '/https/' %}
+                            <p>{{ notes.note | raw }}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                <h2>Les dernières Candidatures</h2>
+                {% for appliesFor in apply_for %}
+                    <h3>{{ appliesFor.jobTitle }}</h3>
+                    <div class="border p-3 mb-3">
+                            {% if appliesFor.status is same as 'Refusée' %}
+                                <p class="line">{{ appliesFor.company }} sur {{ appliesFor.platform.name }} le {{ appliesFor.dateApplyFor|date('d/m/Y') }}</p>
+                            {% else %}
+                                <p>{{ appliesFor.company }} sur {{ appliesFor.platform.name }} le {{ appliesFor.dateApplyFor|date('d/m/Y') }}</p>
                             {% endif %}
-                        </div>
-                    {% endfor %}
-                </div>
+                    </div>
+                {% endfor %}
+
             </div>
         </div>
     </section>
