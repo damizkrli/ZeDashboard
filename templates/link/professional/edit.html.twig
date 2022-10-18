@@ -4,12 +4,21 @@
 
 {% block body %}
     <div class="container">
-        <h1>Modifier Lien</h1>
+            <h1 class="text-start">Modifier Lien</h1>
 
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
+        <div class="row">
+            <div class="col-8">
+                <div class="">
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+
+                </div>
+            </div>
+        </div>
+
+        <button class="green-button">{{ button_label|default('Enregistrer') }}</button>
         {{ form_end(form) }}
+        <a class="red-button" href="{{ path('app_apply_for_index') }}">Retour</a>
 
-        <a class="btn btn-sm btn-outline-dark" href="{{ path('app_apply_for_index') }}">Retour</a>
     </div>
 {% endblock %}

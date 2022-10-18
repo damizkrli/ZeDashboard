@@ -1,35 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Company index{% endblock %}
+{% block title %}Mes entreprises{% endblock %}
 
 {% block body %}
-    <h1>Company index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for company in companies %}
-            <tr>
-                <td>{{ company.id }}</td>
-                <td>{{ company.name }}</td>
-                <td>
-                    <a href="{{ path('app_company_show', {'id': company.id}) }}">show</a>
-                    <a href="{{ path('app_company_edit', {'id': company.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="container">
+        <h1>Mes Entreprises</h1>
 
-    <a href="{{ path('app_company_new') }}">Create new</a>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Nom</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for company in companies %}
+                <tr>
+                    <td>{{ company.id }}</td>
+                    <td>{{ company.name }}</td>
+                    <td>
+                        <div class="d-flex align-items center justify-content_center">
+                            <a href="{{ path('app_platform_edit', {'id': company.id}) }}"><i class="far fa-edit"></i></a>
+                            <form method="post" action="{{ path('app_company_delete', {'id': company.id}) }}"
+                                  onsubmit="return confirm('Êtes_vous sur de vouloir supprimer cette entreprise ?');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ company.id) }}">
+                                <button class="btn border-0 pt-0"><i class="far fa-trash-alt"></i></button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">
+                        <h3 class="fst-italic p-3">
+                            <i class="fa fa-arrow-down"></i> Commencez par ajouter une entreprise
+                        </h3>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a class="green-button" href="{{ path('app_company_new') }}">Ajouter une entreprise</a>
+        <a class="red-button" href="{{ path('app_apply_for_index') }}">Retour</a>
+
+    </div>
+
 {% endblock %}

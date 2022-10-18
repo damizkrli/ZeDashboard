@@ -1,11 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Platform{% endblock %}
+{% block title %}Nouvelle Plateforme{% endblock %}
 
 {% block body %}
-    <h1>Create new Platform</h1>
+    <h1>Ajouter une plateforme</h1>
+    <div class="container col-6">
 
-    {{ include('platform/_form.html.twig') }}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
 
-    <a href="{{ path('app_platform_index') }}">back to list</a>
+        <div class="m-3">
+            <div class="d-flex align-items-center justify-content-center">
+                <button class="green-button">{{ button_label|default('Enregistrer') }}</button>
+                <a class="red-button" href="{{ path('app_platform_index') }}">Retour aux plateformes</a>
+                <a class="red-button" href="{{ path('app_apply_for_index') }}">Retour aux candidatures</a>
+            </div>
+        </div>
+        {{ form_end(form) }}
+
+    </div>
 {% endblock %}

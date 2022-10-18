@@ -40,9 +40,11 @@ class ApplyFor
     private ?string $details = null;
 
     #[ORM\ManyToOne]
+    #[ORM\JoinColumn(onDelete: "cascade")]
     private ?Company $company;
 
     #[ORM\ManyToOne]
+    #[ORM\JoinColumn(onDelete: "cascade")]
     private ?Platform $platform;
 
     public function getId(): ?int

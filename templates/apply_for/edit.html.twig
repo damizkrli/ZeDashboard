@@ -8,9 +8,10 @@
 
     {{ form_start(form) }}
     {{ form_widget(form) }}
+    <button class="green-button">{{ button_label|default('Enregistrer') }}</button>
     {{ form_end(form) }}
 
-    <a class="btn btn-sm btn-outline-success mb-5 rounded-0" href="{{ path('app_apply_for_index') }}">Retour</a>
+    <a class="red-button mb-5" href="{{ path('app_apply_for_index') }}">Retour</a>
 </div>
 
 {% endblock %}

@@ -1,13 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Platform{% endblock %}
+{% block title %}Modifier Plateforme{% endblock %}
 
 {% block body %}
-    <h1>Edit Platform</h1>
+    <h1>Modifier {{ platform.name }}</h1>
 
-    {{ include('platform/_form.html.twig', {'button_label': 'Update'}) }}
+    <div class="container col-4">
 
-    <a href="{{ path('app_platform_index') }}">back to list</a>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
 
-    {{ include('platform/_delete_form.html.twig') }}
+        <div class="m-3">
+            <div class="col d-flex align-items-center justify-content-center">
+                <button class="green-button">{{ button_label|default('Enregistrer') }}</button>
+                <a class="red-button" href="{{ path('app_platform_index') }}">Retour aux plateformes</a>
+            </div>
+        </div>
+
+        {{ form_end(form) }}
+
+    </div>
+
+
 {% endblock %}

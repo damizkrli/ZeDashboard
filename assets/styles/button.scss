@@ -1,8 +1,8 @@
 @import "variables";
 
-.button {
+.green-button {
   background-color: $background;
-  color: $link;
+  color: $dark;
   border: 1px solid $link;
   padding: $padding $padding-side;
   margin: $margin;
@@ -10,6 +10,24 @@
 
   &:hover {
     background-color: $link;
+    color: $light;
+    border: 1px solid $link;
+    padding: $padding $padding-side;
+    margin: $margin;
+    border-radius: $radius;
+  }
+}
+
+.red-button {
+  background-color: $background;
+  color: $dark;
+  border: 1px solid $danger;
+  padding: $padding $padding-side;
+  margin: $margin;
+  border-radius: $radius;
+
+  &:hover {
+    background-color: $danger;
     color: $light;
     border: 1px solid $link;
     padding: $padding $padding-side;

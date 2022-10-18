@@ -5,13 +5,15 @@
 {% block body %}
 
     <div class="col px-5">
-        <h1 class="m-5"><i class="fas fa-briefcase"></i>Candidatures</h1>
+        <h1 class="m-5"><i class="fas fa-briefcase me-3"></i>Candidatures</h1>
 
         <div class="mb-3">
-            <a class="button" href="{{ path('app_apply_for_new') }}">Ajouter une candidature</a>
-            <a class="button" href="{{ path('app_company_new') }}">Ajouter une entreprise</a>
-            <a class="button" href="{{ path('app_platform_new') }}">Ajouter une plateforme</a>
-{#            <a class="button" href="#">Exporter en PDF</a>#}
+            <a class="green-button" href="{{ path('app_apply_for_new') }}">Ajouter une candidature</a>
+            <a class="green-button" href="{{ path('app_company_new') }}">Ajouter une entreprise</a>
+            <a class="green-button" href="{{ path('app_platform_new') }}">Ajouter une plateforme</a>
+            {# TODO : créer une fonction pour faire un export en pdf #}
+            {# <a class="button" href="#">Exporter en PDF</a> #}
+            <a class="red-button" href="{{ path('app_index_home') }}">Retour</a>
         </div>
 
         <table class="table mx-auto w-auto table-responsive">
@@ -37,21 +39,19 @@
                 <td class="text-start">{{ appliesFor.jobTitle }}</td>
                 <td class="text-center">{{ appliesFor.company.name }}</td>
                 <td class="text-center">{{ appliesFor.platform.name }}</td>
-                <td class="text-center">
-                    {% if appliesFor.status is same as 'Transmise' %}
-                        <div class="bg-info p-2 rounded-3">{{ appliesFor.status }}</div>
-                    {% elseif appliesFor.status is same as 'Refusée' %}
-                        <div class="bg-danger p-2 rounded-3">{{ appliesFor.status }}</div>
+                {% if appliesFor.status is same as 'Transmise' %}
+                <td class="text-center bg-info"><div>{{ appliesFor.status }}</div></td>
+                {% elseif appliesFor.status is same as 'Refusée' %}
+                    <td class="text-center bg-danger text-light"><div>{{ appliesFor.status }}</div></td>
                     {% elseif appliesFor.status is same as 'Acceptée' %}
-                        <div class="bg-secondary p-2 rounded-3">{{ appliesFor.status }}</div>
+                        <td class="text-center bg-success"><div>{{ appliesFor.status }}</div></td>
                     {% elseif appliesFor.status is same as 'Sans réponse' %}
-                        <div class="bg-info p-2 rounded-3">{{ appliesFor.status }}</div>
+                        <td class="text-center bg-dark text-light"><div>{{ appliesFor.status }}</div></td>
                     {% elseif appliesFor.status is same as 'Entretien' %}
-                        <div class="bg-warning p-2 rounded-3">{{ appliesFor.status }}</div>
+                        <td class="text-center bg-warning"><div>{{ appliesFor.status }}</div></td>
                     {% elseif appliesFor.status is same as 'Entretien Tech' %}
-                        <div class="bg-warning p-2 rounded-3">{{ appliesFor.status }}</div>
+                        <td class="text-center bg-warning"><div>{{ appliesFor.status }}</div></td>
                     {% endif %}
-                </td>
                 <td class="text-center">
                     {% if appliesFor.name %}
                         <p class="card-text">{{ appliesFor.name }}</p>
@@ -74,29 +74,15 @@
                         {{ appliesFor.dateReturn|date('d/m/Y') }}
                     {% endif %}</td>
                 <td class="text-center">
-                    <a href="{{ appliesFor.link }}" target="_blank"
-                       class="button">
-                        Lien</a>
+                    <a href="{{ appliesFor.link }}" target="_blank" class="green-button">Lien</a>
                 </td>
                 <td class="text-center">
                     <div class="d-flex align-items center justify-content_center">
-                        <a class="btn border-0 pt-0" href="{{ path('app_apply_for_edit', {'id': appliesFor.id}) }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="action-icon" fill="none" viewBox="0 0 24 24"
-                                 stroke="green" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                            </svg>
-                        </a>
+                        <a class="btn border-0 pt-0" href="{{ path('app_apply_for_edit', {'id': appliesFor.id}) }}"><i class="far fa-edit"></i></a>
                         <form method="post" action="{{ path('app_apply_for_delete', {'id': appliesFor.id}) }}"
                               onsubmit="return confirm('Êtes_vous sur de vouloir supprimer cette candidature ?');">
                             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ appliesFor.id) }}">
-                            <button class="btn border-0 pt-0">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="action-icon" fill="none"
-                                     viewBox="0 0 24 24" stroke="red" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                                </svg>
-                            </button>
+                            <button class="btn border-0 pt-0"><i class="far fa-trash-alt"></i></button>
                         </form>
                     </div>
                 </td>

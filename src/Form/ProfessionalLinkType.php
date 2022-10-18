@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\ProfessionalLink;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,15 +15,15 @@ class ProfessionalLinkType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Nom du lien'
+                'label' => 'Nom du lien',
+                'attr' => [
+                    'placeholder' => 'Google'
+                ]
             ])
             ->add('url', UrlType::class, [
-                'label' => 'URL'
-            ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'Enregistrer',
+                'label' => 'URL',
                 'attr' => [
-                    'class' => 'btn btn-sm btn-outline-success rounded-0'
+                    'placeholder' => 'https://www.google.fr'
                 ]
             ])
         ;

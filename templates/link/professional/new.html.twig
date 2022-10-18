@@ -5,14 +5,21 @@
 {% block body %}
 
     <div class="container">
-        <h1>Ajouter un lien professionnel</h1>
+        <h1 class="text-end">Ajouter un lien</h1>
 
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
+        <div class="row">
+            <div class="col-8">
+                <div class="">
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+
+                </div>
+            </div>
+        </div>
+
+        <button class="green-button">{{ button_label|default('Enregistrer') }}</button>
         {{ form_end(form) }}
-
-        <a class="btn btn-sm btn-outline-success mb-5 rounded-0" href="{{ path('app_index_pro_link') }}">Retour</a>
+        <a class="red-button" href="{{ path('app_index_pro_link') }}">Retour</a>
 
     </div>
-
 {% endblock %}

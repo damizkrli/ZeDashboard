@@ -31,20 +31,12 @@ class PlatformController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $platformRepository->save($platform, true);
 
-            return $this->redirectToRoute('app_platform_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_apply_for_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('platform/new.html.twig', [
             'platform' => $platform,
             'form' => $form,
-        ]);
-    }
-
-    #[Route('/{id}', name: 'app_platform_show', methods: ['GET'])]
-    public function show(Platform $platform): Response
-    {
-        return $this->render('platform/show.html.twig', [
-            'platform' => $platform,
         ]);
     }
 

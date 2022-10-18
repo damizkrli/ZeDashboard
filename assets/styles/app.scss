@@ -12,20 +12,24 @@ html, body {
 
 h1 {
     font-family: $h1-title;
-    text-align: center;
+    text-align: end;
     margin-bottom: 1rem;
     margin-top: 1rem;
-    color: $text-color;
+    color: $dark;
 }
 
 h2 {
+    color: $light;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: start;
+    justify-content: start;
 }
 
 h3 {
-    color: $dark;
+    color: $light;
+    display: flex;
+    align-items: start;
+    justify-content: start;
 }
 
 p {
@@ -63,6 +67,18 @@ ul {
     display: inline-block;
     width: 30px;
     height: 30px;
+}
+
+.table>:not(:last-child)>:last-child>*, .table {
+    border-bottom-color: black !important;
+}
+
+.center-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
 }
 
 @media screen and (max-width: 700px) {
