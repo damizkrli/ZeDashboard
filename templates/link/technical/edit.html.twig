@@ -1,14 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit TechnicalLink{% endblock %}
+{% block title %}Modifier {{ technical.name }}{% endblock %}
 
 {% block body %}
-    <h1>Edit TechnicalLink</h1>
+    <div class="container">
+        <h1 class="text-start">Modifier {{ technical.name }}</h1>
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
+        <div class="row">
+            <div class="col-8">
+                <div class="">
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
 
-    <a href="{{ path('app_index_tech_link') }}">back to list</a>
+                </div>
+            </div>
+        </div>
 
+        <button class="green-button">{{ button_label|default('Enregistrer') }}</button>
+        {{ form_end(form) }}
+        <a class="red-button" href="{{ path('app_index_pro_link') }}">Retour</a>
+
+    </div>
 {% endblock %}

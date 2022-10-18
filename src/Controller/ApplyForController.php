@@ -123,7 +123,7 @@ class ApplyForController extends AbstractController
         ]);
     }
 
-    #[Route('/add/link/pro', name: 'app_add_professional_link', methods: ['GET', 'POST'])]
+    #[Route('/add/link/pro', name: 'app_add_pro_link', methods: ['GET', 'POST'])]
     public function newProfessionalLink(Request $request): Response
     {
         $proLink = new ProfessionalLink();

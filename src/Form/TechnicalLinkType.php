@@ -21,12 +21,6 @@ class TechnicalLinkType extends AbstractType
             ->add('url', UrlType::class, [
                 'label' => 'URL'
             ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'Enregistrer',
-                'attr' => [
-                    'class' => 'btn btn-sm btn-outline-success rounded-0'
-                ]
-            ])
         ;
     }
 

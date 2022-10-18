@@ -22,7 +22,7 @@
                     <td>{{ company.name }}</td>
                     <td>
                         <div class="d-flex align-items center justify-content_center">
-                            <a href="{{ path('app_platform_edit', {'id': company.id}) }}"><i class="far fa-edit"></i></a>
+                            <a href="{{ path('app_company_edit', {'id': company.id}) }}"><i class="far fa-edit"></i></a>
                             <form method="post" action="{{ path('app_company_delete', {'id': company.id}) }}"
                                   onsubmit="return confirm('Êtes_vous sur de vouloir supprimer cette entreprise ?');">
                                 <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ company.id) }}">
