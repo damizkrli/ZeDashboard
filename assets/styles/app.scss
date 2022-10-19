@@ -73,6 +73,15 @@ ul {
     border-bottom-color: black !important;
 }
 
+table {
+    border-collapse: separate;
+    border-spacing: 0 15px;
+}
+
+.status {
+    padding: 0 4px 0 4px;
+}
+
 .center-screen {
     display: flex;
     justify-content: center;

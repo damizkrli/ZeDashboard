@@ -40,17 +40,17 @@
                 <td class="text-center">{{ appliesFor.company.name }}</td>
                 <td class="text-center">{{ appliesFor.platform.name }}</td>
                 {% if appliesFor.status is same as 'Transmise' %}
-                <td class="text-center bg-info"><div>{{ appliesFor.status }}</div></td>
+                <td class="text-center"><div class=" status bg-info rounded-2">{{ appliesFor.status }}</div></td>
                 {% elseif appliesFor.status is same as 'Refusée' %}
-                    <td class="text-center bg-danger text-light"><div>{{ appliesFor.status }}</div></td>
+                    <td class="text-center text-light"><div class="status bg-danger rounded-2">{{ appliesFor.status }}</div></td>
                     {% elseif appliesFor.status is same as 'Acceptée' %}
-                        <td class="text-center bg-success"><div>{{ appliesFor.status }}</div></td>
+                        <td class="text-center"><div class="bg-success rounded-2">{{ appliesFor.status }}</div></td>
                     {% elseif appliesFor.status is same as 'Sans réponse' %}
-                        <td class="text-center bg-dark text-light"><div>{{ appliesFor.status }}</div></td>
+                        <td class="text-center text-light"><div class="bg-dark p-2 rounded-2">{{ appliesFor.status }}</div></td>
                     {% elseif appliesFor.status is same as 'Entretien' %}
-                        <td class="text-center bg-warning"><div>{{ appliesFor.status }}</div></td>
+                        <td class="text-center"><div class="bg-warning p-2 rounded-2">{{ appliesFor.status }}</div></td>
                     {% elseif appliesFor.status is same as 'Entretien Tech' %}
-                        <td class="text-center bg-warning"><div>{{ appliesFor.status }}</div></td>
+                        <td class="text-center"><div class="bg-warning p-2 rounded-2">{{ appliesFor.status }}</div></td>
                     {% endif %}
                 <td class="text-center">
                     {% if appliesFor.name %}
