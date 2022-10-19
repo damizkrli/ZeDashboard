@@ -23,7 +23,7 @@
                     <td class="col">{{ linksPros.name }}</td>
                     <td class="col">{{ linksPros.url }}</td>
                     <td class="col"><a href="#"><i class="fas fa-copy"></i></a></td>
-                    <td class="col"><a href="#"><i class="fas fa-desktop"></i></a></td>
+                    <td class="col"><a href="{{ linksPros.url }}" target="_blank"><i class="fas fa-desktop"></i></a></td>
                 </tr>
             {% else %}
                 <tr>
@@ -61,7 +61,7 @@
                     <td class="col">{{ linksTechs.name }}</td>
                     <td class="col">{{ linksTechs.url }}</td>
                     <td class="col"><a href="#"><i class="fas fa-copy"></i></a></td>
-                    <td class="col"><a href="#"><i class="fas fa-desktop"></i></a></td>
+                    <td class="col"><a href="{{ linksTechs.url }}" target="_blank"><i class="fas fa-desktop"></i></a></td>
                 </tr>
             {% else %}
                 <tr>
@@ -99,7 +99,7 @@
                     <td>{{ linksPersos.name }}</td>
                     <td>{{ linksPersos.url }}</td>
                     <td class="col"><a href="#"><i class="fas fa-copy"></i></a></td>
-                    <td class="col"><a href="#"><i class="fas fa-desktop"></i></a></td>
+                    <td class="col"><a href="{{ linksPersos.url }}" target="_blank"><i class="fas fa-desktop"></i></a></td>
                 </tr>
             {% else %}
                 <tr>
