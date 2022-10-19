@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="container">
-        <h1 class="text-start">Modifier {{ technical.name }}</h1>
+        <h1 class="text-end">Modifier {{ technical.name }}</h1>
 
         <div class="row">
             <div class="col-8">
@@ -18,7 +18,7 @@
 
         <button class="green-button">{{ button_label|default('Enregistrer') }}</button>
         {{ form_end(form) }}
-        <a class="red-button" href="{{ path('app_index_pro_link') }}">Retour</a>
+        <a class="red-button" href="{{ path('app_index_tech_link') }}">Retour</a>
 
     </div>
 {% endblock %}
