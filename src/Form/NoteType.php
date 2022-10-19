@@ -16,17 +16,14 @@ class NoteType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Titre'
+                'label' => 'Titre',
+                'attr' => [
+                    'placeholder' => 'Liste de course'
+                ]
 
             ])
             ->add('note', CKEditorType::class, [
-                'label' => false,
-            ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'Enregistrer',
-                'attr' => [
-                    'class' => 'btn btn-sm btn-outline-dark rounded-0'
-                ]
+                'label' => false
             ])
         ;
     }
