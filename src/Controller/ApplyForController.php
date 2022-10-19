@@ -270,7 +270,7 @@ class ApplyForController extends AbstractController
             return $this->redirectToRoute('app_index_perso_link', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('link/edit.html.twig', [
+        return $this->renderForm('link/personal/edit.html.twig', [
             'personalLink' => $personalLink,
             'form' => $form
         ]);

@@ -16,15 +16,15 @@ class PersonalLinkType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Nom'
+                'label' => 'Nom',
+                'attr'  => [
+                    'placeholder' => 'Mon restaurant préféré'
+                ]
             ])
             ->add('url', UrlType::class, [
-                'label' => 'URL'
-            ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'Enregistrer',
-                'attr' => [
-                    'class' => 'btn btn-sm btn-outline-success rounded-0'
+                'label' => 'URL',
+                'attr'  => [
+                    'placeholder' => 'https://www.diningroomfamily.com/'
                 ]
             ])
         ;
