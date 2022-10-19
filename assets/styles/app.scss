@@ -1,7 +1,12 @@
-@import "variables";
-@import "sidebar";
 @import "button";
+
 @import "form";
+
+@import "sidebar";
+
+@import "title";
+
+@import "variables";
 
 html, body {
     height: 10vh;
@@ -10,26 +15,8 @@ html, body {
     background-color: $background;
 }
 
-h1 {
-    font-family: $h1-title;
-    text-align: end;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-    color: $dark;
-}
-
-h2 {
-    color: $light;
-    display: flex;
-    align-items: start;
-    justify-content: start;
-}
-
-h3 {
-    color: $light;
-    display: flex;
-    align-items: start;
-    justify-content: start;
+section > div.row {
+    margin-bottom: 100px;
 }
 
 p {
