@@ -133,7 +133,7 @@ class ApplyForController extends AbstractController
         if ($form->isSubmitted() && $form->isValid() ) {
             $this->professionalLinkRepository->add($proLink, true);
 
-            return $this->redirectToRoute('app_apply_for_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_index_pro_link', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('link/professional/new.html.twig', [
