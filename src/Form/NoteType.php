@@ -23,7 +23,13 @@ class NoteType extends AbstractType
 
             ])
             ->add('note', CKEditorType::class, [
-                'label' => false
+                'label' => 'Note'
+            ])
+            ->add('source', TextType::class, [
+                'label' => 'Source',
+                'attr' => [
+                    'placeholder' => 'SimpleNote'
+                ]
             ])
         ;
     }

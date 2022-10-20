@@ -40,6 +40,14 @@ class NoteController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}', name: 'app_show_note', methods: ['GET' ])]
+    public function show(Note $note): Response
+    {
+        return $this->render('note/show.html.twig', [
+            'note' => $note,
+        ]);
+    }
+
     #[Route('/{id}/edit', name: 'app_note_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Note $note, NoteRepository $noteRepository): Response
     {

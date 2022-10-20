@@ -17,34 +17,35 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class ApplyForType extends AbstractType
 {
     public const STATUS = [
-        'Transmise' => 'Transmise',
-        'Entretien' => 'Entretien',
-        'Entretien Tech' => 'Entretien Tech',
-        'Refusée'   => 'Refusée',
-        'Acceptée'  => 'Acceptée',
-        'Sans réponse'   => 'Sans réponse',
+        'Transmise'            => 'Transmise',
+        'Contact Téléphonique' => 'Contact Téléphonique',
+        'Entretien'            => 'Entretien',
+        'Entretien Tech'       => 'Entretien Tech',
+        'Acceptée'             => 'Acceptée',
+        'Refusée'              => 'Refusée',
+        'Sans réponse'         => 'Sans réponse',
     ];
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('platform', EntityType::class, [
-                'class' => Platform::class,
+                'class'       => Platform::class,
                 'placeholder' => 'Sélectionnez une plateforme',
-                'label' => 'Plateforme',
-                'required' => false,
+                'label'       => 'Plateforme',
+                'required'    => false,
             ])
             ->add('company', EntityType::class, [
-                'class' => Company::class,
+                'class'       => Company::class,
                 'placeholder' => 'Sélectionnez une entreprise',
-                'label' => "Nom de l'entreprise",
+                'label'       => "Nom de l'entreprise",
             ])
             ->add('name', TextType::class, [
-                'label' => 'Contact',
+                'label'    => 'Contact',
                 'required' => false
             ])
             ->add('details', TextType::class, [
-                'label' => 'Coordonnées',
+                'label'    => 'Coordonnées',
                 'required' => false,
             ])
             ->add('jobTitle', TextType::class, [
@@ -54,8 +55,8 @@ class ApplyForType extends AbstractType
                 'label' => "Lien vers l'annonce"
             ])
             ->add('dateApplyFor', DateTimeType::class, [
-                'label'  => 'Date de candidature',
-                'widget' => 'single_text',
+                'label'    => 'Date de candidature',
+                'widget'   => 'single_text',
                 'required' => false
             ])
             ->add('dateReturn', DateTimeType::class, [
@@ -65,10 +66,10 @@ class ApplyForType extends AbstractType
                 'widget'   => 'single_text',
             ])
             ->add('status', ChoiceType::class, [
-                'choices' => self::STATUS,
+                'choices'     => self::STATUS,
                 'placeholder' => 'Sélectionnez un statut',
-                'label' => "Statut",
-                'required' => false,
+                'label'       => "Statut",
+                'required'    => false,
             ])
         ;
     }

@@ -1,35 +1,19 @@
-@import "variables";
-@import "sidebar";
 @import "button";
+
 @import "form";
+
+@import "sidebar";
+
+@import "table";
+@import "title";
+
+@import "variables";
 
 html, body {
     height: 10vh;
     padding: 0;
     margin: 0;
     background-color: $background;
-}
-
-h1 {
-    font-family: $h1-title;
-    text-align: end;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-    color: $dark;
-}
-
-h2 {
-    color: $light;
-    display: flex;
-    align-items: start;
-    justify-content: start;
-}
-
-h3 {
-    color: $light;
-    display: flex;
-    align-items: start;
-    justify-content: start;
 }
 
 p {
@@ -48,47 +32,20 @@ a {
     }
 }
 
+.home-link:hover {
+    color: $dark !important;
+}
+
 ul {
     list-style-type: none;
     padding: 0 !important;
 }
 
-.border {
-    color: $link !important;
-    border-radius: $radius;
-}
 
 .line {
     text-decoration: line-through;
 }
 
-.action-icon {
-    vertical-align: middle;
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-}
-
-.table>:not(:last-child)>:last-child>*, .table {
-    border-bottom-color: black !important;
-}
-
-table {
-    border-collapse: separate;
-    border-spacing: 0 15px;
-}
-
-.status {
-    padding: 0 4px 0 4px;
-}
-
-.center-screen {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    min-height: 100vh;
-}
 
 @media screen and (max-width: 700px) {
     .sidebar {
