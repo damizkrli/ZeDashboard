@@ -18,31 +18,49 @@ class ApplyFor
     #[ORM\Column]
     private ?int $id = null;
 
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: "Merci de saisir une date de dépôt de candidature.")]
     #[Assert\Type(DateTime::class)]
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: false)]
     private ?DateTimeInterface $dateApplyFor;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?DateTimeInterface $dateReturn;
 
     #[ORM\Column(length: 155, )]
-    #[Assert\NotBlank(message: 'Merci de saisir l\'intitulé du poste')]
+    #[Assert\NotBlank(message: "Merci de saisir l'intitulé du poste")]
+    #[Assert\Length(
+        min: '2',
+        max: '100',
+        minMessage: "L'intitulé de votre poste doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "L'intitulé de votre poste ne peut contenir plus de {{ limit }} caractères."
+    )]
     private ?string $jobTitle = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Assert\NotBlank(message: 'Merci de saisir le lien vers l\'annonce')]
+    #[Assert\NotBlank(message: "Merci de saisir le lien vers l'annonce")]
+    #[Assert\Url(message: "Merci de saisir une URL valide.", protocols: ["https", "ftp"], normalizer: "trim")]
     private ?string $link = null;
 
     #[ORM\Column(length: 30)]
-    #[Assert\NotBlank(message: 'Merci de saisir un status')]
-    #[Assert\NotNull(message: 'Merci de saisir un status')]
-    private ?string $status = 'Transmise';
+    #[Assert\NotBlank(message: "Merci de saisir un status")]
+    private ?string $status = "Transmise";
 
     #[ORM\Column(length: 100, nullable: true)]
+    #[Assert\Length(
+        min: 2,
+        max: 75,
+        minMessage: "Le nom doit contenir plus de {{ limit }} caractères.",
+        maxMessage: "Le nom ne doit pas contenir plus de {{ limit }} caractères."
+    )]
     private ?string $contact;
 
     #[ORM\Column(length: 100, nullable: true)]
+    #[Assert\Length(
+        min: 2,
+        max: 75,
+        minMessage: "Le nom doit contenir plus de {{ limit }} caractères.",
+        maxMessage: "Le nom ne doit pas contenir plus de {{ limit }} caractères."
+    )]
     private ?string $details = null;
 
     #[ORM\ManyToOne]
