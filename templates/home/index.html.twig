@@ -48,12 +48,7 @@
                                     {% if appliesFor.status is same as 'Refusée' %}
                                         <h5 class="line">{{ appliesFor.jobTitle }}</h5>
                                     {% else %}
-                                        {% if appliesFor.jobTitle | length > 36 %}
-                                            <h5 class="line">{{ appliesFor.jobTitle|slice(0,36) ~ '...' }}</h5>
-                                        {% else %}
-                                            <h5>{{ appliesFor.jobTitle }}</h5>
-                                        {% endif %}
-
+                                        <h5>{{ appliesFor.jobTitle }}</h5>
                                     {% endif %}
 
                                     <div class="card-text">
@@ -61,6 +56,7 @@
                                             <p class="line">{{ appliesFor.company }}
                                                 sur {{ appliesFor.platform.name }}
                                                 le {{ appliesFor.dateApplyFor|date('d/m/Y') }}</p>
+                                            <p>Retour le {{ appliesFor.dateReturn|date('d/m/Y') }}</p>
                                         {% else %}
                                             <p>{{ appliesFor.company }} sur {{ appliesFor.platform.name }}
                                                 le {{ appliesFor.dateApplyFor|date('d/m/Y') }}</p>

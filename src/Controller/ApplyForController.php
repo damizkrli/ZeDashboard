@@ -11,6 +11,7 @@ use App\Form\PersonalLinkType;
 use App\Form\ProfessionalLinkType;
 use App\Form\TechnicalLinkType;
 use App\Repository\ApplyForRepository;
+use App\Repository\CompanyRepository;
 use App\Repository\PersonalLinkRepository;
 use App\Repository\ProfessionalLinkRepository;
 use App\Repository\TechnicalLinkRepository;
@@ -61,7 +62,7 @@ class ApplyForController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->applyForRepository->add($applyFor, true);
-            $this->flashyNotifier->info('Votre candidature à été transmise.');
+            $this->flashyNotifier->info('Votre candidature pour ' . $applyFor->getCompany() . ' à été transmise.');
 
             return $this->redirectToRoute('app_apply_for_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -75,14 +76,13 @@ class ApplyForController extends AbstractController
     #[Route('/{id}/edit', name: 'app_apply_for_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, ApplyFor $applyFor): Response
     {
-        $jobTitle = $this->applyForRepository->findAll();
         // TODO : date retour n'est pas récupérée lors de l'édition
         $form = $this->createForm(ApplyForType::class, $applyFor);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->applyForRepository->add($applyFor, true);
-            $this->flashyNotifier->info( $applyFor->getJobTitle() . ' à été modifiée.');
+            $this->flashyNotifier->info( 'Votre candidature pour ' . $applyFor->getCompany() . ' à été modifiée.');
 
             return $this->redirectToRoute('app_apply_for_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -94,10 +94,11 @@ class ApplyForController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_apply_for_delete', methods: ['POST'])]
-    public function delete(Request $request, ApplyFor $applyFor): Response
+    public function delete(Request $request, ApplyFor $applyFor, CompanyRepository $companyRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$applyFor->getId(), $request->request->get('_token'))) {
             $this->applyForRepository->remove($applyFor, true);
+            $this->flashyNotifier->warning('Votre candidature pour ' . $applyFor->getCompany() . ' à été supprimée.');
         }
 
         return $this->redirectToRoute('app_apply_for_index', [], Response::HTTP_SEE_OTHER);
