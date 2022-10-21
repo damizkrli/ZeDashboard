@@ -35,6 +35,10 @@ a {
     }
 }
 
+.home-link:hover {
+    color: $dark !important;
+}
+
 ul {
     list-style-type: none;
     padding: 0 !important;

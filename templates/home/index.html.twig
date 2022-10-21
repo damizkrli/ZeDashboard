@@ -5,15 +5,11 @@
 {% block body %}
 {#  TODO : requete des 3 dernières notes + 3 dernières candidatures  #}
     <section>
-        <div class="container-fluid">
-            <div class="row px-5 mb-5">
-                <h1 class="d-flex align-items-end justify-content-end">
-                    Bienvenu [nom_utilisateur]
-                </h1>
-            </div>
+        <div class="container">
+
             <h1 class="mt-5">Les dernières Candidatures</h1>
 
-            <div class="row row-cols-2 row-cols-md-2 g-4">
+            <div class="row row-cols- row-cols-md-4 g-4">
                 {% for appliesFor in apply_for %}
                     <div class="col">
                         <div class="card position-relative h-100">
@@ -74,33 +70,37 @@
 
             <h1 class="mt-5">Les dernières notes</h1>
 
+
             <div class="row row-cols-1 row-cols-md-3 g-4">
+
                 {% for notes in note %}
-                <div class="card border-success mb-3 me-auto" style="max-width: 18rem;">
-                    <div class="card-header bg-transparent border-success">
-                        <a class="home-link" href="{{ path('app_show_note', {'id': notes.id}) }}">
-                            <i class="fas fa-external-link-alt"></i>
-                            {{ notes.name }}
-                        </a>
-                    </div>
-                    <div class="card-body text-success">
-                        <p class="card-text">
-                            {% if notes.note > 94 %}
-                                {{ notes.note | striptags | slice(0,94) ~ '...' }}</p>
-                            {% else %}
-                        <p class="card-text">
-                                {{ notes.note | raw }}</p>
-                            {% endif %}
+
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a class="home-link" href="{{ path('app_show_note', {'id': notes.id}) }}">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        {{ notes.name }}
+                                    </a>
+                                </h5>
+                                <p class="card-text">
+                                    {% if notes.note > 94 %}
+                                    {{ notes.note | striptags | slice(0,94) ~ '...' }}</p>
+                                {% else %}
+                                    <p class="card-text">{{ notes.note | raw }}</p>
+                                {% endif %}
+                            </div>
+                            <div class="card-footer bg-transparent border-success">
+                                {% if notes.source is null %}
+                                    Source : {{ notes.source }}
+                                {% else %}
+                                    Aucune Source
+                                {% endif %}
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="card-footer bg-transparent border-success">
-                        {% if notes.source is null %}
-                            Source : {{ notes.source }}
-                        {% else %}
-                            Aucune Source
-                        {% endif %}
-                    </div>
-                </div>
                 {% endfor %}
 
             </div>
