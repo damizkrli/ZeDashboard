@@ -17,15 +17,17 @@
                 <th class="col">#</th>
                 <th class="col">Titre</th>
                 <th class="col">Notes</th>
+                <th class="col">Source</th>
                 <th class="col"></th>
             </tr>
             </thead>
             <tbody>
-            {% for note in notes %}
+            {% for note in notes | sort((a, b) => a.name <=> b.name )%}
                 <tr>
                     <td>{{ note.id }}</td>
                     <td>{{ note.name }}</td>
                     <td>{{ note.note | raw }}</td>
+                    <td>{{ note.source }}</td>
                     <td>
                         <div class="d-flex align-items-center justify-content-center">
                             <a class="green-button me-2" href="{{ path('app_note_edit', {'id': note.id}) }}"><i class="fa fa-scissors"></i></a>

@@ -5,12 +5,13 @@
 {% block body %}
 {#  TODO : requete des 3 dernières notes + 3 dernières candidatures  #}
     <section>
+
         <div class="container">
 
             <h1 class="mt-5">Les dernières Candidatures</h1>
 
             <div class="row row-cols- row-cols-md-4 g-4">
-                {% for appliesFor in apply_for %}
+                {% for appliesFor in apply_for | sort((a, b) => b.dateApplyFor <=> a.dateApplyFor) %}
                     <div class="col">
                         <div class="card position-relative h-100">
                             {% if appliesFor.status is same as 'Transmise' %}
@@ -53,15 +54,16 @@
                                     <div class="card-text">
                                         {% if appliesFor.status is same as 'Refusée' %}
                                             <p class="line">{{ appliesFor.company }}
-                                                sur {{ appliesFor.platform.name }}
-                                                le {{ appliesFor.dateApplyFor|date('d/m/Y') }}</p>
+                                                sur {{ appliesFor.platform.name }}</p>
                                             <p>Retour le {{ appliesFor.dateReturn|date('d/m/Y') }}</p>
                                         {% else %}
-                                            <p>{{ appliesFor.company }} sur {{ appliesFor.platform.name }}
-                                                le {{ appliesFor.dateApplyFor|date('d/m/Y') }}</p>
+                                            <p>{{ appliesFor.company }} sur {{ appliesFor.platform.name }}</p>
                                         {% endif %}
                                     </div>
                                 </div>
+                            </div>
+                            <div class="card-footer">
+                                <small class="fst-italic">Envoyée le {{ appliesFor.dateApplyFor|date('d/m/Y') }}</small>
                             </div>
                         </div>
                     </div>
@@ -73,7 +75,7 @@
 
             <div class="row row-cols-1 row-cols-md-3 g-4">
 
-                {% for notes in note %}
+                {% for notes in note | sort((a, b) => a.name <=> b.name) %}
 
                     <div class="col">
                         <div class="card h-100">
