@@ -50,7 +50,6 @@
                                     {% else %}
                                         <h5>{{ appliesFor.jobTitle }}</h5>
                                     {% endif %}
-
                                     <div class="card-text">
                                         {% if appliesFor.status is same as 'Refusée' %}
                                             <p class="line">{{ appliesFor.company }}
@@ -70,42 +69,7 @@
                 {% endfor %}
             </div>
 
-            <h1 class="mt-5">Les dernières notes</h1>
-
-
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-
-                {% for notes in note | sort((a, b) => a.name <=> b.name) %}
-
-                    <div class="col">
-                        <div class="card h-100">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <a class="home-link" href="{{ path('app_show_note', {'id': notes.id}) }}">
-                                        <i class="fas fa-external-link-alt"></i>
-                                        {{ notes.name }}
-                                    </a>
-                                </h5>
-                                <p class="card-text">
-                                    {% if notes.note > 94 %}
-                                    {{ notes.note | striptags | slice(0,94) ~ '...' }}</p>
-                                {% else %}
-                                    <p class="card-text">{{ notes.note | raw }}</p>
-                                {% endif %}
-                            </div>
-                            <div class="card-footer bg-transparent border-success">
-                                {% if notes.source is null %}
-                                    Source : {{ notes.source }}
-                                {% else %}
-                                    Aucune Source
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-
-                {% endfor %}
-
-            </div>
         </div>
+
     </section>
 {% endblock %}
