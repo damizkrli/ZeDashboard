@@ -40,7 +40,7 @@ class ApplyForType extends AbstractType
                 'placeholder' => 'Sélectionnez une entreprise',
                 'label'       => "Nom de l'entreprise",
             ])
-            ->add('name', TextType::class, [
+            ->add('contact', TextType::class, [
                 'label'    => 'Contact',
                 'required' => false
             ])
@@ -67,9 +67,9 @@ class ApplyForType extends AbstractType
             ])
             ->add('status', ChoiceType::class, [
                 'choices'     => self::STATUS,
-                'placeholder' => 'Sélectionnez un statut',
                 'label'       => "Statut",
                 'required'    => false,
+                'empty_data'  => 'Transmise'
             ])
         ;
     }

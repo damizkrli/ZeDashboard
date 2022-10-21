@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\ApplyForRepository;
+use DateTime;
+use DateTimeInterface;
+use Doctrine\DBAL\Exception;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -16,25 +19,28 @@ class ApplyFor
     private ?int $id = null;
 
     #[Assert\NotBlank]
-    #[Assert\Type(\DateTime::class)]
+    #[Assert\Type(DateTime::class)]
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $dateApplyFor;
+    private ?DateTimeInterface $dateApplyFor;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $dateReturn;
+    private ?DateTimeInterface $dateReturn;
 
-    #[Assert\NotBlank]
     #[ORM\Column(length: 155, )]
+    #[Assert\NotBlank(message: 'Merci de saisir l\'intitulé du poste')]
     private ?string $jobTitle = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message: 'Merci de saisir le lien vers l\'annonce')]
     private ?string $link = null;
 
     #[ORM\Column(length: 30)]
+    #[Assert\NotBlank(message: 'Merci de saisir un status')]
+    #[Assert\NotNull(message: 'Merci de saisir un status')]
     private ?string $status = 'Transmise';
 
     #[ORM\Column(length: 100, nullable: true)]
-    private ?string $name;
+    private ?string $contact;
 
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $details = null;
@@ -52,24 +58,24 @@ class ApplyFor
         return $this->id;
     }
 
-    public function getDateApplyFor(): ?\DateTimeInterface
+    public function getDateApplyFor(): ?DateTimeInterface
     {
         return $this->dateApplyFor;
     }
 
-    public function setDateApplyFor(\DateTimeInterface $dateApplyFor): self
+    public function setDateApplyFor(DateTimeInterface $dateApplyFor): self
     {
         $this->dateApplyFor = $dateApplyFor;
 
         return $this;
     }
 
-    public function getDateReturn(): ?\DateTimeInterface
+    public function getDateReturn(): ?DateTimeInterface
     {
         return $this->dateReturn;
     }
 
-    public function setDateReturn(\DateTimeInterface $dateReturn): self
+    public function setDateReturn(DateTimeInterface $dateReturn): self
     {
         $this->dateReturn = $dateReturn;
 
@@ -112,14 +118,14 @@ class ApplyFor
         return $this;
     }
 
-    public function getName(): ?string
+    public function getContact(): ?string
     {
-        return $this->name;
+        return $this->contact;
     }
 
-    public function setName(?string $name): self
+    public function setContact(?string $contact): self
     {
-        $this->name = $name;
+        $this->contact = $contact;
 
         return $this;
     }
