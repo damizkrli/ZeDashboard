@@ -7,7 +7,7 @@
     <div class="col px-5">
         <h1 class="m-5"><i class="fas fa-briefcase me-3"></i>Candidatures</h1>
 
-        <div class="mb-3">
+        <div class="mb-3 d-flex align-items-end justify-content-end">
             <a class="green-button" href="{{ path('app_apply_for_new') }}">Ajouter une candidature</a>
             <a class="green-button" href="{{ path('app_company_new') }}">Ajouter une entreprise</a>
             <a class="green-button" href="{{ path('app_platform_new') }}">Ajouter une plateforme</a>
@@ -40,17 +40,33 @@
                 <td class="text-center">{{ appliesFor.company.name }}</td>
                 <td class="text-center">{{ appliesFor.platform.name }}</td>
                 {% if appliesFor.status is same as 'Transmise' %}
-                <td class="text-center"><div class=" status bg-info rounded-2">{{ appliesFor.status }}</div></td>
+                <td class="text-center">
+                    <div class="status bg-primary rounded-2">{{ appliesFor.status }}</div>
+                </td>
                 {% elseif appliesFor.status is same as 'Refusée' %}
-                    <td class="text-center text-light"><div class="status bg-danger rounded-2">{{ appliesFor.status }}</div></td>
+                    <td class="text-center text-light">
+                        <div class="status bg-danger rounded-2">{{ appliesFor.status }}</div>
+                    </td>
                     {% elseif appliesFor.status is same as 'Acceptée' %}
-                        <td class="text-center"><div class="bg-success rounded-2">{{ appliesFor.status }}</div></td>
+                        <td class="text-center">
+                            <div class="status bg-success rounded-2">{{ appliesFor.status }}</div>
+                        </td>
                     {% elseif appliesFor.status is same as 'Sans réponse' %}
-                        <td class="text-center text-light"><div class="bg-dark p-2 rounded-2">{{ appliesFor.status }}</div></td>
+                        <td class="text-center text-light">
+                            <div class="status bg-dark rounded-2">{{ appliesFor.status }}</div>
+                        </td>
                     {% elseif appliesFor.status is same as 'Entretien' %}
-                        <td class="text-center"><div class="bg-warning p-2 rounded-2">{{ appliesFor.status }}</div></td>
+                        <td class="text-center">
+                            <div class="status bg-info rounded-2">{{ appliesFor.status }}</div>
+                        </td>
                     {% elseif appliesFor.status is same as 'Entretien Tech' %}
-                        <td class="text-center"><div class="bg-warning p-2 rounded-2">{{ appliesFor.status }}</div></td>
+                        <td class="text-center">
+                            <div class="status bg-info rounded-2">{{ appliesFor.status }}</div>
+                        </td>
+                    {% elseif appliesFor.status is same as 'Contact Téléphonique' %}
+                        <td class="text-center">
+                            <div class="status bg-warning rounded-2">{{ appliesFor.status }}</div>
+                        </td>
                     {% endif %}
                 <td class="text-center">
                     {% if appliesFor.name %}
@@ -92,4 +108,11 @@
         </table>
 
     </div>
+
+{#    {% set startDate = "January 00, 2000 00:00" %}#}
+{#    {% set endDate = "December 00, 2000 00:00" %}#}
+{#    {% set difference = date(endDate | date() ).diff(date(startDate)) %}#}
+{#    {{ dump(startDate) }}#}
+{#    {{ dump(endDate) }}#}
+{#    {{ dump(difference) }}#}
 {% endblock %}

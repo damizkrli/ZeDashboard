@@ -11,6 +11,7 @@ use App\Form\PersonalLinkType;
 use App\Form\ProfessionalLinkType;
 use App\Form\TechnicalLinkType;
 use App\Repository\ApplyForRepository;
+use App\Repository\CompanyRepository;
 use App\Repository\PersonalLinkRepository;
 use App\Repository\ProfessionalLinkRepository;
 use App\Repository\TechnicalLinkRepository;
@@ -61,7 +62,7 @@ class ApplyForController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->applyForRepository->add($applyFor, true);
-            $this->flashyNotifier->info('Votre candidature à été transmise.');
+            $this->flashyNotifier->info('Votre candidature pour ' . $applyFor->getCompany() . ' à été transmise.');
 
             return $this->redirectToRoute('app_apply_for_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -81,6 +82,7 @@ class ApplyForController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->applyForRepository->add($applyFor, true);
+            $this->flashyNotifier->info( 'Votre candidature pour ' . $applyFor->getCompany() . ' à été modifiée.');
 
             return $this->redirectToRoute('app_apply_for_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -96,6 +98,7 @@ class ApplyForController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$applyFor->getId(), $request->request->get('_token'))) {
             $this->applyForRepository->remove($applyFor, true);
+            $this->flashyNotifier->warning('Votre candidature pour ' . $applyFor->getCompany() . ' à été supprimée.');
         }
 
         return $this->redirectToRoute('app_apply_for_index', [], Response::HTTP_SEE_OTHER);

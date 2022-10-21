@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Company;
 use App\Form\CompanyType;
 use App\Repository\CompanyRepository;
+use MercurySeries\FlashyBundle\FlashyNotifier;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +14,13 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/company')]
 class CompanyController extends AbstractController
 {
+    private FlashyNotifier $flashyNotifier;
+
+    public function __construct(FlashyNotifier $flashyNotifier)
+    {
+        $this->flashyNotifier = $flashyNotifier;
+    }
+
     #[Route('/', name: 'app_company_index', methods: ['GET'])]
     public function index(CompanyRepository $companyRepository): Response
     {
@@ -30,6 +38,7 @@ class CompanyController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $companyRepository->save($company, true);
+            $this->flashyNotifier->info('L\'entreprise, ' . $company->getName() . ' à été ajoutée.');
 
             return $this->redirectToRoute('app_company_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -48,6 +57,7 @@ class CompanyController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $companyRepository->save($company, true);
+            $this->flashyNotifier->info('L\'entreprise, ' . $company->getName() . ' à été modifiée.');
 
             return $this->redirectToRoute('app_company_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -63,6 +73,7 @@ class CompanyController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$company->getId(), $request->request->get('_token'))) {
             $companyRepository->remove($company, true);
+            $this->flashyNotifier->warning('L\'entreprise, ' .$company->getName() . ' à été supprimée');
         }
 
         return $this->redirectToRoute('app_company_index', [], Response::HTTP_SEE_OTHER);

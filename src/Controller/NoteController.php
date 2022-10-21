@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Note;
 use App\Form\NoteType;
 use App\Repository\NoteRepository;
+use MercurySeries\FlashyBundle\FlashyNotifier;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +14,13 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/note')]
 class NoteController extends AbstractController
 {
+    private FlashyNotifier $flashyNotifier;
+
+    public function __construct(FlashyNotifier $flashyNotifier)
+    {
+        $this->flashyNotifier = $flashyNotifier;
+    }
+
     #[Route('/', name: 'app_note_index', methods: ['GET'])]
     public function index(NoteRepository $noteRepository): Response
     {
@@ -30,6 +38,7 @@ class NoteController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $noteRepository->add($note, true);
+            $this->flashyNotifier->info('Une note à été ajoutée.');
 
             return $this->redirectToRoute('app_note_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -37,6 +46,14 @@ class NoteController extends AbstractController
         return $this->renderForm('note/new.html.twig', [
             'note' => $note,
             'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}', name: 'app_show_note', methods: ['GET' ])]
+    public function show(Note $note): Response
+    {
+        return $this->render('note/show.html.twig', [
+            'note' => $note,
         ]);
     }
 
@@ -48,6 +65,7 @@ class NoteController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $noteRepository->add($note, true);
+            $this->flashyNotifier->info('Une note à été modifiée.');
 
             return $this->redirectToRoute('app_note_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -63,6 +81,7 @@ class NoteController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$note->getId(), $request->request->get('_token'))) {
             $noteRepository->remove($note, true);
+            $this->flashyNotifier->warning('Une note à été supprimée.');
         }
 
         return $this->redirectToRoute('app_note_index', [], Response::HTTP_SEE_OTHER);

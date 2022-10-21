@@ -10,27 +10,97 @@
                 <h1 class="d-flex align-items-end justify-content-end">
                     Bienvenu [nom_utilisateur]
                 </h1>
+            </div>
+            <h1 class="mt-5">Les dernières Candidatures</h1>
 
-                <h2 class="mt-5">Les dernières Candidatures</h2>
+            <div class="row row-cols-2 row-cols-md-2 g-4">
                 {% for appliesFor in apply_for %}
-                    <h3>{{ appliesFor.jobTitle }}</h3>
-                    <div class="border p-3 mb-3">
-                        {% if appliesFor.status is same as 'Refusée' %}
-                            <p class="line">{{ appliesFor.company }} sur {{ appliesFor.platform.name }} le {{ appliesFor.dateApplyFor|date('d/m/Y') }}</p>
-                        {% else %}
-                            <p>{{ appliesFor.company }} sur {{ appliesFor.platform.name }} le {{ appliesFor.dateApplyFor|date('d/m/Y') }}</p>
-                        {% endif %}
+                    <div class="col">
+                        <div class="card position-relative h-100">
+                            {% if appliesFor.status is same as 'Transmise' %}
+                                <span class="position-absolute top-0 start-100 translate-middle p-2 bg-primary border border-light rounded-circle">
+                                    <span class="visually-hidden">New alerts</span>
+                                </span>
+                            {% elseif appliesFor.status is same as 'Contact Téléphonique' %}
+                                <span class="position-absolute top-0 start-100 translate-middle p-2 bg-warning border border-light rounded-circle">
+                                    <span class="visually-hidden">New alerts</span>
+                                </span>
+                            {% elseif appliesFor.status is same as 'Entretien' %}
+                                <span class="position-absolute top-0 start-100 translate-middle p-2 bg-info border border-light rounded-circle">
+                                    <span class="visually-hidden">New alerts</span>
+                                </span>
+                            {% elseif appliesFor.status is same as 'Entretien Technique' %}
+                                <span class="position-absolute top-0 start-100 translate-middle p-2 bg-info border border-light rounded-circle">
+                                    <span class="visually-hidden">New alerts</span>
+                                </span>
+                            {% elseif appliesFor.status is same as 'Acceptée' %}
+                                <span class="position-absolute top-0 start-100 translate-middle p-2 bg-success border border-light rounded-circle">
+                                    <span class="visually-hidden">New alerts</span>
+                                </span>
+                            {% elseif appliesFor.status is same as 'Refusée' %}
+                                <span class="position-absolute top-0 start-100 translate-middle p-2 bg-success border border-light rounded-circle">
+                                    <span class="visually-hidden">New alerts</span>
+                                </span>
+                            {% elseif appliesFor.status is same as 'Sans Réponse' %}
+                                <span class="position-absolute top-0 start-100 translate-middle p-2 bg-dark border border-light rounded-pill">
+                                    <span class="visually-hidden">New alerts</span>
+                                </span>
+                            {% endif %}
+                            <div class="card-body">
+                                <div class="card-title">
+                                    {% if appliesFor.status is same as 'Refusée' %}
+                                        <h5 class="line">{{ appliesFor.jobTitle }}</h5>
+                                    {% else %}
+                                        <h5>{{ appliesFor.jobTitle }}</h5>
+                                    {% endif %}
+
+                                    <div class="card-text">
+                                        {% if appliesFor.status is same as 'Refusée' %}
+                                            <p class="line">{{ appliesFor.company }}
+                                                sur {{ appliesFor.platform.name }}
+                                                le {{ appliesFor.dateApplyFor|date('d/m/Y') }}</p>
+                                            <p>Retour le {{ appliesFor.dateReturn|date('d/m/Y') }}</p>
+                                        {% else %}
+                                            <p>{{ appliesFor.company }} sur {{ appliesFor.platform.name }}
+                                                le {{ appliesFor.dateApplyFor|date('d/m/Y') }}</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 {% endfor %}
+            </div>
 
-                <h2 class="mt-5">Les dernières notes</h2>
+            <h1 class="mt-5">Les dernières notes</h1>
+
+            <div class="row row-cols-1 row-cols-md-3 g-4">
                 {% for notes in note %}
-                    <h3>{{ notes.name }}</h3>
-                    <div class="border p-3 mb-3">
-                        {% if '/https/' %}
-                            <p>{{ notes.note | raw }}</p>
+                <div class="card border-success mb-3 me-auto" style="max-width: 18rem;">
+                    <div class="card-header bg-transparent border-success">
+                        <a class="home-link" href="{{ path('app_show_note', {'id': notes.id}) }}">
+                            <i class="fas fa-external-link-alt"></i>
+                            {{ notes.name }}
+                        </a>
+                    </div>
+                    <div class="card-body text-success">
+                        <p class="card-text">
+                            {% if notes.note > 94 %}
+                                {{ notes.note | striptags | slice(0,94) ~ '...' }}</p>
+                            {% else %}
+                        <p class="card-text">
+                                {{ notes.note | raw }}</p>
+                            {% endif %}
+                    </div>
+
+                    <div class="card-footer bg-transparent border-success">
+                        {% if notes.source is null %}
+                            Source : {{ notes.source }}
+                        {% else %}
+                            Aucune Source
                         {% endif %}
                     </div>
+                </div>
                 {% endfor %}
 
             </div>
