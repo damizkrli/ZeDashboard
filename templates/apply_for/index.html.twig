@@ -84,10 +84,10 @@
                 </td>
                 <td class="text-center">{{ appliesFor.dateApplyFor|date('d/m/Y') }}</td>
                 <td class="text-center">
-                    {% if appliesFor.dateReturn is null %}
-                        <p class="fst-italic">N/C</p>
-                    {% else %}
+                    {% if appliesFor.dateReturn %}
                         {{ appliesFor.dateReturn|date('d/m/Y') }}
+                    {% else %}
+                        <p class="fst-italic">N/C</p>
                     {% endif %}</td>
                 <td class="text-center">
                     <a href="{{ appliesFor.link }}" target="_blank" class="green-button">Lien</a>
