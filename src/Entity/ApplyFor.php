@@ -24,7 +24,8 @@ class ApplyFor
     private ?DateTimeInterface $dateApplyFor;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?DateTimeInterface $dateReturn;
+    #[Assert\Type(DateTime::class)]
+    private ?DateTimeInterface $dateReturn = null;
 
     #[ORM\Column(length: 155, )]
     #[Assert\NotBlank(message: "Merci de saisir l'intitulé du poste")]
