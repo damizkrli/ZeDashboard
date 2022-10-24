@@ -62,7 +62,6 @@ class ApplyForType extends AbstractType
             ->add('dateReturn', DateTimeType::class, [
                 'label'    => 'Date retour',
                 'required' => false,
-                'mapped'   => false,
                 'widget'   => 'single_text',
             ])
             ->add('status', ChoiceType::class, [
