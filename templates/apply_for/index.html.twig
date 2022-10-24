@@ -32,7 +32,7 @@
                 <th class="text-center" scope="col"></th>
             </tr>
             </thead>
-            {% for appliesFor in apply_for|sort((a, b) => b.id <=> a.id) %}
+            {% for appliesFor in apply_for.data|sort((a, b) => b.id <=> a.id) %}
             <tbody>
             <tr class="text-center">
                 <td>{{ appliesFor.id }}1</td>
@@ -104,9 +104,16 @@
                 </td>
             </tr>
             {% endfor %}
+            {% set path = 'app_apply_for_index' %}
+            {% set pages = apply_for.pages %}
+            {% set currentPage = apply_for.page %}
             </tbody>
         </table>
 
+    </div>
+
+    <div class="d-flex align-items-center justify-content-center">
+        {% include 'apply_for/pagination.html.twig' %}
     </div>
 
 {#    {% set startDate = "January 00, 2000 00:00" %}#}
