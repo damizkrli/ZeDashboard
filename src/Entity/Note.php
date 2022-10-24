@@ -26,9 +26,6 @@ class Note
     #[ORM\Column(type: Types::TEXT)]
     private ?string $note = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $source;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -56,15 +53,4 @@ class Note
         return $this;
     }
 
-    public function getSource(): ?string
-    {
-        return $this->source;
-    }
-
-    public function setSource(?string $source): self
-    {
-        $this->source = $source;
-
-        return $this;
-    }
 }
