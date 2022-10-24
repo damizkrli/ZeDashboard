@@ -25,7 +25,7 @@ class ApplyFor
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     #[Assert\Type(DateTime::class)]
-    private ?DateTimeInterface $dateReturn = null;
+    private ?DateTimeInterface $dateReturn;
 
     #[ORM\Column(length: 155, )]
     #[Assert\NotBlank(message: "Merci de saisir l'intitulé du poste")]
@@ -94,7 +94,7 @@ class ApplyFor
         return $this->dateReturn;
     }
 
-    public function setDateReturn(DateTimeInterface $dateReturn): self
+    public function setDateReturn(?DateTimeInterface $dateReturn): self
     {
         $this->dateReturn = $dateReturn;
 
