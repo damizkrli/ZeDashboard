@@ -11,7 +11,6 @@ use App\Form\PersonalLinkType;
 use App\Form\ProfessionalLinkType;
 use App\Form\TechnicalLinkType;
 use App\Repository\ApplyForRepository;
-use App\Repository\CompanyRepository;
 use App\Repository\PersonalLinkRepository;
 use App\Repository\ProfessionalLinkRepository;
 use App\Repository\TechnicalLinkRepository;
