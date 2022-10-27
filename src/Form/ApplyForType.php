@@ -20,7 +20,6 @@ class ApplyForType extends AbstractType
         'Transmise'      => 'Transmise',
         'Appel'          => 'Appel',
         'Entretien'      => 'Entretien',
-        'Entretien Tech' => 'Entretien Tech',
         'Acceptée'       => 'Acceptée',
         'Refusée'        => 'Refusée',
         'Sans réponse'   => 'Sans réponse',

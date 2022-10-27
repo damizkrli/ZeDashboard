@@ -3,15 +3,31 @@
 {% block title %}Mon DashBoard{% endblock %}
 
 {% block body %}
-{#  TODO : requete des 3 dernières notes + 3 dernières candidatures  #}
     <section>
 
         <div class="container">
 
-            <h1 class="mt-5 mb-5">Les dernières Candidatures</h1>
+            <h1>Concernant vos candidatures : </h1>
+
+            <p>Vous avez envoyé {{ totalApplies }} candidatures, dont {{ sentApplies }} qui sont encore "transmises".</p>
+
+            <br>
+
+            <p>Vous avez eu {{ interviewApplies }} candidatures avec entretien, {{ numCall }} entretien téléphonique
+                et {{ acceptedApplies }} candidatures acceptées.</p>
+
+            <br>
+
+            <p>{% if noResponseApplies == 0 %} Aucune des {% else %}{{ noResponseApplies }}{% endif %} candidatures sont restées sans réponse et {{ refusedApplies }} candidatures sont refusées.</p>
+
+            <br>
+            {% set applies = 100 * refusedApplies // totalApplies %}
+            <p>Vous avez {{ applies }}% de candidature refusées.</p>
+
+            <h1 class="mt-5 mb-5">Dernières Candidatures</h1>
 
             <div class="row row-cols- row-cols-md-4 g-4">
-                {% for appliesFor in apply_for | sort((a, b) => b.dateApplyFor <=> a.dateApplyFor) %}
+                {% for appliesFor in apply_for | sort((a, b) => b.dateApplyFor <=> a.dateApplyFor)|slice(0, 8) %}
                     <div class="col">
                         <div class="card position-relative h-100">
                             {% if appliesFor.status is same as 'Transmise' %}
@@ -23,10 +39,6 @@
                                     <span class="visually-hidden">New alerts</span>
                                 </span>
                             {% elseif appliesFor.status is same as 'Entretien' %}
-                                <span class="position-absolute top-0 start-100 translate-middle p-2 bg-info border border-light rounded-circle">
-                                    <span class="visually-hidden">New alerts</span>
-                                </span>
-                            {% elseif appliesFor.status is same as 'Entretien Technique' %}
                                 <span class="position-absolute top-0 start-100 translate-middle p-2 bg-info border border-light rounded-circle">
                                     <span class="visually-hidden">New alerts</span>
                                 </span>
@@ -67,6 +79,15 @@
                         </div>
                     </div>
                 {% endfor %}
+            </div>
+
+            <div class="m-5">
+                <a class="green-button" href="{{ path('app_apply_for_index') }}">
+                    Voir toutes vos Candidatures</a>
+                <a class="green-button" href="{{ path('app_apply_for_new') }}">
+                    Ajouter une candidature
+                </a>
+
             </div>
 
         </div>

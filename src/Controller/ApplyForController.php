@@ -51,7 +51,7 @@ class ApplyForController extends AbstractController
         return $this->render('apply_for/index.html.twig', [
             'apply_for' => $paginator->paginate(
                 $applyForRepository->findAll(),
-                $request->query->getInt('page', 5),
+                $request->query->getInt('page', 1),
                 6
             )
         ]);

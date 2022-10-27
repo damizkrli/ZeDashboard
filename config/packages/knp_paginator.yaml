@@ -1,5 +1,5 @@
 knp_paginator:
-    page_range: 5
+    page_range: 1
     default_options:
         page_name: page
         sort_field_name: sort
@@ -8,6 +8,6 @@ knp_paginator:
         filter_field_name: filterField
         filter_value_name: filterValue
     template:
-        pagination: '@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig'
-        sortable: '@KnpPaginator/Pagination/sortable_link.html.twig'
+        pagination: '@KnpPaginator/Pagination/bootstrap_v5_pagination.html.twig'
+        sortable: '@KnpPaginator/Pagination/bootstrap_v5_filtration.html.twig'
         filtration: '@KnpPaginator/Pagination/filtration.html.twig'
