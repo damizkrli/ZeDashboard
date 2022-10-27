@@ -14,6 +14,7 @@ use App\Repository\ApplyForRepository;
 use App\Repository\PersonalLinkRepository;
 use App\Repository\ProfessionalLinkRepository;
 use App\Repository\TechnicalLinkRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use MercurySeries\FlashyBundle\FlashyNotifier;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -45,12 +46,14 @@ class ApplyForController extends AbstractController
 
 /* -------------------------------- APPLY FOR ------------------------------------------------ */
     #[Route('/apply/', name: 'app_apply_for_index', methods: ['GET', 'POST'])]
-    public function index(): Response
+    public function index(PaginatorInterface $paginator, Request $request, ApplyForRepository $applyForRepository): Response
     {
-        $applies = $this->applyForRepository->findAll();
-
         return $this->render('apply_for/index.html.twig', [
-            'apply_for' => $applies,
+            'apply_for' => $paginator->paginate(
+                $applyForRepository->findAll(),
+                $request->query->getInt('page', 5),
+                6
+            )
         ]);
     }
 
