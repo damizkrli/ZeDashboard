@@ -31,7 +31,7 @@
                 <th class="text-center" scope="col"></th>
             </tr>
             </thead>
-            {% for appliesFor in apply_for.data|sort((a, b) => b.id <=> a.id) %}
+            {% for appliesFor in apply_for|sort((a, b) => b.id <=> a.id) %}
             <tbody>
             <tr class="text-center">
                 <td>{{ appliesFor.id }}1</td>
@@ -104,12 +104,9 @@
                 </td>
             </tr>
             </tbody>
+            {% endfor %}
         </table>
 
-    </div>
-
-    <div class="d-flex align-items-center justify-content-center">
-        {% include 'apply_for/pagination.html.twig' %}
     </div>
 
 {% endblock %}

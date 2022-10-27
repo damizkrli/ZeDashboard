@@ -45,12 +45,9 @@ class ApplyForController extends AbstractController
 
 /* -------------------------------- APPLY FOR ------------------------------------------------ */
     #[Route('/apply/', name: 'app_apply_for_index', methods: ['GET', 'POST'])]
-    public function index(Request $request): Response
+    public function index(): Response
     {
-        //chercher le numéro de page dans l'url
-        $page = $request->query->getInt('page', 1);
-
-        $applies = $this->applyForRepository->findApplyForPaginated($page, 10);
+        $applies = $this->applyForRepository->findAll();
 
         return $this->render('apply_for/index.html.twig', [
             'apply_for' => $applies,

@@ -40,33 +40,4 @@ class ApplyForRepository extends ServiceEntityRepository
         }
     }
 
-    public function findApplyForPaginated(int $page, int $limit = 6): array
-    {
-        $limit = abs($limit);
-
-        $result = [];
-
-        $query = $this->getEntityManager()->createQueryBuilder()
-            ->select('a')
-            ->from('App\Entity\ApplyFor', 'a')
-            ->setMaxResults($limit)
-            ->setFirstResult(($page * $limit) - $limit)
-        ;
-
-        $paginator = new Paginator($query);
-        $data = $paginator->getQuery()->getResult();
-
-        if (empty($data)) {
-            return $result;
-        }
-
-        $pages = ceil($paginator->count() / $limit);
-
-        $result['data'] = $data;
-        $result['pages'] = $pages;
-        $result['page'] = $page;
-        $result['limit'] = $limit;
-
-        return $result;
-    }
 }
