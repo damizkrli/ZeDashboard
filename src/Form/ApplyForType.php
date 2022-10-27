@@ -17,13 +17,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class ApplyForType extends AbstractType
 {
     public const STATUS = [
-        'Transmise'            => 'Transmise',
-        'Contact Téléphonique' => 'Contact Téléphonique',
-        'Entretien'            => 'Entretien',
-        'Entretien Tech'       => 'Entretien Tech',
-        'Acceptée'             => 'Acceptée',
-        'Refusée'              => 'Refusée',
-        'Sans réponse'         => 'Sans réponse',
+        'Transmise'      => 'Transmise',
+        'Appel'          => 'Appel',
+        'Entretien'      => 'Entretien',
+        'Entretien Tech' => 'Entretien Tech',
+        'Acceptée'       => 'Acceptée',
+        'Refusée'        => 'Refusée',
+        'Sans réponse'   => 'Sans réponse',
     ];
 
     public function buildForm(FormBuilderInterface $builder, array $options): void

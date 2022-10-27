@@ -56,15 +56,12 @@ class ApplyForRepository extends ServiceEntityRepository
         $paginator = new Paginator($query);
         $data = $paginator->getQuery()->getResult();
 
-        // on vérifie qu'il y ait des données
         if (empty($data)) {
             return $result;
         }
 
-        // calcul du nombre de page
         $pages = ceil($paginator->count() / $limit);
 
-        // on rempli le tableau
         $result['data'] = $data;
         $result['pages'] = $pages;
         $result['page'] = $page;
@@ -72,29 +69,4 @@ class ApplyForRepository extends ServiceEntityRepository
 
         return $result;
     }
-
-//    /**
-//     * @return ApplyFor[] Returns an array of ApplyFor objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('a.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?ApplyFor
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }

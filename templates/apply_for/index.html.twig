@@ -12,7 +12,6 @@
             <a class="green-button" href="{{ path('app_company_new') }}">Ajouter une entreprise</a>
             <a class="green-button" href="{{ path('app_platform_new') }}">Ajouter une plateforme</a>
             {# TODO : créer une fonction pour faire un export en pdf #}
-            {# <a class="button" href="#">Exporter en PDF</a> #}
             <a class="red-button" href="{{ path('app_index_home') }}">Retour</a>
         </div>
 
@@ -26,8 +25,8 @@
                 <th class="text-center" scope="col">Statut</th>
                 <th class="text-center" scope="col">Contact</th>
                 <th class="text-center" scope="col">Details</th>
-                <th class="text-center" scope="col">Date dépôt</th>
-                <th class="text-center" scope="col">Date retour</th>
+                <th class="text-center" scope="col">Dépôt</th>
+                <th class="text-center" scope="col">Réponse</th>
                 <th class="text-center" scope="col">Lien</th>
                 <th class="text-center" scope="col"></th>
             </tr>
@@ -63,7 +62,7 @@
                         <td class="text-center">
                             <div class="status bg-info rounded-2">{{ appliesFor.status }}</div>
                         </td>
-                    {% elseif appliesFor.status is same as 'Contact Téléphonique' %}
+                    {% elseif appliesFor.status is same as 'Appel' %}
                         <td class="text-center">
                             <div class="status bg-warning rounded-2">{{ appliesFor.status }}</div>
                         </td>
@@ -94,7 +93,8 @@
                 </td>
                 <td class="text-center">
                     <div class="d-flex align-items center justify-content_center">
-                        <a class="btn border-0 pt-0" href="{{ path('app_apply_for_edit', {'id': appliesFor.id}) }}"><i class="far fa-edit"></i></a>
+                        <a class="btn border-0 pt-0" href="{{ path('app_apply_for_edit', {'id': appliesFor.id}) }}"><i
+                                    class="far fa-edit"></i></a>
                         <form method="post" action="{{ path('app_apply_for_delete', {'id': appliesFor.id}) }}"
                               onsubmit="return confirm('Êtes_vous sur de vouloir supprimer cette candidature ?');">
                             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ appliesFor.id) }}">
@@ -103,10 +103,6 @@
                     </div>
                 </td>
             </tr>
-            {% endfor %}
-            {% set path = 'app_apply_for_index' %}
-            {% set pages = apply_for.pages %}
-            {% set currentPage = apply_for.page %}
             </tbody>
         </table>
 
@@ -116,10 +112,4 @@
         {% include 'apply_for/pagination.html.twig' %}
     </div>
 
-{#    {% set startDate = "January 00, 2000 00:00" %}#}
-{#    {% set endDate = "December 00, 2000 00:00" %}#}
-{#    {% set difference = date(endDate | date() ).diff(date(startDate)) %}#}
-{#    {{ dump(startDate) }}#}
-{#    {{ dump(endDate) }}#}
-{#    {{ dump(difference) }}#}
 {% endblock %}
