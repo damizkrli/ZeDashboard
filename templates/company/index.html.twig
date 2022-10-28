@@ -7,6 +7,11 @@
     <div class="container">
         <h1>Mes Entreprises</h1>
 
+        <div class="mt-3 mb-3 d-flex align-items-end justify-content-end">
+            <a class="green-button" href="{{ path('app_company_new') }}">Ajouter une entreprise</a>
+            <a class="red-button" href="{{ path('app_apply_for_index') }}">Retour</a>
+        </div>
+
         <table class="table">
             <thead>
             <tr>
@@ -42,9 +47,6 @@
             {% endfor %}
             </tbody>
         </table>
-
-        <a class="green-button" href="{{ path('app_company_new') }}">Ajouter une entreprise</a>
-        <a class="red-button" href="{{ path('app_apply_for_index') }}">Retour</a>
 
     </div>
 

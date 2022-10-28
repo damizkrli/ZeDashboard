@@ -81,6 +81,10 @@ table {
     min-height: 100vh;
 }
 
+i {
+    color: $light;
+}
+
 @media screen and (max-width: 700px) {
     .sidebar {
         width: 100%;
