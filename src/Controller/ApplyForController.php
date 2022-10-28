@@ -48,9 +48,11 @@ class ApplyForController extends AbstractController
     #[Route('/apply/', name: 'app_apply_for_index', methods: ['GET', 'POST'])]
     public function index(PaginatorInterface $paginator, Request $request, ApplyForRepository $applyForRepository): Response
     {
+        $data = $this->applyForRepository->findBy([],['dateApplyFor' => 'DESC']);
+
         return $this->render('apply_for/index.html.twig', [
             'apply_for' => $paginator->paginate(
-                $applyForRepository->findAll(),
+                $data,
                 $request->query->getInt('page', 1),
                 6
             )
@@ -113,9 +115,9 @@ class ApplyForController extends AbstractController
     #[Route('/links/index', name: 'app_link_index', methods: ['GET', 'POST'])]
     public function linksIndex(): Response
     {
-        $linksPro = $this->professionalLinkRepository->findAll();
-        $linksTech = $this->technicalLinkRepository->findAll();
-        $linksPerso = $this->personalLinkRepository->findAll();
+        $linksPro = $this->professionalLinkRepository->findBy([], ['id' => 'DESC']);
+        $linksPerso = $this->technicalLinkRepository->findBy([], ['id' => 'DESC']);
+        $linksTech = $this->personalLinkRepository->findBy([], ['id' => 'DESC']);
 
         return $this->render('link/links.html.twig', [
             'linksPro' => $linksPro,
@@ -128,7 +130,7 @@ class ApplyForController extends AbstractController
     #[Route('/index/link/pro', name: 'app_index_pro_link', methods: ['GET', 'POST'])]
     public function indexProfessionalLink(): Response
     {
-        $pros = $this->professionalLinkRepository->findAll();
+        $pros = $this->professionalLinkRepository->findBy([], ['id' => 'DESC']);
 
         return $this->render('link/professional/index.html.twig', [
             'pros' => $pros,
@@ -186,7 +188,7 @@ class ApplyForController extends AbstractController
     #[Route('/index/link/tech', name: 'app_index_tech_link', methods: ['GET'])]
     public function indexTechnicalLink(): Response
     {
-        $techs = $this->technicalLinkRepository->findAll();
+        $techs = $this->technicalLinkRepository->findBy([], ['id' => 'DESC']);
 
         return $this->render('link/technical/index.html.twig', [
             'techs' => $techs,
@@ -244,7 +246,7 @@ class ApplyForController extends AbstractController
     #[Route('/index/link/perso', name: 'app_index_perso_link', methods: ['GET'])]
     public function indexPersonalLink(): Response
     {
-        $persos = $this->personalLinkRepository->findAll();
+        $persos = $this->personalLinkRepository->findBy([], ['id' => 'DESC']);
 
         return $this->render('link/personal/index.html.twig', [
             'persos' => $persos,

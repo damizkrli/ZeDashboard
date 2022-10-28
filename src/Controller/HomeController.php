@@ -31,7 +31,7 @@ class HomeController extends AbstractController
         $acceptedApplies = count($this->applyForRepository->findBy(['status' => 'Acceptée']));
 
         return $this->render('home/index.html.twig', [
-            'apply_for' => $this->applyForRepository->findAll(),
+            'apply_for' => $this->applyForRepository->findBy([], ['dateApplyFor' => 'DESC']),
             'totalApplies' => $totalApplies,
             'sentApplies' => $sentApplies,
             'noResponseApplies' => $noResponseApplies,

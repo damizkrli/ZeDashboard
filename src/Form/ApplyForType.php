@@ -5,6 +5,9 @@ namespace App\Form;
 use App\Entity\ApplyFor;
 use App\Entity\Company;
 use App\Entity\Platform;
+use App\Repository\ApplyForRepository;
+use App\Repository\CompanyRepository;
+use App\Repository\PlatformRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -17,27 +20,37 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class ApplyForType extends AbstractType
 {
     public const STATUS = [
-        'Transmise'      => 'Transmise',
+        'Acceptée'       => 'Acceptée',
         'Appel'          => 'Appel',
         'Entretien'      => 'Entretien',
-        'Acceptée'       => 'Acceptée',
         'Refusée'        => 'Refusée',
         'Sans réponse'   => 'Sans réponse',
+        'Transmise'      => 'Transmise',
     ];
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('platform', EntityType::class, [
-                'class'       => Platform::class,
-                'placeholder' => 'Sélectionnez une plateforme',
-                'label'       => 'Plateforme',
-                'required'    => false,
+                'class'         => Platform::class,
+                'placeholder'   => 'Sélectionnez une plateforme',
+                'label'         => 'Plateforme',
+                'required'      => false,
+                'query_builder' => function (PlatformRepository $platformRepository) {
+                    return $platformRepository
+                        ->createQueryBuilder('p')
+                        ->orderBy('p.name', 'ASC');
+                }
             ])
             ->add('company', EntityType::class, [
-                'class'       => Company::class,
-                'placeholder' => 'Sélectionnez une entreprise',
-                'label'       => "Nom de l'entreprise",
+                'class'         => Company::class,
+                'placeholder'   => 'Sélectionnez une entreprise',
+                'label'         => "Nom de l'entreprise",
+                'query_builder' => function (CompanyRepository $companyRepository) {
+                    return $companyRepository
+                        ->createQueryBuilder('a')
+                        ->orderBy('a.name', 'ASC');
+                }
             ])
             ->add('contact', TextType::class, [
                 'label'    => 'Contact',
@@ -64,10 +77,10 @@ class ApplyForType extends AbstractType
                 'widget'   => 'single_text',
             ])
             ->add('status', ChoiceType::class, [
-                'choices'     => self::STATUS,
-                'label'       => "Statut",
-                'required'    => false,
-                'empty_data'  => 'Transmise'
+                'choices'       => self::STATUS,
+                'label'         => "Statut",
+                'required'      => false,
+                'empty_data'    => 'Transmise',
             ])
         ;
     }

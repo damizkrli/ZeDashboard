@@ -25,7 +25,7 @@ class PlatformController extends AbstractController
     public function index(PlatformRepository $platformRepository): Response
     {
         return $this->render('platform/index.html.twig', [
-            'platforms' => $platformRepository->findAll(),
+            'platforms' => $platformRepository->findBy([], ['id' => 'DESC']),
         ]);
     }
 

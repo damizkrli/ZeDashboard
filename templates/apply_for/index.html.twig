@@ -32,7 +32,7 @@
                 <th class="text-center" scope="col"></th>
             </tr>
             </thead>
-            {% for appliesFor in apply_for|sort((a, b) => b.id <=> a.id) %}
+            {% for appliesFor in apply_for %}
             <tbody>
             <tr class="text-center">
                 <td>{{ appliesFor.id }}1</td>
@@ -95,11 +95,11 @@
                 <td class="text-center">
                     <div class="d-flex align-items center justify-content_center">
                         <a class="btn border-0 pt-0" href="{{ path('app_apply_for_edit', {'id': appliesFor.id}) }}"><i
-                                    class="far fa-edit"></i></a>
+                                    class="far fa-edit" style="color: green"></i></a>
                         <form method="post" action="{{ path('app_apply_for_delete', {'id': appliesFor.id}) }}"
                               onsubmit="return confirm('Êtes_vous sur de vouloir supprimer cette candidature ?');">
                             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ appliesFor.id) }}">
-                            <button class="btn border-0 pt-0"><i class="far fa-trash-alt"></i></button>
+                            <button class="btn border-0 pt-0"><i class="far fa-trash-alt" style="color: red"></i></button>
                         </form>
                     </div>
                 </td>
