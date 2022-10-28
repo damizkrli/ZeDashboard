@@ -29,7 +29,7 @@
             <div class="row row-cols- row-cols-md-4 g-4">
                 {% for appliesFor in apply_for | sort((a, b) => b.dateApplyFor <=> a.dateApplyFor)|slice(0, 8) %}
                     <div class="col">
-                        <div class="card position-relative h-100">
+                        <div class="card position-relative h-100 shadow-lg">
                             {% if appliesFor.status is same as 'Transmise' %}
                                 <span class="position-absolute top-0 start-100 translate-middle p-2 bg-primary border border-light rounded-circle">
                                     <span class="visually-hidden">New alerts</span>
