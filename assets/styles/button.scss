@@ -35,3 +35,17 @@
     border-radius: $radius;
   }
 }
+
+.nav-button {
+  background-color: $light;
+  color: $dark;
+  border: $link !important;
+  border-radius: $radius-light;
+
+  &:hover{
+    background-color: $dark;
+    color: $light;
+    border-radius: $radius-strong;
+    padding: 5px;
+  }
+}
