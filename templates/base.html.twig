@@ -11,60 +11,46 @@
     <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
 
     {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand app-name ms-5" href="{{ path('app_index_home') }}">DASHBOARD</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <a class="navbar-brand app-name ms-5" style="color: #FAF9F0" href="{{ path('app_index_home') }}">DASHBOARD</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse d-flex align-items-end justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="me-5 nav-button" href="{{ path('app_index_home') }}">ACCUEIL</a>
+                <a class="me-5 hover-underline-animation a-nav" href="{{ path('app_index_home') }}">ACCUEIL</a>
             </li>
             <li class="nav-item">
-                <a class="me-5 nav-button" href="{{ path('app_apply_for_index') }}">CANDIDATURES</a>
+                <a class="me-5 hover-underline-animation a-nav"
+                   href="{{ path('app_apply_for_index') }}">CANDIDATURES</a>
             </li>
             <li class="nav-item">
-                <a class="me-5 nav-button" href="{{ path('app_link_index') }}">LIENS</a>
+                <a class="me-5 hover-underline-animation a-nav" href="{{ path('app_link_index') }}">LIENS</a>
             </li>
             <li class="nav-item">
-                <a class="me-5 nav-button" href="{{ path('app_note_index') }}">NOTES</a>
+                <a class="me-5 hover-underline-animation a-nav" href="{{ path('app_note_index') }}">NOTES</a>
             </li>
         </ul>
     </div>
 </nav>
 
-{#<div class="sidebar">#}
-{#    <div class="d-flex align-items-center justify-content-center">#}
-{#        <h1 class="app-name">DASHBOARD</h1>#}
-{#    </div>#}
-{#    <a href="{{ path('app_index_home') }}">ACCUEIL</a>#}
-{#    <a href="{{ path('app_apply_for_index') }}">CANDIDATURES</a>#}
-{#    <a href="{{ path('app_link_index') }}">LIENS</a>#}
-{#    <a href="{{ path('app_note_index') }}">NOTES</a>#}
-{#</div>#}
+{% block body %}{% endblock %}
 
-{#<div class="content">#}
-    {% block body %}{% endblock %}
-{#</div>#}
-
-<script src="https://kit.fontawesome.com/1011406e57.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-<script src="//code.jquery.com/jquery.js"></script>
-<script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
 {{ include('@MercurySeriesFlashy/flashy.html.twig') }}
+<script src="https://kit.fontawesome.com/1011406e57.js" crossorigin="anonymous"></script>
+<script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

@@ -2,7 +2,7 @@
 
 @import "form";
 
-@import "sidebar";
+@import "navbar";
 
 @import "title";
 
@@ -69,6 +69,11 @@ table {
     border-spacing: 0 15px;
 }
 
+card {
+    background-color: $dark !important;
+    color: $light !important;
+}
+
 .status {
     padding: 0 4px 0 4px;
 }
@@ -82,7 +87,7 @@ table {
 }
 
 i {
-    color: $light;
+    color: $dark;
 }
 
 @media screen and (max-width: 700px) {
