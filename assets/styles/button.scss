@@ -1,37 +1,33 @@
 @import "variables";
 
-.green-button {
-  background-color: $background;
+.a-navbar {
   color: $light !important;
-  border: 1px solid $link;
-  padding: $padding $padding-side;
-  margin: $margin;
-  border-radius: $radius;
-
-  &:hover {
-    background-color: $light;
-    color: $dark !important;
-    border: 1px solid $link;
-    padding: $padding $padding-side;
-    margin: $margin;
-    border-radius: $radius;
-  }
 }
 
-.red-button {
-  background-color: $background;
+.a-nav:hover{
   color: $light !important;
-  border: 1px solid $danger;
-  padding: $padding $padding-side;
-  margin: $margin;
-  border-radius: $radius;
+}
 
-  &:hover {
-    background-color: $danger;
-    color: $light;
-    border: 1px solid $link;
-    padding: $padding $padding-side;
-    margin: $margin;
-    border-radius: $radius;
-  }
+.hover-underline-animation {
+  display: inline-block;
+  position: relative;
+  color: $dark !important;
+}
+
+.hover-underline-animation:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: $dark;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }

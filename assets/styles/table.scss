@@ -1,12 +1,19 @@
 @import "variables";
 
 .table>:not(:last-child)>:last-child>*, .table {
-  border-bottom-color: black !important;
+  border-bottom-color: $light !important;
+  background-color: $dark !important;
+  color: $light !important;
+  border-radius: $radius;
 }
 
 table {
   border-collapse: separate;
   border-spacing: 0 15px;
+}
+
+tbody > tr:last-child > td {
+  border-bottom: 0;
 }
 
 .status {

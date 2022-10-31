@@ -26,6 +26,7 @@ class ApplyForType extends AbstractType
         'Refusée'        => 'Refusée',
         'Sans réponse'   => 'Sans réponse',
         'Transmise'      => 'Transmise',
+        'Relance'        => 'Relance'
     ];
 
     public function buildForm(FormBuilderInterface $builder, array $options): void

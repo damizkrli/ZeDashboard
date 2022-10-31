@@ -4,6 +4,7 @@
 
 @import "navbar";
 
+@import "table";
 @import "title";
 
 @import "variables";
@@ -24,6 +25,10 @@ p {
     color: $dark;
     margin: 0;
     padding: 0;
+}
+
+.nc {
+    color: $light !important;
 }
 
 a {
@@ -60,15 +65,6 @@ ul {
     height: 30px;
 }
 
-.table>:not(:last-child)>:last-child>*, .table {
-    border-bottom-color: black !important;
-}
-
-table {
-    border-collapse: separate;
-    border-spacing: 0 15px;
-}
-
 card {
     background-color: $dark !important;
     color: $light !important;
@@ -78,16 +74,17 @@ card {
     padding: 0 4px 0 4px;
 }
 
-.center-screen {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    min-height: 100vh;
-}
-
 i {
     color: $dark;
+}
+
+a.page-link {
+  background-color: $dark !important;
+  color: $light !important;
+
+  &hover {
+      color: $light !important;
+  }
 }
 
 @media screen and (max-width: 700px) {

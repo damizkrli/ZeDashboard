@@ -67,19 +67,23 @@
                         <td class="text-center">
                             <div class="status bg-warning rounded-2">{{ appliesFor.status }}</div>
                         </td>
+                    {% elseif appliesFor.status is same as 'Relance' %}
+                        <td class="text-center">
+                            <div class="status bg-secondary text-light rounded-2">{{ appliesFor.status }}</div>
+                        </td>
                     {% endif %}
                 <td class="text-center">
                     {% if appliesFor.contact %}
-                        <p class="card-text">{{ appliesFor.contact }}</p>
+                        <p class="card-text nc">{{ appliesFor.contact }}</p>
                     {% else %}
-                        <p class="fst-italic">N/C</p>
+                        <p class="fst-italic nc">N/C</p>
                     {% endif %}
                 </td>
                 <td class="text-center">
                     {% if appliesFor.details %}
-                        <p class="card-text">{{ appliesFor.details }}</p>
+                        <p class="card-text nc">{{ appliesFor.details }}</p>
                     {% else %}
-                        <p class="fst-italic">N/C</p>
+                        <p class="fst-italic nc">N/C</p>
                     {% endif %}
                 </td>
                 <td class="text-center">{{ appliesFor.dateApplyFor|date('d/m/Y') }}</td>
@@ -87,7 +91,7 @@
                     {% if appliesFor.dateReturn %}
                         {{ appliesFor.dateReturn|date('d/m/Y') }}
                     {% else %}
-                        <p class="fst-italic">N/C</p>
+                        <p class="fst-italic nc">N/C</p>
                     {% endif %}</td>
                 <td class="text-center">
                     <a href="{{ appliesFor.link }}" target="_blank" class="green-button">Lien</a>
@@ -108,10 +112,10 @@
             {% endfor %}
         </table>
 
-        <div class="navigation d-flex align-items-center justify-content-center">
-            {{ knp_pagination_render(apply_for) }}
-        </div>
+    </div>
 
+    <div class="navigation d-flex align-items-center justify-content-center fixed-bottom">
+        {{ knp_pagination_render(apply_for) }}
     </div>
 
 {% endblock %}
