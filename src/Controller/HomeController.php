@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\ApplyForRepository;
+use App\Services\CalculateRules;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,15 +21,15 @@ class HomeController extends AbstractController
     }
 
     #[Route('/', name: 'app_index_home', methods: ['GET', 'POST'])]
-    public function index(): Response
+    public function index(CalculateRules $calculateRules): Response
     {
-        $totalApplies = count($this->applyForRepository->findAll());
-        $sentApplies = count($this->applyForRepository->findBy(['status' => 'Transmise']));
-        $noResponseApplies = count($this->applyForRepository->findBy(['status' => 'Sans Réponse']));
-        $interviewApplies = count($this->applyForRepository->findBy(['status' => 'Entretien']));
-        $refusedApplies = count($this->applyForRepository->findBy(['status' => 'Refusée']));
-        $numCall = count($this->applyForRepository->findBy(['status' => 'Appel']));
-        $acceptedApplies = count($this->applyForRepository->findBy(['status' => 'Acceptée']));
+        $totalApplies = $calculateRules->calculateTotalApplies();
+        $sentApplies = $calculateRules->calculateSentApplie();
+        $noResponseApplies = $calculateRules->calculateNoResponseApplies();
+        $interviewApplies = $calculateRules->calculateInterviewApplies();
+        $refusedApplies = $calculateRules->calculateRefusedApplies();
+        $numCall = $calculateRules->calculateNumberOfCall();
+        $acceptedApplies = $calculateRules->calculateAcceptedApplies();
 
         return $this->render('home/index.html.twig', [
             'apply_for' => $this->applyForRepository->findBy([], ['dateApplyFor' => 'DESC']),
@@ -38,7 +39,8 @@ class HomeController extends AbstractController
             'interviewApplies' => $interviewApplies,
             'refusedApplies' => $refusedApplies,
             'numCall' => $numCall,
-            'acceptedApplies' => $acceptedApplies
+            'acceptedApplies' => $acceptedApplies,
+            'calculatePercentRefusedApplies' => $calculateRules->calculatePercentRefusedApplies($refusedApplies, $totalApplies)
         ]);
         }
     }

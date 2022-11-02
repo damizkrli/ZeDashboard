@@ -12,20 +12,27 @@
                 Concernant vos candidatures
             </h1>
 
-            <p>Vous avez envoyé {{ totalApplies }} candidatures, dont {{ sentApplies }} qui sont encore "transmises".</p>
+            {% if refusedApplies == 0 and totalApplies == 0 %}
+                Vous n'avez pas encore de données à afficher. Commencer par <a href="{{ path('app_apply_for_new') }}">ajouter
+                une candidature</a>
+            {% else %}
+                <p>Vous avez envoyé {{ totalApplies }} candidatures, dont {{ sentApplies }} qui sont encore
+                    "transmises".</p>
+
+                <br>
+
+                <p>Vous avez eu {{ interviewApplies }} candidatures avec entretien, {{ numCall }} entretien téléphonique
+                    et {{ acceptedApplies }} candidatures acceptées.</p>
+
+                <br>
+
+                <p>{% if noResponseApplies == 0 %} Aucune des {% else %}{{ noResponseApplies }}{% endif %} candidatures
+                    sont
+                    restées sans réponse et {{ refusedApplies }} candidatures sont refusées.</p>
+            {% endif %}
 
             <br>
-
-            <p>Vous avez eu {{ interviewApplies }} candidatures avec entretien, {{ numCall }} entretien téléphonique
-                et {{ acceptedApplies }} candidatures acceptées.</p>
-
-            <br>
-
-            <p>{% if noResponseApplies == 0 %} Aucune des {% else %}{{ noResponseApplies }}{% endif %} candidatures sont restées sans réponse et {{ refusedApplies }} candidatures sont refusées.</p>
-
-            <br>
-            {% set applies = 100 * refusedApplies // totalApplies %}
-            <p>Vous avez {{ applies }}% de candidature refusées.</p>
+            <p>Vous avez {{ calculatePercentRefusedApplies }}% de candidature refusées.</p>
 
             <h1 class="mt-5 mb-5">
                 <i class="fas fa-star"></i>
@@ -70,17 +77,20 @@
                                     {% endif %}
                                     <div class="card-text">
                                         {% if appliesFor.status is same as 'Refusée' %}
-                                            <p class="line"  style="color: #FAF9F9;">{{ appliesFor.company }}
+                                            <p class="line" style="color: #FAF9F9;">{{ appliesFor.company }}
                                                 sur {{ appliesFor.platform.name }}</p>
-                                            <p  style="color: #FAF9F9;">Retour le {{ appliesFor.dateReturn|date('d/m/Y') }}</p>
+                                            <p style="color: #FAF9F9;">Retour
+                                                le {{ appliesFor.dateReturn|date('d/m/Y') }}</p>
                                         {% else %}
-                                            <p style="color: #FAF9F9">{{ appliesFor.company }} sur {{ appliesFor.platform.name }}</p>
+                                            <p style="color: #FAF9F9">{{ appliesFor.company }}
+                                                sur {{ appliesFor.platform.name }}</p>
                                         {% endif %}
                                     </div>
                                 </div>
                             </div>
                             <div class="card-footer" style="background-color: #1f1f1f;">
-                                <small class="fst-italic" style="color: #FAF9F9">Envoyée le {{ appliesFor.dateApplyFor|date('d/m/Y') }}</small>
+                                <small class="fst-italic" style="color: #FAF9F9">Envoyée
+                                    le {{ appliesFor.dateApplyFor|date('d/m/Y') }}</small>
                             </div>
                         </div>
                     </div>
@@ -88,9 +98,14 @@
             </div>
 
             <div class="m-5">
-                <a class="hover-underline-animation ms-5" style="color: #1f1f1f" href="{{ path('app_apply_for_index') }}">
-                    Voir toutes vos Candidatures</a>
-                <a class="hover-underline-animation ms-5" style="color: #1f1f1f" href="{{ path('app_apply_for_new') }}">
+                <a class="button ms-5"
+                   style="color: #1f1f1f" href="{{ path('app_apply_for_index') }}">
+                    <span class="css-button-icon">
+                        <i class="far fa-eye"></i>
+                        Voir toutes vos Candidatures
+                    </span>
+                </a>
+                <a class="button ms-5" style="color: #1f1f1f" href="{{ path('app_apply_for_new') }}">
                     Ajouter une candidature
                 </a>
 

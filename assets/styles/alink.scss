@@ -31,3 +31,21 @@
   transform: scaleX(1);
   transform-origin: bottom left;
 }
+
+
+.button {
+  font-size:15px;
+  font-family: Arial, serif;
+  width:140px;
+  height:50px;
+  border-width:1px;
+  color:#666666;
+  border-color:rgba(220, 220, 220, 1);
+  font-weight:bold;
+  border-radius: 6px;
+  box-shadow:inset 0 1px 0 0 #ffffff;
+  background-color:transparent;
+}
+
+
+              

@@ -1,0 +1,69 @@
+<?php
+
+namespace App\Services;
+
+use App\Repository\ApplyForRepository;
+
+class CalculateRules
+{
+    private ApplyForRepository $applyForRepository;
+
+    public function __construct(ApplyForRepository $applyForRepository)
+    {
+        $this->applyForRepository = $applyForRepository;
+    }
+
+    public function calculateTotalApplies(): int
+    {
+        $totalApplies = $this->applyForRepository->findAll();
+
+        return count($totalApplies);
+    }
+
+    public function calculateSentApplie():int
+    {
+        $sentApplies = $this->applyForRepository->findBy(['status' => 'Transmise']);
+
+        return count($sentApplies);
+    }
+
+    public function calculateNoResponseApplies(): int
+    {
+        $noResponseApplies = $this->applyForRepository->findBy(['status' => 'Sans Réponse']);
+
+        return count($noResponseApplies);
+    }
+
+    public function calculateInterviewApplies(): int
+    {
+        $interviewApplies = $this->applyForRepository->findBy(['status' => 'Entretien']);
+
+        return count($interviewApplies);
+    }
+
+    public function calculateRefusedApplies(): int
+    {
+        $refusedApplies = $this->applyForRepository->findBy(['status' => 'Refusée']);
+
+        return count($refusedApplies);
+    }
+
+    public function calculateNumberOfCall(): int
+    {
+        $numCall = $this->applyForRepository->findBy(['status' => 'Appel']);
+
+        return count($this->applyForRepository->findBy(['status' => 'Appel']));
+    }
+
+    public function calculateAcceptedApplies(): int
+    {
+        $accpetedApplies = $this->applyForRepository->findBy(['status' => 'Acceptée']);
+
+        return count($accpetedApplies);
+    }
+
+    public function calculatePercentRefusedApplies($refusedApplies, $totalApplies): int
+    {
+        return 100 * ($refusedApplies / $totalApplies);
+    }
+}
