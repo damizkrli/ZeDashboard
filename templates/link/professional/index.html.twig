@@ -36,7 +36,7 @@
                         <td>{{ pro.name }}</td>
                         <td>{{ pro.url }}</td>
                         <td>
-                            <div class="d-flex align-items-center justify-content-start">
+                            <div class="d-flex justify-content-start">
                                 <form method="post" action="{{ path('app_delete_pro_link', {'id': pro.id}) }}"
                                       onsubmit="return confirm('Are you sure you want to delete this item?');">
                                     <a href="{{ path('app_edit_professional_link', {'id': pro.id}) }}">

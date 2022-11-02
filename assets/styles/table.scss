@@ -12,6 +12,11 @@ table {
   border-spacing: 1rem !important;
 }
 
+.size {
+  table-layout: auto;
+  width: 70%;
+}
+
 tbody > tr:last-child > td {
   border-bottom: 0;
 }
