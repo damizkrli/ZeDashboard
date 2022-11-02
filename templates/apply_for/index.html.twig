@@ -12,19 +12,23 @@
 
             <div class="mb-3 d-flex align-items-end justify-content-end">
                 <div class="dropdown">
-                    <button class="button px-3 dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                    <button class="button px-3" type="button" data-toggle="dropdown" aria-expanded="false">
                         Que souhaitez-vous faire ?
+                        <i class="ms-3 fas fa-caret-square-down"></i>
                     </button>
                     <div class="dropdown-menu">
                         <ul>
-                            <li><a class="dropdown-item menu" href="{{ path('app_apply_for_new') }}">Ajouter une
-                                    candidature</a></li>
-                            <li><a class="dropdown-item menu" href="{{ path('app_company_new') }}">Ajouter une
-                                    entreprise</a></li>
-                            <li><a class="dropdown-item menu" href="{{ path('app_platform_new') }}">Ajouter une
-                                    plateforme</a></li>
+                            <li><a class="dropdown-item menu" href="{{ path('app_apply_for_new') }}">
+                                    <i class="fas fa-briefcase me-3"></i>
+                                    Ajouter une candidature</a></li>
+                            <li><a class="dropdown-item menu" href="{{ path('app_company_index') }}">
+                                    <i class="me-3 fas fa-building"></i>
+                                    Mes entreprises</a></li>
+                            <li><a class="dropdown-item menu" href="{{ path('app_platform_index') }}">
+                                    <i class="fas fa-toolbox me-3"></i>
+                                    Mes plateformes</a></li>
                             {# <li> TODO : créer une fonction pour faire un export en pdf </li> #}
-                            <li><a class="dropdown-item menu" href="{{ path('app_index_home') }}">Retour</a></li>
+                            <li><a class="dropdown-item menu" href="{{ path('app_index_home') }}"><i class="me-3 fas fa-caret-square-left"></i>Retour</a></li>
                         </ul>
                     </div>
                 </div>
@@ -35,12 +39,12 @@
                 <thead>
                 <tr>
                     <th class="text-center" scope="col">#</th>
-                    <th scope="col">Poste</th>
+                    <th scope="col">Intitulé du Poste</th>
                     <th class="text-center" scope="col">Enterprise</th>
-                    <th class="text-center" scope="col">Plateform</th>
+                    <th class="text-center" scope="col">Plateforme</th>
                     <th class="text-center" scope="col">Statut</th>
                     <th class="text-center" scope="col">Contact</th>
-                    <th class="text-center" scope="col">Details</th>
+                    <th class="text-center" scope="col">Détails</th>
                     <th class="text-center" scope="col">Dépôt</th>
                     <th class="text-center" scope="col">Réponse</th>
                     <th class="text-center" scope="col"></th>
@@ -91,7 +95,7 @@
                                       onsubmit="return confirm('Êtes_vous sur de vouloir supprimer cette candidature ?');">
                                     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ appliesFor.id) }}">
                                     <button class="btn border-0 pt-0">
-                                        <i class="action far fa-trash-alt"></i>
+                                        <i class="action fas fa-trash-alt"></i>
                                     </button>
                                 </form>
                             </div>

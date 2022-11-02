@@ -5,7 +5,9 @@
 {% block body %}
 
     <div class="col px-5">
-        <h1 class="mt-5 ms-5 mb-3">Ajouter une candidature</h1>
+        <h1 class="title">
+            <i class="fas fa-plus-square me-3"></i>
+            Ajouter une candidature</h1>
         {{ form_start(form) }}
         <div class="m-3">
             <div class="row d-flex align-items-center justify-content-center">
@@ -51,7 +53,7 @@
         <div class="m-3">
             <div class="col d-flex align-items-center justify-content-center">
                 <button class="button me-5 rounded-3 px-3"><i class="fas fa-save me-3"></i>{{ button_label|default('Enregistrer') }}</button>
-                <a class="button me-5 rounded-3 px-3" href="{{ path('app_apply_for_index') }}">Retour</a>
+                <a class="button me-5 rounded-3 px-3" href="{{ path('app_apply_for_index') }}"><i class="me-3 fas fa-caret-square-left"></i>Retour</a>
             </div>
         </div>
 
