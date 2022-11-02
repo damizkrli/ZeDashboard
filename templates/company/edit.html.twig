@@ -3,22 +3,26 @@
 {% block title %}{{ company.name }}{% endblock %}
 
 {% block body %}
-    <h1>Modifier {{ company.name }}</h1>
+   <section>
+       <div class="col px-5">
+           <h1 class="title">Modifier {{ company.name }}</h1>
 
-    <div class="container col-4">
+           <div class="container col-4">
 
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
+               {{ form_start(form) }}
+               {{ form_widget(form) }}
 
-        <div class="m-3">
-            <div class="col d-flex align-items-center justify-content-center">
-                <button class="green-button">{{ button_label|default('Enregistrer') }}</button>
-                <a class="red-button" href="{{ path('app_company_index') }}">Retour aux entreprises</a>
-            </div>
-        </div>
+               <div class="m-3">
+                   <div class="col d-flex align-items-center justify-content-center">
+                       <button class="button me-5 rounded-3 px-3">{{ button_label|default('Enregistrer') }}</button>
+                       <a class="button me-5 rounded-3 px-3" href="{{ path('app_company_index') }}">Retour aux entreprises</a>
+                   </div>
+               </div>
 
-        {{ form_end(form) }}
+               {{ form_end(form) }}
 
-    </div>
+           </div>
+       </div>
+   </section>
 
 {% endblock %}
