@@ -8,8 +8,8 @@
 }
 
 table {
-  border-collapse: separate;
-  border-spacing: 0 15px;
+  border-collapse: separate !important;
+  border-spacing: 1rem !important;
 }
 
 tbody > tr:last-child > td {

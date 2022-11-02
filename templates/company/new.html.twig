@@ -3,23 +3,29 @@
 {% block title %}Nouvelle Entreprise{% endblock %}
 
 {% block body %}
-    <h1>Ajouter une entreprise</h1>
+    <section>
 
-    <div class="container col-6">
+        <div class="col px-5">
+            <h1 class="title">Ajouter une entreprise</h1>
 
 
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
+            <div class="container col-6">
+
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
 
         <div class="m-3">
-            <div class="d-flex align-items-center justify-content-center">
-                <button class="green-button">{{ button_label|default('Enregistrer') }}</button>
-                <a class="red-button" href="{{ path('app_company_index') }}">Retour aux entreprises</a>
-                <a class="red-button" href="{{ path('app_apply_for_index') }}">Retour aux candidatures</a>
+            <div class="d-flex align-items-center justify-content-around">
+                <button class="button me-5 rounded-3 px-3">{{ button_label|default('Enregistrer') }}</button>
+                <a class="button me-5 rounded-3 px-3" href="{{ path('app_company_index') }}">Retour aux entreprises</a>
+                <a class="button me-5 rounded-3 px-3" href="{{ path('app_apply_for_index') }}">Retour aux candidatures</a>
             </div>
         </div>
         {{ form_end(form) }}
 
-    </div>
+            </div>
+        </div>
+
+    </section>
 
 {% endblock %}

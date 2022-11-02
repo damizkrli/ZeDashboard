@@ -54,7 +54,7 @@ class ApplyForController extends AbstractController
             'apply_for' => $paginator->paginate(
                 $data,
                 $request->query->getInt('page', 1),
-                12
+                8
             )
         ]);
     }

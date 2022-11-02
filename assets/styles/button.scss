@@ -1,0 +1,19 @@
+@import "variables";
+
+.button {
+  background-color: $light;
+  color: $dark;
+  margin: 5px;
+  padding: 5px;
+  border: none;
+  border-radius: $radius;
+
+  &:hover {
+    color: $dark !important;
+  }
+}
+
+.css-button-text {
+  padding: 10px 18px;
+}
+

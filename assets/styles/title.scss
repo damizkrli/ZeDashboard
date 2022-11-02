@@ -1,11 +1,11 @@
 @import "variables";
 
-h1 {
+h1, .title {
   font-family: $h1-title;
   text-align: start;
   margin-bottom: 1rem;
-  margin-top: 1rem;
-  color: $dark;
+  margin-top: 3rem;
+   color: $dark;
 }
 
 h2 {
@@ -16,7 +16,7 @@ h2 {
 }
 
 h5 {
-  color: $dark;
+  color: $light;
   display: flex;
   align-items: start;
   justify-content: start;

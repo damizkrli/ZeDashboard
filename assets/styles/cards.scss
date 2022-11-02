@@ -1,0 +1,10 @@
+@import "variables";
+
+.card {
+  background-color: $dark !important;
+  color: $light !important;
+}
+
+.card-text {
+  color: $light;
+}

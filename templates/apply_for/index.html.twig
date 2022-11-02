@@ -4,115 +4,107 @@
 
 {% block body %}
 
-    <div class="col px-5">
-        <h1 class="mt-5 ms-5 mb-3"><i class="fas fa-briefcase me-3"></i>Candidatures</h1>
+    <div class="section">
 
-        <div class="mb-3 d-flex align-items-end justify-content-end">
-            <a class="hover-underline-animation a-nav me-5" href="{{ path('app_apply_for_new') }}">Ajouter une candidature</a>
-            <a class="hover-underline-animation a-nav me-5" href="{{ path('app_company_new') }}">Ajouter une entreprise</a>
-            <a class="hover-underline-animation a-nav me-5" href="{{ path('app_platform_new') }}">Ajouter une plateforme</a>
-            {# TODO : créer une fonction pour faire un export en pdf #}
-            <a class="hover-underline-animation a-nav me-5" href="{{ path('app_index_home') }}">Retour</a>
+        <div class="col px-5">
+
+            <h1 class="title"><i class="fas fa-briefcase me-3"></i>Candidatures</h1>
+
+            <div class="mb-3 d-flex align-items-end justify-content-end">
+                <div class="dropdown">
+                    <button class="button px-3 dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                        Que souhaitez-vous faire ?
+                    </button>
+                    <div class="dropdown-menu">
+                        <ul>
+                            <li><a class="dropdown-item menu" href="{{ path('app_apply_for_new') }}">Ajouter une
+                                    candidature</a></li>
+                            <li><a class="dropdown-item menu" href="{{ path('app_company_new') }}">Ajouter une
+                                    entreprise</a></li>
+                            <li><a class="dropdown-item menu" href="{{ path('app_platform_new') }}">Ajouter une
+                                    plateforme</a></li>
+                            {# <li> TODO : créer une fonction pour faire un export en pdf </li> #}
+                            <li><a class="dropdown-item menu" href="{{ path('app_index_home') }}">Retour</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <table class="table table-borderless mx-auto w-auto table-responsive shadow-lg mb-5 mt-5">
+                <thead>
+                <tr>
+                    <th class="text-center" scope="col">#</th>
+                    <th scope="col">Poste</th>
+                    <th class="text-center" scope="col">Enterprise</th>
+                    <th class="text-center" scope="col">Plateform</th>
+                    <th class="text-center" scope="col">Statut</th>
+                    <th class="text-center" scope="col">Contact</th>
+                    <th class="text-center" scope="col">Details</th>
+                    <th class="text-center" scope="col">Dépôt</th>
+                    <th class="text-center" scope="col">Réponse</th>
+                    <th class="text-center" scope="col"></th>
+                </tr>
+                </thead>
+                {% for appliesFor in apply_for %}
+                    <tbody>
+                    <tr class="text-center">
+                        <td>{{ appliesFor.id }}1</td>
+                        <td class="text-start">{{ appliesFor.jobTitle }}</td>
+                        <td class="text-center">{{ appliesFor.company.name }}</td>
+                        <td class="text-center">{{ appliesFor.platform.name }}</td>
+                        <td class="text-center">
+                            <div class="status rounded-2">{{ appliesFor.status }}</div>
+                        </td>
+                        <td class="text-center">
+                            {% if appliesFor.contact %}
+                                <p class="card-text nc">{{ appliesFor.contact }}</p>
+                            {% else %}
+                                <p class="fst-italic nc">N/C</p>
+                            {% endif %}
+                        </td>
+                        <td class="text-center">
+                            {% if appliesFor.details %}
+                                <p class="card-text nc">{{ appliesFor.details }}</p>
+                            {% else %}
+                                <p class="fst-italic nc">N/C</p>
+                            {% endif %}
+                        </td>
+                        <td class="text-center">{{ appliesFor.dateApplyFor|date('d/m/Y') }}</td>
+                        <td class="text-center">
+                            {% if appliesFor.dateReturn %}
+                                {{ appliesFor.dateReturn|date('d/m/Y') }}
+                            {% else %}
+                                <p class="fst-italic nc">N/C</p>
+                            {% endif %}</td>
+                        <td class="text-center">
+                            <div class="d-flex align-items center justify-content_center">
+                                <a class="btn border-0 pt-0" href="{{ appliesFor.link }}" target="_blank">
+                                    <i class="action fas fa-link"></i>
+                                </a>
+
+                                <a class="btn border-0 pt-0" href="{{ path('app_apply_for_edit', {'id': appliesFor.id}) }}">
+                                    <i class="action far fa-edit"></i>
+                                </a>
+
+                                <form method="post" action="{{ path('app_apply_for_delete', {'id': appliesFor.id}) }}"
+                                      onsubmit="return confirm('Êtes_vous sur de vouloir supprimer cette candidature ?');">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ appliesFor.id) }}">
+                                    <button class="btn border-0 pt-0">
+                                        <i class="action far fa-trash-alt"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                {% endfor %}
+            </table>
+
         </div>
 
-        <table class="table mx-auto w-auto table-responsive shadow-lg mb-5 mt-5"
-               style="background-color: #FAF9F9; border-radius: 5px;">
-            <thead>
-            <tr>
-                <th class="text-center" scope="col">#</th>
-                <th scope="col">Poste</th>
-                <th class="text-center" scope="col">Enterprise</th>
-                <th class="text-center" scope="col">Plateform</th>
-                <th class="text-center" scope="col">Statut</th>
-                <th class="text-center" scope="col">Contact</th>
-                <th class="text-center" scope="col">Details</th>
-                <th class="text-center" scope="col">Dépôt</th>
-                <th class="text-center" scope="col">Réponse</th>
-                <th class="text-center" scope="col">Lien</th>
-                <th class="text-center" scope="col"></th>
-            </tr>
-            </thead>
-            {% for appliesFor in apply_for %}
-            <tbody>
-            <tr class="text-center">
-                <td>{{ appliesFor.id }}1</td>
-                <td class="text-start">{{ appliesFor.jobTitle }}</td>
-                <td class="text-center">{{ appliesFor.company.name }}</td>
-                <td class="text-center">{{ appliesFor.platform.name }}</td>
-                {% if appliesFor.status is same as 'Transmise' %}
-                <td class="text-center">
-                    <div class="status bg-primary rounded-2">{{ appliesFor.status }}</div>
-                </td>
-                {% elseif appliesFor.status is same as 'Refusée' %}
-                    <td class="text-center text-light">
-                        <div class="status bg-danger rounded-2">{{ appliesFor.status }}</div>
-                    </td>
-                    {% elseif appliesFor.status is same as 'Acceptée' %}
-                        <td class="text-center">
-                            <div class="status bg-success rounded-2">{{ appliesFor.status }}</div>
-                        </td>
-                    {% elseif appliesFor.status is same as 'Sans réponse' %}
-                        <td class="text-center text-light">
-                            <div class="status bg-dark rounded-2">{{ appliesFor.status }}</div>
-                        </td>
-                    {% elseif appliesFor.status is same as 'Entretien' %}
-                        <td class="text-center">
-                            <div class="status bg-info rounded-2">{{ appliesFor.status }}</div>
-                        </td>
-                    {% elseif appliesFor.status is same as 'Entretien Tech' %}
-                        <td class="text-center">
-                            <div class="status bg-info rounded-2">{{ appliesFor.status }}</div>
-                        </td>
-                    {% elseif appliesFor.status is same as 'Appel' %}
-                        <td class="text-center">
-                            <div class="status bg-warning rounded-2">{{ appliesFor.status }}</div>
-                        </td>
-                    {% elseif appliesFor.status is same as 'Relance' %}
-                        <td class="text-center">
-                            <div class="status bg-secondary text-light rounded-2">{{ appliesFor.status }}</div>
-                        </td>
-                    {% endif %}
-                <td class="text-center">
-                    {% if appliesFor.contact %}
-                        <p class="card-text nc">{{ appliesFor.contact }}</p>
-                    {% else %}
-                        <p class="fst-italic nc">N/C</p>
-                    {% endif %}
-                </td>
-                <td class="text-center">
-                    {% if appliesFor.details %}
-                        <p class="card-text nc">{{ appliesFor.details }}</p>
-                    {% else %}
-                        <p class="fst-italic nc">N/C</p>
-                    {% endif %}
-                </td>
-                <td class="text-center">{{ appliesFor.dateApplyFor|date('d/m/Y') }}</td>
-                <td class="text-center">
-                    {% if appliesFor.dateReturn %}
-                        {{ appliesFor.dateReturn|date('d/m/Y') }}
-                    {% else %}
-                        <p class="fst-italic nc">N/C</p>
-                    {% endif %}</td>
-                <td class="text-center">
-                    <a href="{{ appliesFor.link }}" target="_blank" class="green-button">Lien</a>
-                </td>
-                <td class="text-center">
-                    <div class="d-flex align-items center justify-content_center">
-                        <a class="btn border-0 pt-0" href="{{ path('app_apply_for_edit', {'id': appliesFor.id}) }}"><i
-                                    class="far fa-edit" style="color: green"></i></a>
-                        <form method="post" action="{{ path('app_apply_for_delete', {'id': appliesFor.id}) }}"
-                              onsubmit="return confirm('Êtes_vous sur de vouloir supprimer cette candidature ?');">
-                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ appliesFor.id) }}">
-                            <button class="btn border-0 pt-0"><i class="far fa-trash-alt" style="color: red"></i></button>
-                        </form>
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-            {% endfor %}
-        </table>
-
     </div>
+
 
     <div class="navigation d-flex align-items-center justify-content-center fixed-bottom">
         {{ knp_pagination_render(apply_for) }}

@@ -1,13 +1,5 @@
 @import "variables";
 
 .form-label {
-  color: $light;
-}
-
-.form-control {
-  border: 1px solid $text-color;
-
-  &:hover {
-    border: 1px solid $text-color;
-  }
+  color: $dark;
 }
