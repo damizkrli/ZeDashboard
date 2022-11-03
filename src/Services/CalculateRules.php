@@ -64,6 +64,14 @@ class CalculateRules
 
     public function calculatePercentRefusedApplies($refusedApplies, $totalApplies): int
     {
-        return 100 * ($refusedApplies / $totalApplies);
+        $total = 0;
+
+        // si aucunes données dans les candidatures
+        if ($totalApplies != 0) {
+            $total = 100 * ($refusedApplies / $totalApplies);
+        }
+
+        return $total;
+
     }
 }

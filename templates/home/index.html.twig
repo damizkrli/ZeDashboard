@@ -12,22 +12,32 @@
                 Concernant vos candidatures
             </h1>
 
-            {% if refusedApplies == 0 and totalApplies == 0 %}
-                Vous n'avez pas encore de données à afficher. Commencer par <a href="{{ path('app_apply_for_new') }}">ajouter
-                une candidature</a>
+
+            {% if refusedApplies is same as 0 or totalApplies is same as 0 or calculatePercentRefusedApplies is same as 0 %}
+                <p>Vous n'avez pas encore de données à afficher.</p>
+
+                <br>
+
+                <a class="button me-5 rounded-3 px-3" href="{{ path('app_apply_for_new') }}">
+                    <i class="me-3 fas fa-plus-square"></i>
+                    Ajouter une candidature
+                </a>
+
             {% else %}
                 <p>Vous avez envoyé {{ totalApplies }} candidatures, dont {{ sentApplies }} qui sont encore
                     "transmises". Vous avez eu {{ interviewApplies }} candidatures avec entretien, {{ numCall }}
                     entretien téléphonique
                     et {{ acceptedApplies }} candidatures acceptées.</p>
                 <br>
-                <p>Actuellement, {% if noResponseApplies == 0 %} aucune des {% else %}{{ noResponseApplies }}{% endif %} candidatures
+                <p>Actuellement, {% if noResponseApplies == 0 %} aucune des {% else %}{{ noResponseApplies }}{% endif %}
+                    candidatures
                     sont
                     restées sans réponse et {{ refusedApplies }} candidatures sont refusées.</p>
-            {% endif %}
 
-            <br>
-            <p>Vous avez {{ calculatePercentRefusedApplies }}% de candidature refusées.</p>
+                <br>
+                <p>Vous avez {{ calculatePercentRefusedApplies }}% de candidature refusées.</p>
+
+            {% endif %}
 
             <h1 class="mt-5 mb-5">
                 <i class="fas fa-star"></i>
@@ -36,59 +46,64 @@
 
             <div class="row row-cols- row-cols-md-4 g-4">
                 {% for appliesFor in apply_for | sort((a, b) => b.dateApplyFor <=> a.dateApplyFor)|slice(0, 8) %}
-                    <div class="col">
-                        <div class="card position-relative h-100 shadow-lg">
-                            {% if appliesFor.status is same as 'Transmise' %}
-                                <span class="position-absolute top-0 start-100 translate-middle p-2 bg-primary border border-light rounded-circle">
+                    {% if appliesFor is empty %}
+                        <h1 class="text-center">AUCUNE DONNÉES. AJOUTER DES <a href="{{ path('app_apply_for_new') }}">CANDIDATURES</a>
+                        </h1>
+                    {% else %}
+                        <div class="col">
+                            <div class="card position-relative h-100 shadow-lg">
+                                {% if appliesFor.status is same as 'Transmise' %}
+                                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-primary border border-light rounded-circle">
                                     <span class="visually-hidden">New alerts</span>
                                 </span>
-                            {% elseif appliesFor.status is same as 'Contact Téléphonique' %}
-                                <span class="position-absolute top-0 start-100 translate-middle p-2 bg-warning border border-light rounded-circle">
+                                {% elseif appliesFor.status is same as 'Contact Téléphonique' %}
+                                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-warning border border-light rounded-circle">
                                     <span class="visually-hidden">New alerts</span>
                                 </span>
-                            {% elseif appliesFor.status is same as 'Entretien' %}
-                                <span class="position-absolute top-0 start-100 translate-middle p-2 bg-info border border-light rounded-circle">
+                                {% elseif appliesFor.status is same as 'Entretien' %}
+                                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-info border border-light rounded-circle">
                                     <span class="visually-hidden">New alerts</span>
                                 </span>
-                            {% elseif appliesFor.status is same as 'Acceptée' %}
-                                <span class="position-absolute top-0 start-100 translate-middle p-2 bg-success border border-light rounded-circle">
+                                {% elseif appliesFor.status is same as 'Acceptée' %}
+                                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-success border border-light rounded-circle">
                                     <span class="visually-hidden">New alerts</span>
                                 </span>
-                            {% elseif appliesFor.status is same as 'Refusée' %}
-                                <span class="position-absolute top-0 start-100 translate-middle p-2 bg-success border border-light rounded-circle">
+                                {% elseif appliesFor.status is same as 'Refusée' %}
+                                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-success border border-light rounded-circle">
                                     <span class="visually-hidden">New alerts</span>
                                 </span>
-                            {% elseif appliesFor.status is same as 'Sans Réponse' %}
-                                <span class="position-absolute top-0 start-100 translate-middle p-2 bg-dark border border-light rounded-pill">
+                                {% elseif appliesFor.status is same as 'Sans Réponse' %}
+                                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-dark border border-light rounded-pill">
                                     <span class="visually-hidden">New alerts</span>
                                 </span>
-                            {% endif %}
-                            <div class="card-body">
-                                <div class="card-title">
-                                    {% if appliesFor.status is same as 'Refusée' %}
-                                        <h5 class="line">{{ appliesFor.jobTitle }}</h5>
-                                    {% else %}
-                                        <h5>{{ appliesFor.jobTitle }}</h5>
-                                    {% endif %}
-                                    <div class="card-text">
+                                {% endif %}
+                                <div class="card-body">
+                                    <div class="card-title">
                                         {% if appliesFor.status is same as 'Refusée' %}
-                                            <p class="line">{{ appliesFor.company }}
-                                                sur {{ appliesFor.platform.name }}</p>
-                                            <p>Retour
-                                                le {{ appliesFor.dateReturn|date('d/m/Y') }}</p>
+                                            <h5 class="line">{{ appliesFor.jobTitle }}</h5>
                                         {% else %}
-                                            <p>{{ appliesFor.company }}
-                                                sur {{ appliesFor.platform.name }}</p>
+                                            <h5>{{ appliesFor.jobTitle }}</h5>
                                         {% endif %}
+                                        <div class="card-text">
+                                            {% if appliesFor.status is same as 'Refusée' %}
+                                                <p class="line">{{ appliesFor.company }}
+                                                    sur {{ appliesFor.platform.name }}</p>
+                                                <p>Retour
+                                                    le {{ appliesFor.dateReturn|date('d/m/Y') }}</p>
+                                            {% else %}
+                                                <p>{{ appliesFor.company }}
+                                                    sur {{ appliesFor.platform.name }}</p>
+                                            {% endif %}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card-footer">
-                                <small class="fst-italic">Envoyée
-                                    le {{ appliesFor.dateApplyFor|date('d/m/Y') }}</small>
+                                <div class="card-footer">
+                                    <small class="fst-italic">Envoyée
+                                        le {{ appliesFor.dateApplyFor|date('d/m/Y') }}</small>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    {% endif %}
                 {% endfor %}
             </div>
 
