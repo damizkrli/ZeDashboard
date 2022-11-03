@@ -64,7 +64,10 @@ class ApplyForController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->applyForRepository->add($applyFor, true);
-//            $this->flashyNotifier->primaryDark('Votre candidature pour ' . $applyFor->getCompany() . ' à été transmise.');
+            $this->addFlash(
+                'success',
+                'Votre candidature chez ' . $applyFor->getCompany() . ' à été ajouté avec succès.'
+            );
 
             return $this->redirectToRoute('app_apply_for_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -84,7 +87,10 @@ class ApplyForController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->applyForRepository->add($applyFor, true);
-//            $this->flashyNotifier->primaryDark('Votre candidature pour ' . $applyFor->getCompany() . ' à été modifiée.');
+            $this->addFlash(
+                'info',
+                'Votre candidature chez ' . $applyFor->getCompany() . ' à été modifiée avec succès.'
+            );
 
             return $this->redirectToRoute('app_apply_for_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -100,7 +106,10 @@ class ApplyForController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$applyFor->getId(), $request->request->get('_token'))) {
             $this->applyForRepository->remove($applyFor, true);
-//            $this->flashyNotifier->warning('Votre candidature pour ' . $applyFor->getCompany() . ' à été supprimée.');
+            $this->addFlash(
+                'danger',
+                'Votre candidature chez ' . $applyFor->getCompany() . ' à été supprimée avec succès.'
+            );
         }
 
         return $this->redirectToRoute('app_apply_for_index', [], Response::HTTP_SEE_OTHER);

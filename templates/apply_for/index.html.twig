@@ -4,6 +4,8 @@
 
 {% block body %}
 
+    {# TODO: mettre en place les messages flash #}
+
     <div class="section">
 
         <div class="col px-5">
@@ -57,9 +59,16 @@
                         <td class="text-start">{{ appliesFor.jobTitle }}</td>
                         <td class="text-center">{{ appliesFor.company.name }}</td>
                         <td class="text-center">{{ appliesFor.platform.name }}</td>
-                        <td class="text-center">
-                            <div class="status rounded-2">{{ appliesFor.status }}</div>
-                        </td>
+                        {% if appliesFor.status is same as 'Refusée' %}
+                            <td class="text-center">
+                                <div class="status bg-danger rounded-2 text-light">{{ appliesFor.status }}</div>
+                            </td>
+                        {% else %}
+                            <td class="text-center">
+                                <div class="status rounded-2">{{ appliesFor.status }}</div>
+                            </td>
+                        {% endif %}
+
                         <td class="text-center">
                             {% if appliesFor.contact %}
                                 <p class="card-text nc">{{ appliesFor.contact }}</p>
