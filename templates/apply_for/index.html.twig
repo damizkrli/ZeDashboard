@@ -52,65 +52,68 @@
                     <th class="text-center" scope="col"></th>
                 </tr>
                 </thead>
+
                 {% for appliesFor in apply_for %}
-                    <tbody>
-                    <tr class="text-center">
-                        <td>{{ appliesFor.id }}1</td>
-                        <td class="text-start">{{ appliesFor.jobTitle }}</td>
-                        <td class="text-center">{{ appliesFor.company.name }}</td>
-                        <td class="text-center">{{ appliesFor.platform.name }}</td>
-                        {% if appliesFor.status is same as 'Refusée' %}
-                            <td class="text-center">
-                                <div class="status bg-danger rounded-2 text-light">{{ appliesFor.status }}</div>
-                            </td>
-                        {% else %}
-                            <td class="text-center">
-                                <div class="status rounded-2">{{ appliesFor.status }}</div>
-                            </td>
-                        {% endif %}
-
-                        <td class="text-center">
-                            {% if appliesFor.contact %}
-                                <p class="card-text nc">{{ appliesFor.contact }}</p>
+                        <tbody>
+                        <tr class="text-center">
+                            <td>{{ appliesFor.id }}1</td>
+                            <td class="text-start">{{ appliesFor.jobTitle }}</td>
+                            <td class="text-center">{{ appliesFor.company.name }}</td>
+                            <td class="text-center">{{ appliesFor.platform.name }}</td>
+                            {% if appliesFor.status is same as 'Refusée' %}
+                                <td class="text-center">
+                                    <div class="status bg-danger rounded-2 text-light">{{ appliesFor.status }}</div>
+                                </td>
                             {% else %}
-                                <p class="fst-italic nc">N/C</p>
+                                <td class="text-center">
+                                    <div class="status rounded-2">{{ appliesFor.status }}</div>
+                                </td>
                             {% endif %}
-                        </td>
-                        <td class="text-center">
-                            {% if appliesFor.details %}
-                                <p class="card-text nc">{{ appliesFor.details }}</p>
-                            {% else %}
-                                <p class="fst-italic nc">N/C</p>
-                            {% endif %}
-                        </td>
-                        <td class="text-center">{{ appliesFor.dateApplyFor|date('d/m/Y') }}</td>
-                        <td class="text-center">
-                            {% if appliesFor.dateReturn %}
-                                {{ appliesFor.dateReturn|date('d/m/Y') }}
-                            {% else %}
-                                <p class="fst-italic nc">N/C</p>
-                            {% endif %}</td>
-                        <td class="text-center">
-                            <div class="d-flex align-items center justify-content_center">
-                                <a class="btn border-0 pt-0" href="{{ appliesFor.link }}" target="_blank">
-                                    <i class="action fas fa-link"></i>
-                                </a>
 
-                                <a class="btn border-0 pt-0" href="{{ path('app_apply_for_edit', {'id': appliesFor.id}) }}">
-                                    <i class="action far fa-edit"></i>
-                                </a>
+                            <td class="text-center">
+                                {% if appliesFor.contact %}
+                                    <p class="card-text nc">{{ appliesFor.contact }}</p>
+                                {% else %}
+                                    <p class="fst-italic nc">N/C</p>
+                                {% endif %}
+                            </td>
+                            <td class="text-center">
+                                {% if appliesFor.details %}
+                                    <p class="card-text nc">{{ appliesFor.details }}</p>
+                                {% else %}
+                                    <p class="fst-italic nc">N/C</p>
+                                {% endif %}
+                            </td>
+                            <td class="text-center">{{ appliesFor.dateApplyFor|date('d/m/Y') }}</td>
+                            <td class="text-center">
+                                {% if appliesFor.dateReturn %}
+                                    {{ appliesFor.dateReturn|date('d/m/Y') }}
+                                {% else %}
+                                    <p class="fst-italic nc">N/C</p>
+                                {% endif %}</td>
+                            <td class="text-center">
+                                <div class="d-flex align-items center justify-content_center">
+                                    <a class="btn border-0 pt-0" href="{{ appliesFor.link }}" target="_blank">
+                                        <i class="action fas fa-link"></i>
+                                    </a>
 
-                                <form method="post" action="{{ path('app_apply_for_delete', {'id': appliesFor.id}) }}"
-                                      onsubmit="return confirm('Êtes_vous sur de vouloir supprimer cette candidature ?');">
-                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ appliesFor.id) }}">
-                                    <button class="btn border-0 pt-0">
-                                        <i class="action fas fa-trash-alt"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
+                                    <a class="btn border-0 pt-0" href="{{ path('app_apply_for_edit', {'id': appliesFor.id}) }}">
+                                        <i class="action far fa-edit"></i>
+                                    </a>
+
+                                    <form method="post" action="{{ path('app_apply_for_delete', {'id': appliesFor.id}) }}"
+                                          onsubmit="return confirm('Êtes_vous sur de vouloir supprimer cette candidature ?');">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ appliesFor.id) }}">
+                                        <button class="btn border-0 pt-0">
+                                            <i class="action fas fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                {% else %}
+                    <h1 class="text-center">Aucune données. Commencez par ajouter une candidature</h1>
                 {% endfor %}
             </table>
 

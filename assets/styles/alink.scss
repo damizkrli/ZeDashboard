@@ -11,3 +11,10 @@
 .menu:hover {
   color: $dark !important;
 }
+
+a.noHover {
+
+  &:hover {
+    color: $dark !important;
+  }
+}
