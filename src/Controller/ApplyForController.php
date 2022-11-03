@@ -15,7 +15,6 @@ use App\Repository\PersonalLinkRepository;
 use App\Repository\ProfessionalLinkRepository;
 use App\Repository\TechnicalLinkRepository;
 use Knp\Component\Pager\PaginatorInterface;
-use MercurySeries\FlashyBundle\FlashyNotifier;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,21 +26,18 @@ class ApplyForController extends AbstractController
     private ProfessionalLinkRepository $professionalLinkRepository;
     private TechnicalLinkRepository $technicalLinkRepository;
     private PersonalLinkRepository $personalLinkRepository;
-    private FlashyNotifier $flashyNotifier;
 
     public function __construct(
         ApplyForRepository         $applyForRepository,
         ProfessionalLinkRepository $professionalLinkRepository,
         TechnicalLinkRepository $technicalLinkRepository,
         PersonalLinkRepository $personalLinkRepository,
-        FlashyNotifier $flashyNotifier,
     )
     {
         $this->applyForRepository = $applyForRepository;
         $this->professionalLinkRepository = $professionalLinkRepository;
         $this->technicalLinkRepository = $technicalLinkRepository;
         $this->personalLinkRepository = $personalLinkRepository;
-        $this->flashyNotifier = $flashyNotifier;
     }
 
 /* -------------------------------- APPLY FOR ------------------------------------------------ */
@@ -68,7 +64,7 @@ class ApplyForController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->applyForRepository->add($applyFor, true);
-            $this->flashyNotifier->info('Votre candidature pour ' . $applyFor->getCompany() . ' à été transmise.');
+//            $this->flashyNotifier->primaryDark('Votre candidature pour ' . $applyFor->getCompany() . ' à été transmise.');
 
             return $this->redirectToRoute('app_apply_for_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -88,7 +84,7 @@ class ApplyForController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->applyForRepository->add($applyFor, true);
-            $this->flashyNotifier->info( 'Votre candidature pour ' . $applyFor->getCompany() . ' à été modifiée.');
+//            $this->flashyNotifier->primaryDark('Votre candidature pour ' . $applyFor->getCompany() . ' à été modifiée.');
 
             return $this->redirectToRoute('app_apply_for_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -104,7 +100,7 @@ class ApplyForController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$applyFor->getId(), $request->request->get('_token'))) {
             $this->applyForRepository->remove($applyFor, true);
-            $this->flashyNotifier->warning('Votre candidature pour ' . $applyFor->getCompany() . ' à été supprimée.');
+//            $this->flashyNotifier->warning('Votre candidature pour ' . $applyFor->getCompany() . ' à été supprimée.');
         }
 
         return $this->redirectToRoute('app_apply_for_index', [], Response::HTTP_SEE_OTHER);
