@@ -3,23 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\ApplyFor;
-use App\Entity\PersonalLink;
-use App\Entity\ProfessionalLink;
-use App\Entity\TechnicalLink;
 use App\Form\ApplyForType;
-use App\Form\PersonalLinkType;
-use App\Form\ProfessionalLinkType;
-use App\Form\TechnicalLinkType;
 use App\Repository\ApplyForRepository;
-use App\Repository\PersonalLinkRepository;
-use App\Repository\ProfessionalLinkRepository;
-use App\Repository\TechnicalLinkRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('/candidacy')]
 class ApplyForController extends AbstractController
 {
     private ApplyForRepository $applyForRepository;
@@ -29,7 +21,7 @@ class ApplyForController extends AbstractController
         $this->applyForRepository = $applyForRepository;
     }
 
-    #[Route('/apply/', name: 'app_apply_for_index', methods: ['GET', 'POST'])]
+    #[Route('/index', name: 'app_apply_for_index', methods: ['GET', 'POST'])]
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
         $data = $this->applyForRepository->findBy([], ['dateApplyFor' => 'DESC']);
@@ -66,7 +58,7 @@ class ApplyForController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_apply_for_edit', methods: ['GET', 'POST'])]
+    #[Route('/edit/{id}', name: 'app_apply_for_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, ApplyFor $applyFor): Response
     {
         // TODO : date retour n'est pas récupérée lors de l'édition

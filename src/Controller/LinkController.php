@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/link')]
 class LinkController extends AbstractController
 {
-    #[Route('/', name: 'app_link_index', methods: ['GET'])]
+    #[Route('/index', name: 'app_link_index', methods: ['GET'])]
     public function index(LinkRepository $linkRepository): Response
     {
         return $this->render('link/index.html.twig', [

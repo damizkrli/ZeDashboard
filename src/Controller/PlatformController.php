@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Platform;
 use App\Form\PlatformType;
 use App\Repository\PlatformRepository;
-use MercurySeries\FlashyBundle\FlashyNotifier;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PlatformController extends AbstractController
 {
 
-    #[Route('/', name: 'app_platform_index', methods: ['GET'])]
+    #[Route('/index', name: 'app_platform_index', methods: ['GET'])]
     public function index(PlatformRepository $platformRepository): Response
     {
         return $this->render('platform/index.html.twig', [
