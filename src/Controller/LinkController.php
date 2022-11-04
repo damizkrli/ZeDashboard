@@ -58,22 +58,22 @@ class LinkController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->linkRepository->save($link, true);
 
-            return $this->redirectToRoute('app_index_link', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_link_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('link/professional/edit.html.twig', [
+        return $this->renderForm('link/edit.html.twig', [
             'link' => $link,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}/pro/link', name: 'app_delete_pro_link', methods: ['POST'])]
+    #[Route('/{id}', name: 'app_delete_link', methods: ['POST'])]
     public function deleteLink(Request $request, Link $link): Response
     {
         if ($this->isCsrfTokenValid('delete'.$link->getId(), $request->request->get('_token'))) {
             $this->linkRepository->remove($link, true);
         }
 
-        return $this->redirectToRoute('app_index_link', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_link_index', [], Response::HTTP_SEE_OTHER);
     }
 }
