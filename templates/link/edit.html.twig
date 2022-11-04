@@ -1,6 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends '../base.html.twig' %}
 
-{% block title %}{{ personalLink.name }}{% endblock %}
+{% block title %}{{ technical.name }}{% endblock %}
 
 {% block body %}
 
@@ -8,7 +8,7 @@
         <div class="col px-5 pb-5">
             <h1 class="title">
                 <i class="fas fa-pen-square me-3"></i>
-                Modifier le lien : "<span class="text-decoration-underline">{{ personalLink.name }}</span>"</h1>
+                Modifier le lien : "<span class="text-decoration-underline">{{ technical.name }}</span>"</h1>
 
             <div class="container col-4">
                 {{ form_start(form) }}
@@ -22,7 +22,7 @@
                         {{ button_label|default('Enregistrer') }}
                     </button>
                     {{ form_end(form) }}
-                    <a class="button me-5 rounded-3 px-3" href="{{ path('app_index_perso_link') }}">
+                    <a class="button me-5 rounded-3 px-3" href="{{ path('app_index_tech_link') }}">
                         <i class="fas fa-caret-square-left me-3"></i>
                         Retour
                     </a>
@@ -31,6 +31,5 @@
 
         </div>
     </section>
-
 
 {% endblock %}
