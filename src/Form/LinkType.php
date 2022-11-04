@@ -2,32 +2,31 @@
 
 namespace App\Form;
 
-use App\Entity\TechnicalLink;
+use App\Entity\Link;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class TechnicalLinkType extends AbstractType
+class LinkType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('name', TextType::class, [
                 'label' => 'Nom'
             ])
             ->add('url', UrlType::class, [
-                'label' => 'URL'
+                'label' => 'Url du lien'
             ])
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver): void
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => TechnicalLink::class,
+            'data_class' => Link::class
         ]);
     }
 }
