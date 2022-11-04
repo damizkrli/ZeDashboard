@@ -10,53 +10,44 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('/link')]
 class LinkController extends AbstractController
 {
-
-    private LinkRepository $linkRepository;
-
-    public function __construct(LinkRepository $linkRepository)
+    #[Route('/', name: 'app_link_index', methods: ['GET'])]
+    public function index(LinkRepository $linkRepository): Response
     {
-        $this->linkRepository = $linkRepository;
-    }
-
-    #[Route('/links/index', name: 'app_link_index', methods: ['GET', 'POST'])]
-    public function indexLink(): Response
-    {
-        $links = $this->linkRepository->findBy([], ['id' => 'DESC']);
-
         return $this->render('link/index.html.twig', [
-            'links' => $links,
+            'links' => $linkRepository->findAll(),
         ]);
     }
 
-    #[Route('/add/link', name: 'app_add_link', methods: ['GET', 'POST'])]
-    public function newLink(Request $request): Response
+    #[Route('/new', name: 'app_add_link', methods: ['GET', 'POST'])]
+    public function new(Request $request, LinkRepository $linkRepository): Response
     {
-        $links = new Link();
-        $form = $this->createForm(LinkType::class, $links);
+        $link = new Link();
+        $form = $this->createForm(LinkType::class, $link);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid() ) {
-            $this->linkRepository->save($links, true);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $linkRepository->save($link, true);
 
             return $this->redirectToRoute('app_link_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('link/new.html.twig', [
-            'links' => $links,
+            'link' => $link,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}/edit/link/', name: 'app_edit_link', methods: ['GET', 'POST'])]
-    public function editLink(Request $request, Link $link): Response
+    #[Route('/{id}/edit', name: 'app_edit_link', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Link $link, LinkRepository $linkRepository): Response
     {
         $form = $this->createForm(LinkType::class, $link);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->linkRepository->save($link, true);
+            $linkRepository->save($link, true);
 
             return $this->redirectToRoute('app_link_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -68,10 +59,10 @@ class LinkController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_delete_link', methods: ['POST'])]
-    public function deleteLink(Request $request, Link $link): Response
+    public function delete(Request $request, Link $link, LinkRepository $linkRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$link->getId(), $request->request->get('_token'))) {
-            $this->linkRepository->remove($link, true);
+            $linkRepository->remove($link, true);
         }
 
         return $this->redirectToRoute('app_link_index', [], Response::HTTP_SEE_OTHER);

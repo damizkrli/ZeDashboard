@@ -31,6 +31,8 @@
                 </thead>
                 <tbody>
                 {% for link in links %}
+                    {{ dump(link) }}
+
                     <tr>
                         <td><p>{{ link.id }}</p></td>
                         <td><p>{{ link.name }}</p></td>
