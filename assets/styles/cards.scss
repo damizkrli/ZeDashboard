@@ -1,10 +1,10 @@
 @import "variables";
 
-.card {
-  background-color: $dark !important;
-  color: $light !important;
+.card-apply {
+  border-left: 5px solid green !important;
+  margin-right: 15px;
 }
 
-.card-text {
-  color: $light;
+.card, .card-header, .card-body, .card-footer{
+  border-radius:0 !important;
 }

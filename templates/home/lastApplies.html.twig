@@ -1,0 +1,71 @@
+    <div class="row row-cols-md-4 g-4 mt-2">
+        {% for appliesFor in apply_for | sort((a, b) => b.dateApplyFor <=> a.dateApplyFor)|slice(0, 8) %}
+            <div class="col">
+                <div class="card card-triangle position-relative h-100 shadow-lg rounded-0">
+                    {% if appliesFor.status is same as 'Transmise' %}
+                        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-primary border border-light rounded-circle">
+                                    <span class="visually-hidden">New alerts</span>
+                                </span>
+                    {% elseif appliesFor.status is same as 'Contact Téléphonique' %}
+                        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-warning border border-light rounded-circle">
+                                    <span class="visually-hidden">New alerts</span>
+                                </span>
+                    {% elseif appliesFor.status is same as 'Entretien' %}
+                        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-info border border-light rounded-circle">
+                                    <span class="visually-hidden">New alerts</span>
+                                </span>
+                    {% elseif appliesFor.status is same as 'Acceptée' %}
+                        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-success border border-light rounded-circle">
+                                    <span class="visually-hidden">New alerts</span>
+                                </span>
+                    {% elseif appliesFor.status is same as 'Refusée' %}
+                        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-success border border-light rounded-circle">
+                                    <span class="visually-hidden">New alerts</span>
+                                </span>
+                    {% elseif appliesFor.status is same as 'Sans Réponse' %}
+                        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-dark border border-light rounded-pill">
+                                    <span class="visually-hidden">New alerts</span>
+                                </span>
+                    {% endif %}
+                    <div class="card-body">
+                        <div class="card-title">
+                            {% if appliesFor.status is same as 'Refusée' %}
+                                <h5 class="line">{{ appliesFor.jobTitle }}</h5>
+                            {% else %}
+                                <h5>{{ appliesFor.jobTitle }}</h5>
+                            {% endif %}
+                            <div class="card-text">
+                                {% if appliesFor.status is same as 'Refusée' %}
+                                    <p class="line">{{ appliesFor.company }}
+                                        sur {{ appliesFor.platform.name }}</p>
+                                    <p>Retour
+                                        le {{ appliesFor.dateReturn|date('d/m/Y') }}</p>
+                                {% else %}
+                                    <p>{{ appliesFor.company }}
+                                        sur {{ appliesFor.platform.name }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% if appliesFor.status is same as 'Transmise' %}
+                        <div class="card-footer border-0 bg-primary text-light">
+                            <small class="fst-italic">Envoyée
+                                le {{ appliesFor.dateApplyFor|date('d/m/Y') }}
+                            </small>
+                        </div>
+                    {% elseif appliesFor.status is same as 'Refusée'%}
+                        <div class="card-footer border-0 bg-danger text-light">
+                            <small class="fst-italic">Envoyée
+                                le {{ appliesFor.dateApplyFor|date('d/m/Y') }}
+                            </small>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% else %}
+            <h4 class="fst-italic">
+                Aucune données.
+            </h4>
+        {% endfor %}
+    </div>
+

@@ -3,116 +3,13 @@
 {% block title %}Mon DashBoard{% endblock %}
 
 {% block body %}
-    <section>
 
-        <div class="col px-5">
+        <div class="p-5">
 
-            <h1 class="mt-5 mb-5">
-                <i class="fas fa-exclamation-triangle"></i>
-                Concernant vos candidatures
-            </h1>
+            {% include 'home/resumeApplyFor.html.twig' %}
 
-
-            {% if refusedApplies is same as 0 or totalApplies is same as 0 or calculatePercentRefusedApplies is same as 0 %}
-                <h3>
-                    <a class="noHover" href="{{ path('app_apply_for_new') }}">AJOUTER DES DONNÉES.</a>
-                </h3>
-            {% else %}
-                <p>Vous avez envoyé {{ totalApplies }} candidatures, dont {{ sentApplies }} qui sont encore
-                    "transmises". Vous avez eu {{ interviewApplies }} candidatures avec entretien, {{ numCall }}
-                    entretien téléphonique
-                    et {{ acceptedApplies }} candidatures acceptées.</p>
-                <br>
-                <p>Actuellement, {% if noResponseApplies == 0 %} aucune des {% else %}{{ noResponseApplies }}{% endif %}
-                    candidatures
-                    sont
-                    restées sans réponse et {{ refusedApplies }} candidatures sont refusées.</p>
-
-                <br>
-                <p>Vous avez {{ calculatePercentRefusedApplies }}% de candidature refusées.</p>
-
-            {% endif %}
-
-            <h1 class="mt-5 mb-5">
-                <i class="fas fa-star"></i>
-                Dernières Candidatures
-            </h1>
-
-            <div class="row row-cols- row-cols-md-4 g-4">
-                {% for appliesFor in apply_for | sort((a, b) => b.dateApplyFor <=> a.dateApplyFor)|slice(0, 8) %}
-                        <div class="col">
-                            <div class="card position-relative h-100 shadow-lg">
-                                {% if appliesFor.status is same as 'Transmise' %}
-                                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-primary border border-light rounded-circle">
-                                    <span class="visually-hidden">New alerts</span>
-                                </span>
-                                {% elseif appliesFor.status is same as 'Contact Téléphonique' %}
-                                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-warning border border-light rounded-circle">
-                                    <span class="visually-hidden">New alerts</span>
-                                </span>
-                                {% elseif appliesFor.status is same as 'Entretien' %}
-                                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-info border border-light rounded-circle">
-                                    <span class="visually-hidden">New alerts</span>
-                                </span>
-                                {% elseif appliesFor.status is same as 'Acceptée' %}
-                                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-success border border-light rounded-circle">
-                                    <span class="visually-hidden">New alerts</span>
-                                </span>
-                                {% elseif appliesFor.status is same as 'Refusée' %}
-                                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-success border border-light rounded-circle">
-                                    <span class="visually-hidden">New alerts</span>
-                                </span>
-                                {% elseif appliesFor.status is same as 'Sans Réponse' %}
-                                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-dark border border-light rounded-pill">
-                                    <span class="visually-hidden">New alerts</span>
-                                </span>
-                                {% endif %}
-                                <div class="card-body">
-                                    <div class="card-title">
-                                        {% if appliesFor.status is same as 'Refusée' %}
-                                            <h5 class="line">{{ appliesFor.jobTitle }}</h5>
-                                        {% else %}
-                                            <h5>{{ appliesFor.jobTitle }}</h5>
-                                        {% endif %}
-                                        <div class="card-text">
-                                            {% if appliesFor.status is same as 'Refusée' %}
-                                                <p class="line">{{ appliesFor.company }}
-                                                    sur {{ appliesFor.platform.name }}</p>
-                                                <p>Retour
-                                                    le {{ appliesFor.dateReturn|date('d/m/Y') }}</p>
-                                            {% else %}
-                                                <p>{{ appliesFor.company }}
-                                                    sur {{ appliesFor.platform.name }}</p>
-                                            {% endif %}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <small class="fst-italic">Envoyée
-                                        le {{ appliesFor.dateApplyFor|date('d/m/Y') }}</small>
-                                </div>
-                            </div>
-                        </div>
-                    {% else %}
-                        <h4 class="fst-italic">
-                            Aucune données.
-                        </h4>
-                {% endfor %}
-            </div>
-
-            <div class="mt-5">
-                <a class="button me-5 rounded-3 px-3" href="{{ path('app_apply_for_index') }}">
-                    <i class="fas fa-exclamation-circle"></i>
-                    Voir toutes vos Candidatures
-                </a>
-                <a class="button me-5 rounded-3 px-3" href="{{ path('app_apply_for_new') }}">
-                    <i class="me-3 fas fa-plus-square"></i>
-                    Ajouter une candidature
-                </a>
-
-            </div>
+            {% include 'home/lastApplies.html.twig' %}
 
         </div>
 
-    </section>
 {% endblock %}

@@ -1,0 +1,93 @@
+<div class="row">
+    <div class="col-12 d-flex justify-content-between border-bottom mt-5 triangle-bottom-left">
+        <h1 class="text-uppercase text-start">{{ totalApplies }} candidature(s)</h1>
+        <small class="d-flex align-items-end justify-content-end">
+            <a class="mini-link" href="{{ path('app_apply_for_index') }}">Voir mes candidatures</a>
+        </small>
+    </div>
+</div>
+
+<div class="row">
+
+        <div class="card  card-apply border-primary mb-3 mt-4 rounded-0" style="max-width: 16rem;">
+            <div class="card-body ">
+                {% if sentApplies > 1 %}
+                    <h5 class="card-title">{{ sentApplies }}% transmises</h5>
+                    <small class="card-text">{{ sentApplies }} candidatures</small>
+                {% else %}
+                    <h5 class="card-title">{{ sentApplies }}% transmises</h5>
+                    <small class="card-text">{{ sentApplies }} candidature</small>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="card card-apply border-info mb-3 mt-4 rounded-0" style="max-width: 16rem;">
+            <div class="card-body ">
+                {% if interviewApplies > 1 %}
+                    <h5 class="card-title">{{ interviewApplies }}% entretiens</h5>
+                    <small class="card-text">{{ interviewApplies }} candidatures</small>
+                {% else %}
+                    <h5 class="card-title">{{ interviewApplies }}% entretien</h5>
+                    <small class="card-text">{{ interviewApplies }} candidature</small>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="card card-apply border-warning mb-3 mt-4 rounded-0" style="max-width: 16rem;">
+            <div class="card-body ">
+                {% if numCall > 1 %}
+                    <h5 class="card-title">{{ numCall }}% d'appels</h5>
+                    <small class="card-text">{{ numCall }} candidatures</small>
+                {% else %}
+                    <h5 class="card-title">{{ numCall }}% d'appel</h5>
+                    <small class="card-text">{{ numCall }} candidature</small>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="card card-apply border-success mb-3 mt-4 rounded-0" style="max-width: 16rem;">
+            <div class="card-body ">
+                {% if acceptedApplies > 1 %}
+                    <h5 class="card-title">{{ acceptedApplies }}% acceptées</h5>
+                    <small class="card-text">{{ acceptedApplies }} candidatures</small>
+                {% else %}
+                    <h5 class="card-title">{{ acceptedApplies }}% acceptée</h5>
+                    <small class="card-text">{{ acceptedApplies }} candidature</small>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="card card-apply border-dark mb-3 mt-4 rounded-0" style="max-width: 16rem;">
+            <div class="card-body ">
+                {% if noResponseApplies > 1 %}
+                    <h5 class="card-title">{{ noResponseApplies }}% sans réponses</h5>
+                    <small class="card-text">{{ noResponseApplies }} candidatures</small>
+                {% else %}
+                    <h5 class="card-title">{{ noResponseApplies }}% sans réponse</h5>
+                    <small class="card-text">{{ noResponseApplies }} candidature</small>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="card card-apply border-danger mb-3 mt-4 rounded-0" style="max-width: 16rem;">
+            <div class="card-body">
+                {% if refusedApplies > 1 %}
+                    <h5 class="card-title">{{ refusedApplies }}% refusée(s)</h5>
+                    <small class="card-text">{{ refusedApplies }} candidatures</small>
+                {% else %}
+                    <h5 class="card-title">{{ refusedApplies }}% refusée</h5>
+                    <small class="card-text">{{ refusedApplies }} candidature</small>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+<div class="row">
+    <div class="col-12 d-flex justify-content-between border-bottom mt-5">
+        <h1 class="text-uppercase text-start">Dernières Candidatures</h1>
+        <small class="d-flex align-items-end justify-content-end">
+            <a class="mini-link" href="{{ path('app_apply_for_new') }}">Je postule !</a>
+        </small>
+    </div>
+</div>
+
