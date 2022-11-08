@@ -1,26 +1,57 @@
 @import "variables";
 
-.table>:not(:last-child)>:last-child>*, .table {
-  border-bottom-color: $light !important;
-  background-color: $dark !important;
-  color: $light !important;
-  border-radius: $radius;
+.dot-refused {
+  height: 16px;
+  width: 16px;
+  background-color: red;
+  border-radius: 50%;
+  display: inline-block;
 }
 
-table {
-  border-collapse: separate !important;
-  border-spacing: 1rem !important;
+.dot-sent {
+  height: 16px;
+  width: 16px;
+  background-color: blue;
+  border-radius: 50%;
+  display: inline-block;
 }
 
-.size {
-  table-layout: auto;
-  width: 70%;
+.dot-noResponse {
+  height: 16px;
+  width: 16px;
+  background-color: black;
+  border-radius: 50%;
+  display: inline-block;
 }
 
-tbody > tr:last-child > td {
-  border-bottom: 0;
+.dot-call {
+  height: 16px;
+  width: 16px;
+  background-color: yellow;
+  border-radius: 50%;
+  display: inline-block;
 }
 
-.status {
-  padding: 0 4px 0 4px;
+.dot-accepted {
+  height: 16px;
+  width: 16px;
+  background-color: green;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-interview {
+  height: 16px;
+  width: 16px;
+  background-color: deepskyblue;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-boost {
+  height: 16px;
+  width: 16px;
+  background-color: darkgrey;
+  border-radius: 50%;
+  display: inline-block;
 }

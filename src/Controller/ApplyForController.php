@@ -24,14 +24,10 @@ class ApplyForController extends AbstractController
     #[Route('/index', name: 'app_apply_for_index', methods: ['GET', 'POST'])]
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
-        $data = $this->applyForRepository->findBy([], ['dateApplyFor' => 'DESC']);
+        $applyFor = $this->applyForRepository->findAll();
 
         return $this->render('apply_for/index.html.twig', [
-            'apply_for' => $paginator->paginate(
-                $data,
-                $request->query->getInt('page', 1),
-                8
-            )
+            'apply_for' => $applyFor
         ]);
     }
 
