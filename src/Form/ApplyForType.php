@@ -67,16 +67,6 @@ class ApplyForType extends AbstractType
             ->add('link', UrlType::class, [
                 'label' => "Lien vers l'annonce"
             ])
-            ->add('dateApplyFor', DateTimeType::class, [
-                'label'    => 'Date de candidature',
-                'widget'   => 'single_text',
-                'required' => false
-            ])
-            ->add('dateReturn', DateTimeType::class, [
-                'label'    => 'Date retour',
-                'required' => false,
-                'widget'   => 'single_text',
-            ])
             ->add('status', ChoiceType::class, [
                 'choices'       => self::STATUS,
                 'label'         => "Statut",

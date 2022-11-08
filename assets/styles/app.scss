@@ -20,18 +20,10 @@ html, body {
     background-color: $background;
 }
 
-section > div.row {
-    margin-bottom: 100px;
-}
-
 p {
     font-family: $text !important;
     margin: 0;
     padding: 0;
-}
-
-.action {
-    color: $light;
 }
 
 .status {

@@ -18,15 +18,6 @@ class ApplyFor
     #[ORM\Column]
     private ?int $id = null;
 
-    #[Assert\NotBlank(message: "Merci de saisir une date de dépôt de candidature.")]
-    #[Assert\Type(DateTime::class)]
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: false)]
-    private ?DateTimeInterface $dateApplyFor;
-
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    #[Assert\Type(DateTime::class)]
-    private ?DateTimeInterface $dateReturn;
-
     #[ORM\Column(length: 155, )]
     #[Assert\NotBlank(message: "Merci de saisir l'intitulé du poste")]
     #[Assert\Length(
@@ -75,30 +66,6 @@ class ApplyFor
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getDateApplyFor(): ?DateTimeInterface
-    {
-        return $this->dateApplyFor;
-    }
-
-    public function setDateApplyFor(DateTimeInterface $dateApplyFor): self
-    {
-        $this->dateApplyFor = $dateApplyFor;
-
-        return $this;
-    }
-
-    public function getDateReturn(): ?DateTimeInterface
-    {
-        return $this->dateReturn;
-    }
-
-    public function setDateReturn(?DateTimeInterface $dateReturn): self
-    {
-        $this->dateReturn = $dateReturn;
-
-        return $this;
     }
 
     public function getJobTitle(): ?string
