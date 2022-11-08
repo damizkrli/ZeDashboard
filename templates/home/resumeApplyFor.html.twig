@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-12 d-flex justify-content-between border-bottom mt-5 triangle-bottom-left">
-        <h1 class="text-uppercase text-start">{{ totalApplies }} candidature(s)</h1>
+        <h1 class="text-uppercase text-start mb-0">{{ totalApplies }} candidature(s)</h1>
         <small class="d-flex align-items-end justify-content-end">
             <a class="mini-link" href="{{ path('app_apply_for_index') }}">Voir mes candidatures</a>
         </small>
@@ -9,7 +9,7 @@
 
 <div class="row">
 
-        <div class="card  card-apply border-primary mb-3 mt-4 rounded-0" style="max-width: 16rem;">
+        <div class="card card-apply border-primary mb-3 mt-4 rounded-0" style="max-width: 16rem;">
             <div class="card-body ">
                 {% if sentApplies > 1 %}
                     <h5 class="card-title">{{ sentApplies }}% transmises</h5>
@@ -82,12 +82,4 @@
         </div>
     </div>
 
-<div class="row">
-    <div class="col-12 d-flex justify-content-between border-bottom mt-5">
-        <h1 class="text-uppercase text-start">Dernières Candidatures</h1>
-        <small class="d-flex align-items-end justify-content-end">
-            <a class="mini-link" href="{{ path('app_apply_for_new') }}">Je postule !</a>
-        </small>
-    </div>
-</div>
 

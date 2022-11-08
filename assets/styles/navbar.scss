@@ -1,19 +1,19 @@
 @import "variables";
 
 .navbar {
-  background-color: $dark;
+  background-color: $background;
 }
 
 .app-name {
   font-family: $app-name;
-  color: $light !important;
+  color: $dark !important;
   font-size: 30px;
 }
 
 .hover-underline-animation-navbar {
   display: inline-block;
   position: relative;
-  color: $light !important;
+  color: $dark !important;
 }
 
 .hover-underline-animation-navbar:after {
@@ -24,7 +24,7 @@
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: $light;
+  background-color: $dark;
   transform-origin: bottom right;
   transition: transform 0.25s ease-out;
 }
