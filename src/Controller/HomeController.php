@@ -32,7 +32,7 @@ class HomeController extends AbstractController
         $acceptedApplies = $calculateRules->calculateAcceptedApplies();
 
         return $this->render('home/index.html.twig', [
-            'apply_for' => $this->applyForRepository->findBy([], ['dateApplyFor' => 'DESC']),
+            'apply_for' => $this->applyForRepository->findBy([], ['jobTitle' => 'ASC']),
             'totalApplies' => $totalApplies,
             'sentApplies' => $sentApplies,
             'noResponseApplies' => $noResponseApplies,

@@ -8,7 +8,7 @@
 </div>
 
 <div class="row row-cols-md-4 g-4 mt-2">
-    {% for appliesFor in apply_for | sort((a, b) => b.jobTitle <=> a.jobTitle)|slice(0, 8) %}
+    {% for appliesFor in apply_for | slice(0, 8) %}
         <div class="col">
             <div class="card card-triangle border
                  {% if appliesFor.status is same as 'Transmise' %}
