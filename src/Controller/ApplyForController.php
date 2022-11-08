@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\ApplyFor;
 use App\Form\ApplyForType;
 use App\Repository\ApplyForRepository;
+use App\Repository\ContactRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,10 +16,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class ApplyForController extends AbstractController
 {
     private ApplyForRepository $applyForRepository;
+    private ContactRepository $contactRepository;
 
-    public function __construct(ApplyForRepository $applyForRepository)
+    public function __construct(ApplyForRepository $applyForRepository, ContactRepository $contactRepository)
     {
         $this->applyForRepository = $applyForRepository;
+        $this->contactRepository = $contactRepository;
     }
 
     #[Route('/index', name: 'app_apply_for_index', methods: ['GET', 'POST'])]
@@ -26,8 +29,11 @@ class ApplyForController extends AbstractController
     {
         $applyFor = $this->applyForRepository->findAll();
 
+        $contacts = $this->contactRepository->findAll();
+
         return $this->render('apply_for/index.html.twig', [
-            'apply_for' => $applyFor
+            'apply_for' => $applyFor,
+            'contacts' => $contacts,
         ]);
     }
 

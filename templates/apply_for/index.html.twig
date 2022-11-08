@@ -89,7 +89,13 @@
                             </td>
                         {% endif %}
 
-                        <td>Toto</td>
+                        {% if appliesFor.contact %}
+                            <td>
+                                <a href="#">{{ appliesFor.contact }}</a>
+                            </td>
+                            {% else %}
+                            <td></td>
+                        {% endif %}
 
                         <td class="text-start">
                             <div class="d-flex align-items center justify-content_center">

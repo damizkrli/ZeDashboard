@@ -4,10 +4,13 @@ namespace App\Form;
 
 use App\Entity\ApplyFor;
 use App\Entity\Company;
+use App\Entity\Contact;
 use App\Entity\Platform;
 use App\Repository\ApplyForRepository;
 use App\Repository\CompanyRepository;
+use App\Repository\ContactRepository;
 use App\Repository\PlatformRepository;
+use phpDocumentor\Reflection\Utils;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -72,6 +75,16 @@ class ApplyForType extends AbstractType
                 'label'         => "Statut",
                 'required'      => false,
                 'empty_data'    => 'Transmise',
+            ])
+            ->add('contact', EntityType::class, [
+                'class' => Contact::class,
+                'placeholder' => 'Sélectionner un contact',
+                'label' => 'Nom du contact',
+                'query_builder' => function (ContactRepository $contactRepository) {
+                    return $contactRepository
+                        ->createQueryBuilder('c')
+                        ->orderBy('c.name', 'ASC');
+                }
             ])
         ;
     }
