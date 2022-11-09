@@ -12,7 +12,7 @@
         <div class="col">
             <div class="card card-triangle border
                  {% if appliesFor.status is same as 'Transmise' %}
-                 border-primary 
+                 border-primary
                  {% elseif appliesFor.status is same as 'Appel' %}
                  border-warning 
                  {% elseif appliesFor.status is same as 'Refusée' %}
@@ -35,16 +35,29 @@
                         {% else %}
                             <h5>{{ appliesFor.jobTitle }}</h5>
                         {% endif %}
-                        <div class="card-text">
-                            {% if appliesFor.status is same as 'Refusée' %}
-                                <p class="line">{{ appliesFor.company }}
-                                    sur {{ appliesFor.platform.name }}</p>
-                            {% else %}
-                                <p>{{ appliesFor.company }}
-                                    sur {{ appliesFor.platform.name }}</p>
-                            {% endif %}
-                        </div>
                     </div>
+                </div>
+                <div class="card-footer border
+                    {% if appliesFor.status is same as 'Refusée' %}
+                        bg-danger text-light
+                        {% elseif appliesFor.status is same as 'Transmise' %}
+                        bg-primary text-light
+                        {% elseif appliesFor.status is same as 'Acceptée' %}
+                        bg-success text-light
+                        {% elseif appliesFor.status is same as 'Sans réponse' %}
+                        bg-dark text-light
+                        {% elseif appliesFor.status is same as 'Relance' %}
+                        bg-secondary text-light
+                        {% elseif appliesFor.status is same as 'Appel' %}
+                        bg-warning text-light
+                    {% endif %}">
+                    {% if appliesFor.status is same as 'Refusée' %}
+                        <p class="line">{{ appliesFor.company }}
+                            sur {{ appliesFor.platform.name }}</p>
+                    {% else %}
+                        <p>{{ appliesFor.company }}
+                            sur {{ appliesFor.platform.name }}</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
