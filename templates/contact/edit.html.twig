@@ -7,10 +7,7 @@
     <div class="container pb-5">
 
         <div class="col-12 d-flex justify-content-between border-bottom mt-5">
-            <h1 class="text-uppercase text-start mb-0">Mes candidatures</h1>
-            <small class="d-flex align-items-end justify-content-end">
-                <a class="mini-link" href="{{ path('app_apply_for_new') }}">Je postule !</a>
-            </small>
+            <h1 class="text-uppercase text-start mb-0">Modifier {{ contact.name }}</h1>
         </div>
 
         {{ form_start(form) }}
@@ -19,7 +16,6 @@
                 <div class="col-lg-4 col-12">{{ form_row(form.name) }}</div>
                 <div class="col-lg-4 col-12">{{ form_row(form.linkedin) }}</div>
             </div>
-
         </div>
 
         <div class="m-3">
