@@ -56,13 +56,16 @@ class ApplyForType extends AbstractType
                         ->orderBy('a.name', 'ASC');
                 }
             ])
-            ->add('contact', TextType::class, [
-                'label'    => 'Contact',
-                'required' => false
-            ])
-            ->add('details', TextType::class, [
-                'label'    => 'Coordonnées',
-                'required' => false,
+            ->add('contact', EntityType::class, [
+                'class'         => Contact::class,
+                'placeholder'   => 'Sélectionner un contact',
+                'label'         => 'Nom du contact',
+                'required'      => false,
+                'query_builder' => function (ContactRepository $contactRepository) {
+                    return $contactRepository
+                        ->createQueryBuilder('c')
+                        ->orderBy('c.name', 'ASC');
+                }
             ])
             ->add('jobTitle', TextType::class, [
                 'label' => "Intitulé du poste"
@@ -75,16 +78,6 @@ class ApplyForType extends AbstractType
                 'label'         => "Statut",
                 'required'      => false,
                 'empty_data'    => 'Transmise',
-            ])
-            ->add('contact', EntityType::class, [
-                'class' => Contact::class,
-                'placeholder' => 'Sélectionner un contact',
-                'label' => 'Nom du contact',
-                'query_builder' => function (ContactRepository $contactRepository) {
-                    return $contactRepository
-                        ->createQueryBuilder('c')
-                        ->orderBy('c.name', 'ASC');
-                }
             ])
         ;
     }

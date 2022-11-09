@@ -16,7 +16,7 @@ class CompanyType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => "Nom de l'entreprise",
                 'attr' => [
-                    'placeholder' => 'Google, Atos, Capgemini...'
+                    'placeholder' => 'Atos'
                 ]
             ])
         ;

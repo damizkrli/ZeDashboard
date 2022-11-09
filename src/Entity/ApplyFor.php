@@ -37,24 +37,6 @@ class ApplyFor
     #[Assert\NotBlank(message: "Merci de saisir un status")]
     private ?string $status = "Transmise";
 
-    #[ORM\Column(length: 100, nullable: true)]
-    #[Assert\Length(
-        min: 2,
-        max: 75,
-        minMessage: "Le nom doit contenir plus de {{ limit }} caractères.",
-        maxMessage: "Le nom ne doit pas contenir plus de {{ limit }} caractères."
-    )]
-    private ?string $contact;
-
-    #[ORM\Column(length: 100, nullable: true)]
-    #[Assert\Length(
-        min: 2,
-        max: 75,
-        minMessage: "Le nom doit contenir plus de {{ limit }} caractères.",
-        maxMessage: "Le nom ne doit pas contenir plus de {{ limit }} caractères."
-    )]
-    private ?string $details = null;
-
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(onDelete: "cascade")]
     private ?Company $company;
@@ -62,6 +44,9 @@ class ApplyFor
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(onDelete: "cascade")]
     private ?Platform $platform;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Contact $contact = null;
 
     public function getId(): ?int
     {
@@ -104,18 +89,6 @@ class ApplyFor
         return $this;
     }
 
-    public function getContact(): ?string
-    {
-        return $this->contact;
-    }
-
-    public function setContact(?string $contact): self
-    {
-        $this->contact = $contact;
-
-        return $this;
-    }
-
     public function getDetails(): ?string
     {
         return $this->details;
@@ -148,6 +121,18 @@ class ApplyFor
     public function setPlatform(?Platform $platform): self
     {
         $this->platform = $platform;
+
+        return $this;
+    }
+
+    public function getContact(): ?Contact
+    {
+        return $this->contact;
+    }
+
+    public function setContact(?Contact $contact): self
+    {
+        $this->contact = $contact;
 
         return $this;
     }
