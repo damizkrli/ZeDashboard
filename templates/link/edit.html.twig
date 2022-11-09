@@ -17,12 +17,12 @@
 
             <div class="m-3">
                 <div class="col d-flex align-items-center justify-content-center">
-                    <button class="button me-5 rounded-3 px-3">
+                    <button class="button me-5 hover-underline-animation-navbar a-navbar">
                         <i class="fas fa-save me-3"></i>
                         {{ button_label|default('Enregistrer') }}
                     </button>
                     {{ form_end(form) }}
-                    <a class="button me-5 rounded-3 px-3" href="{{ path('app_link_index') }}">
+                    <a class="button me-5 hover-underline-animation-navbar a-navbar" href="{{ path('app_link_index') }}">
                         <i class="fas fa-caret-square-left me-3"></i>
                         Retour
                     </a>

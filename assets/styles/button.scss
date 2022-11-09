@@ -1,12 +1,11 @@
 @import "variables";
 
 .button {
-  background-color: $light;
+  background-color: $background;
   color: $dark;
   margin: 5px;
   padding: 5px;
   border: none;
-  border-radius: $radius;
 
   &:hover {
     color: $dark !important;
