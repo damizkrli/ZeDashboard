@@ -20,7 +20,7 @@
         <div class="row">
             {% for contact in contacts %}
                 <div class="col-sm-6 mt-5">
-                    <div class="card h-100">
+                    <div class="card h-100 border-warning">
                         <div class="card-body">
                             <h3 class="card-title"><i class="fas fa-address-card me-3 text-warning"></i>{{ contact.name }}</h3>
                             <div class="d-flex align-items-center justify-content-between">
@@ -46,7 +46,7 @@
 
                             {% endif %}
                         </div>
-                        <div class="card-footer">
+                        <div class="card-footer border-warning">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div>
                                     <a href="{{ path('app_contact_edit', {'id': contact.id}) }}">
