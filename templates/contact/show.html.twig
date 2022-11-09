@@ -3,6 +3,36 @@
 {% block title %}Contact{% endblock %}
 
 {% block body %}
+
+    <div class="container pb-5 mt-5">
+        <div class="col-xl-3 col-sm-6 col-12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-body">
+                        <div class="media d-flex">
+                            <div class="media-body text-left">
+                                <h3 class="success"><i class="fas fa-id-card-alt me-3"></i>{{ contact.name }}</h3>
+                                <p><i class="fas fa-phone-volume me-3"></i>{{ contact.phone }}</p>
+                                <p><i class="fas fa-envelope me-3"></i>{{ contact.email }}</p>
+                                <p><i class="fab fa-linkedin me-3"></i><a href="{{ contact.linkedin }}" target="_blank">{{ contact.name }}</a></p>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="icon-user success font-large-2 float-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <h1>Contact</h1>
 
     <table class="table">
@@ -30,5 +60,5 @@
 
     <a href="{{ path('app_contact_edit', {'id': contact.id}) }}">edit</a>
 
-    {{ include('contact/_delete_form.html.twig') }}
+{#    {{ include('contact/_delete_form.html.twig') }}#}
 {% endblock %}

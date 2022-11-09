@@ -13,7 +13,9 @@
             {{ form_start(form) }}
             <div class="m-3">
                 <div class="row d-flex align-items-center justify-content-center">
-                    <div class="col-lg-8 col-12">{{ form_row(form.jobTitle) }}</div>
+                    <div class="col-lg-4 col-12">{{ form_row(form.jobTitle) }}</div>
+                    <div class="col-lg-4 col-12">{{ form_row(form.contact) }}</div>
+
                 </div>
 
             </div>
@@ -28,12 +30,6 @@
                         {{ form_row(form.company) }}
                         <small><a href="{{ path('app_company_index') }}">Vous ne trouver pas votre entreprise ?</a></small>
                     </div>
-                </div>
-            </div>
-
-            <div class="m-3">
-                <div class="row d-flex align-items-center justify-content-center">
-                    <div class="col-lg-4 col-12">{{ form_row(form.contact) }}</div>
                 </div>
             </div>
 

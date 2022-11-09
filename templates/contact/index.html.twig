@@ -17,60 +17,56 @@
             </small>
         </div>
 
-        <table class="table mt-5">
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Téléphone</th>
-                <th>LinkedIn</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
+        <div class="row">
             {% for contact in contacts %}
-                <tr>
-                    <td>{{ contact.name }}</td>
-                    {% if contact.email is null %}
-                        <td>--</td>
-                    {% else %}
-                        <td>{{ contact.email }}</td>
-                    {% endif %}
-                    {% if contact.phone is same as null %}
-                        <td>--</td>
-                    {% else %}
-                        <td>{{ contact.phone }}</td>
-                    {% endif %}
-                    {% if contact.linkedin is same as null %}
-                        <td>--</td>
-                    {% else %}
-                        <td>{{ contact.linkedin }}</td>
-                    {% endif %}
-                    <td>
-                        <div class="d-flex align-items center justify-content_center">
+                <div class="col-sm-6 mt-5">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h3 class="card-title"><i class="fas fa-address-card me-3"></i>{{ contact.name }}</h3>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div>
+                                    {% if contact.phone %}
+                                        <p class="card-text"><i class="fas fa-mobile-alt me-3"></i>{{ contact.phone }}
+                                        </p>
+                                    {% else %}
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    {% if contact.email %}
+                                        <p class="card-text"><i class="fas fa-envelope me-3"></i>{{ contact.email }}</p>
+                                    {% else %}
 
-                            <a class="btn border-0 pt-0" href="{{ path('app_contact_show', {'id': contact.id}) }}"><i
-                                        class="action fas fa-info-circle"></i></a>
-                            <a class="btn border-0 pt-0" href="{{ path('app_contact_edit', {'id': contact.id}) }}"><i
-                                        class="action far fa-edit"></i></a>
-                            <form method="post" action="{{ path('app_contact_delete', {'id': contact.id}) }}"
-                                  onsubmit="return confirm('Êtes_vous sur de vouloir supprimer ce contact ?');">
-                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ contact.id) }}">
-                                <button class="btn border-0 pt-0">
-                                    <i class="action fas fa-trash-alt"></i>
-                                </button>
-                            </form>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% if contact.linkedin %}
+                                <a href="{{ contact.linkedin }}" target="_blank"><i
+                                            class="fab fa-linkedin me-3"></i>{{ contact.linkedin }}</a>
+                            {% else %}
+
+                            {% endif %}
                         </div>
-
-                    </td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="5">no records found</td>
-                </tr>
+                        <div class="card-footer">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div>
+                                    <a href="{{ path('app_contact_edit', {'id': contact.id}) }}">
+                                        <i class="fas fa-pen-square"></i>
+                                    </a>
+                                </div>
+                                <div>
+                                    <form method="post" action="{{ path('app_contact_delete', {'id': contact.id}) }}"
+                                          onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                        <input type="hidden" name="_token"
+                                               value="{{ csrf_token('delete' ~ contact.id) }}">
+                                        <button class="btn"><i class="fas fa-trash-alt"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             {% endfor %}
-            </tbody>
-        </table>
+        </div>
 
     </div>
 
