@@ -4,23 +4,23 @@
 
 {% block body %}
 
-    <div class="section">
-        <div class="col px-5">
-            <h1 class="title">
-                <i class="fas fa-pen-square me-3"></i>
-                Mise à jour du poste de {{ apply_for.jobTitle }} chez {{ apply_for.company }}
-            </h1>
-            {{ form_start(form) }}
-            <div class="m-3">
-                <div class="row d-flex align-items-center justify-content-center">
-                    <div class="col-lg-4 col-12">{{ form_row(form.jobTitle) }}</div>
-                    <div class="col-lg-4 col-12">{{ form_row(form.contact) }}</div>
+    <div class="container pb-5">
 
-                </div>
+        <div class="col-12 d-flex justify-content-between border-bottom mt-5 mb-5">
+            <h1 class="text-uppercase text-start mb-0">{{ apply_for.jobTitle }} chez {{ apply_for.company }}</h1>
+        </div>
+
+        {{ form_start(form) }}
+        <div class="m-3">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="col-lg-4 col-12">{{ form_row(form.jobTitle) }}</div>
+                <div class="col-lg-4 col-12">{{ form_row(form.contact) }}</div>
 
             </div>
 
-            <div class="m-3">
+        </div>
+
+        <div class="m-3">
                 <div class="row d-flex align-items-center justify-content-center">
                     <div class="col-lg-4 col-12">
                         {{ form_row(form.platform) }}
@@ -48,8 +48,5 @@
             </div>
 
             {{ form_end(form) }}
-
-        </div>
     </div>
-
 {% endblock %}

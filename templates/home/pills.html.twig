@@ -1,6 +1,7 @@
 {% if appliesFor.status is same as 'Transmise' %}
     <span class="position-absolute top-0 start-100 translate-middle p-2 bg-primary border border-light rounded-circle">
-                                </span>
+        <span class="visually-hidden">New alerts</span>
+    </span>
 {% elseif appliesFor.status is same as 'Appel' %}
     <span class="position-absolute top-0 start-100 translate-middle p-2 bg-warning border border-light rounded-circle">
         <span class="visually-hidden">New alerts</span>
@@ -19,6 +20,10 @@
     </span>
 {% elseif appliesFor.status is same as 'Sans Réponse' %}
     <span class="position-absolute top-0 start-100 translate-middle p-2 bg-dark border border-light rounded-pill">
+        <span class="visually-hidden">New alerts</span>
+    </span>
+{% elseif appliesFor.status is same as 'Relance' %}
+    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-secondary border border-light rounded-pill">
         <span class="visually-hidden">New alerts</span>
     </span>
 {% endif %}
