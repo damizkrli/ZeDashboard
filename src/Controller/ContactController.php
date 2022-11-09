@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Contact;
 use App\Form\ContactType;
 use App\Repository\ContactRepository;
+use App\Services\CalculateRules;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,10 +15,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class ContactController extends AbstractController
 {
     #[Route('/', name: 'app_contact_index', methods: ['GET'])]
-    public function index(ContactRepository $contactRepository): Response
+    public function index(ContactRepository $contactRepository, CalculateRules $calculateRules): Response
     {
+        $contactTotal = $calculateRules->totalContact();
+
         return $this->render('contact/index.html.twig', [
-            'contacts' => $contactRepository->findAll(),
+            'contacts'     => $contactRepository->findAll(),
+            'totalContact' => $contactTotal
         ]);
     }
 

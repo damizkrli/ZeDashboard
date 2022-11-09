@@ -3,37 +3,75 @@
 {% block title %}Contact index{% endblock %}
 
 {% block body %}
-    <h1>Contact index</h1>
 
-    <table class="table">
-        <thead>
+    <div class="container pb-5">
+
+        <div class="col-12 d-flex justify-content-between border-bottom mt-5">
+            {% if totalContact > 1 %}
+                <h1 class="text-uppercase text-start mb-0">{{ totalContact }} Contacts</h1>
+            {% else %}
+                <h1 class="text-uppercase text-start mb-0">{{ totalContact }} Contact</h1>
+            {% endif %}
+            <small class="d-flex align-items-end justify-content-end">
+                <a class="mini-link" href="{{ path('app_contact_new') }}">Nouveau contact</a>
+            </small>
+        </div>
+
+        <table class="table mt-5">
+            <thead>
             <tr>
-                <th>Id</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Phone</th>
-                <th>actions</th>
+                <th>Téléphone</th>
+                <th>LinkedIn</th>
+                <th></th>
             </tr>
-        </thead>
-        <tbody>
-        {% for contact in contacts %}
-            <tr>
-                <td>{{ contact.id }}</td>
-                <td>{{ contact.name }}</td>
-                <td>{{ contact.email }}</td>
-                <td>{{ contact.phone }}</td>
-                <td>
-                    <a href="{{ path('app_contact_show', {'id': contact.id}) }}">show</a>
-                    <a href="{{ path('app_contact_edit', {'id': contact.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for contact in contacts %}
+                <tr>
+                    <td>{{ contact.name }}</td>
+                    {% if contact.email is null %}
+                        <td>--</td>
+                    {% else %}
+                        <td>{{ contact.email }}</td>
+                    {% endif %}
+                    {% if contact.phone is same as null %}
+                        <td>--</td>
+                    {% else %}
+                        <td>{{ contact.phone }}</td>
+                    {% endif %}
+                    {% if contact.linkedin is same as null %}
+                        <td>--</td>
+                    {% else %}
+                        <td>{{ contact.linkedin }}</td>
+                    {% endif %}
+                    <td>
+                        <div class="d-flex align-items center justify-content_center">
 
-    <a href="{{ path('app_contact_new') }}">Create new</a>
+                            <a class="btn border-0 pt-0" href="{{ path('app_contact_show', {'id': contact.id}) }}"><i
+                                        class="action fas fa-info-circle"></i></a>
+                            <a class="btn border-0 pt-0" href="{{ path('app_contact_edit', {'id': contact.id}) }}"><i
+                                        class="action far fa-edit"></i></a>
+                            <form method="post" action="{{ path('app_contact_delete', {'id': contact.id}) }}"
+                                  onsubmit="return confirm('Êtes_vous sur de vouloir supprimer ce contact ?');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ contact.id) }}">
+                                <button class="btn border-0 pt-0">
+                                    <i class="action fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </div>
+
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
 {% endblock %}

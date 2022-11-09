@@ -3,14 +3,17 @@
 namespace App\Services;
 
 use App\Repository\ApplyForRepository;
+use App\Repository\ContactRepository;
 
 class CalculateRules
 {
     private ApplyForRepository $applyForRepository;
+    private ContactRepository $contactRepository;
 
-    public function __construct(ApplyForRepository $applyForRepository)
+    public function __construct(ApplyForRepository $applyForRepository, ContactRepository $contactRepository)
     {
         $this->applyForRepository = $applyForRepository;
+        $this->contactRepository = $contactRepository;
     }
 
     public function calculateTotalApplies(): int
@@ -73,5 +76,12 @@ class CalculateRules
 
         return $total;
 
+    }
+
+    public function totalContact(): int
+    {
+        $totalContact = $this->contactRepository->findAll();
+
+        return count($totalContact);
     }
 }

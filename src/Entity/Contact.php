@@ -22,6 +22,9 @@ class Contact
     #[ORM\Column(length: 10, nullable: true)]
     private ?string $phone = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $linkedin = null;
+
     public function __toString(): string
     {
         return $this->getName();
@@ -64,6 +67,18 @@ class Contact
     public function setPhone(?string $phone): self
     {
         $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function getLinkedin(): ?string
+    {
+        return $this->linkedin;
+    }
+
+    public function setLinkedin(?string $linkedin): self
+    {
+        $this->linkedin = $linkedin;
 
         return $this;
     }

@@ -27,7 +27,7 @@ class ApplyForController extends AbstractController
     #[Route('/index', name: 'app_apply_for_index', methods: ['GET', 'POST'])]
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
-        $applyFor = $this->applyForRepository->findAll();
+        $applyFor = $this->applyForRepository->findBy([], ['id' => 'DESC']);
 
         $contacts = $this->contactRepository->findAll();
 
