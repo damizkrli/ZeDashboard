@@ -16,3 +16,26 @@
   padding: 10px 18px;
 }
 
+.sent {
+  background-color: transparent;
+  border-radius: 0;
+  border: 1px solid blue;
+}
+
+.interview {
+  background-color: transparent;
+  border-radius: 0;
+  border: 1px solid deepskyblue;
+}
+
+.refused {
+  background-color: transparent;
+  border-radius: 0;
+  border: 1px solid red;
+}
+
+.closed {
+  background-color: transparent;
+  border-radius: 0;
+  border: 1px solid green;
+}

@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block body %}
+    <div class="container pb-5">
+
+        <div class="col-12 d-flex justify-content-between border-bottom mt-5">
+            <h1 class="text-uppercase text-start mb-0">{{ applyFor.jobTitle }}</h1>
+        </div>
+
+        <div class="row">
+            <div class="col d-flex align-item-center justify-content-end mt-5 mb-5">
+                <button class="me-3 sent">Marqué comme envoyé</button>
+                <button class="me-3 interview">Marqué en attente d'entretien</button>
+                <button class="me-3 refused">Marqué comme refusée</button>
+                <button class="me-3 closed">Clôturer</button>
+            </div>
+        </div>
+
+        <div class="section p-3 mb-3 fw-bold">Général</div>
+        <ul>
+            <li>Avancement:</li>
+            <li>Envoyé le:</li>
+            <li>Réponse reçue le:</li>
+            <li>Plateforme:</li>
+        </ul>
+        <div class="section p-3 mb-3 fw-bold">Détail de l'entreprise</div>
+        <ul>
+            <li>Nom</li>
+            <li>Email</li>
+            <li>Contact</li>
+            <li>Téléphone</li>
+        </ul>
+        <div class="section p-3 mb-3 fw-bold">Détail du poste</div>
+        <ul>
+            <li>Job</li>
+            <li>Email</li>
+            <li>Contact</li>
+            <li>Lieu</li>
+            <li>Adresse</li>
+        </ul>
+        <div class="section p-3 mb-3">
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="fw-bold">Note</div>
+                <div>
+                    <small class="fst-italic">
+                        <a href="{{ path('app_note_new') }}">
+                            Ajouter une note <i class="fas fa-pen-alt ms-2"></i>
+                        </a>
+                    </small>
+                </div>
+            </div>
+        </div>
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>Le 09/11/2022</th>
+                <th scope="row">
+                    Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Sed porttitor lectus nibh.
+                    Pellentesque in ipsum id orci porta dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et
+                    ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet
+                    ligula. Vestibulum ante ipsum primis in
+                </th>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+{% endblock %}

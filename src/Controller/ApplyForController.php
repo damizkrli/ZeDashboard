@@ -97,4 +97,12 @@ class ApplyForController extends AbstractController
         return $this->redirectToRoute('app_apply_for_index', [], Response::HTTP_SEE_OTHER);
     }
 
+    #[Route('/{id}', name: 'app_apply_for_show', methods: ['GET'])]
+    public function show(ApplyFor $applyFor): Response
+    {
+        return $this->render('apply_for/show.html.twig', [
+            'applyFor' => $applyFor,
+        ]);
+    }
+
 }
