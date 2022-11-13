@@ -6,7 +6,6 @@ use App\Entity\ApplyFor;
 use App\Form\ApplyForType;
 use App\Repository\ApplyForRepository;
 use App\Repository\ContactRepository;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,7 +24,7 @@ class ApplyForController extends AbstractController
     }
 
     #[Route('/index', name: 'app_apply_for_index', methods: ['GET', 'POST'])]
-    public function index(PaginatorInterface $paginator, Request $request): Response
+    public function index(Request $request): Response
     {
         $applyFor = $this->applyForRepository->findBy([], ['id' => 'DESC']);
 
