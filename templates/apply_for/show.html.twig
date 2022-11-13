@@ -22,25 +22,39 @@
 
         <div class="section p-3 mb-3 fw-bold">Général</div>
         <ul>
-            <li>Avancement:</li>
-            <li>Envoyé le:</li>
-            <li>Réponse reçue le:</li>
-            <li>Plateforme:</li>
+            <li>Avancement: {% if applyFor.status is same as 'Refusée' %}
+                    <span class="dot-refused"></span>
+                {% elseif applyFor.status is same as 'Transmise' %}
+                    <span class="dot-sent"></span>
+                {% elseif applyFor.status is same as 'Sans réponse' %}
+                    <span class="dot-noResponse"></span>
+                {% elseif applyFor.status is same as 'Appel' %}
+                    <span class="dot-call"></span>
+                {% elseif applyFor.status is same as 'Entretien' %}
+                    <span class="dot-interview"></span>
+                {% elseif applyFor.status is same as 'Relance' %}
+                    <span class="dot-boost"></span>
+                {% elseif applyFor.status is same as 'Acceptée' %}
+                    <span class="dot-accepted"></span>
+                {% endif %}{{ applyFor.status }}</li>
+            <li>Envoyé le :</li>
+            <li>Réponse reçue le :</li>
+            <li>Plateforme : {{ applyFor.platform }}</li>
         </ul>
         <div class="section p-3 mb-3 fw-bold">Détail de l'entreprise</div>
         <ul>
-            <li>Nom</li>
-            <li>Email</li>
-            <li>Contact</li>
-            <li>Téléphone</li>
+            <li>Nom :</li>
+            <li>Email :</li>
+            <li>Contact :</li>
+            <li>Téléphone :</li>
         </ul>
         <div class="section p-3 mb-3 fw-bold">Détail du poste</div>
         <ul>
-            <li>Job</li>
-            <li>Email</li>
-            <li>Contact</li>
-            <li>Lieu</li>
-            <li>Adresse</li>
+            <li>Job :</li>
+            <li>Email :</li>
+            <li>Contact :</li>
+            <li>Lieu :</li>
+            <li>Adresse :</li>
         </ul>
         <div class="section p-3 mb-3">
             <div class="d-flex align-items-center justify-content-between">
