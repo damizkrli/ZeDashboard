@@ -15,6 +15,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -78,6 +79,18 @@ class ApplyForType extends AbstractType
                 'label'         => "Statut",
                 'required'      => false,
                 'empty_data'    => 'Transmise',
+            ])
+            ->add('sent', DateType::class, [
+                'label' => 'Envoyé le ',
+                'format' => 'yyyy-MM-dd',
+                'widget' => 'single_text',
+                'required' => false,
+            ])
+            ->add('response', DateType::class, [
+                'label' => 'Réponse le : ',
+                'format' => 'yyyy-MM-dd',
+                'widget' => 'single_text',
+                'required' => false,
             ])
         ;
     }

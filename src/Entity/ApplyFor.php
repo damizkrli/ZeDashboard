@@ -48,9 +48,20 @@ class ApplyFor
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Contact $contact = null;
 
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?DateTimeInterface $sent = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?DateTimeInterface $response = null;
+
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getSent();
     }
 
     public function getJobTitle(): ?string
@@ -133,6 +144,30 @@ class ApplyFor
     public function setContact(?Contact $contact): self
     {
         $this->contact = $contact;
+
+        return $this;
+    }
+
+    public function getSent(): ?DateTimeInterface
+    {
+        return $this->sent;
+    }
+
+    public function setSent(DateTimeInterface $sent): self
+    {
+        $this->sent = $sent;
+
+        return $this;
+    }
+
+    public function getResponse(): ?DateTimeInterface
+    {
+        return $this->response;
+    }
+
+    public function setResponse(?DateTimeInterface $response): self
+    {
+        $this->response = $response;
 
         return $this;
     }

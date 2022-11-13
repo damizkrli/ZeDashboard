@@ -37,22 +37,25 @@
                 {% elseif applyFor.status is same as 'Acceptée' %}
                     <span class="dot-accepted"></span>
                 {% endif %}{{ applyFor.status }}</li>
-            <li>Envoyé le :</li>
-            <li>Réponse reçue le :</li>
+            <li>Envoyé le : {{ applyFor.sent | date("d/m/y") }}</li>
+            {% if applyFor.response %}
+                <li>Réponse reçue le : {{ applyFor.response | date("d/m/y") }}</li>
+            {% else %}
+                <li>Réponse reçue le : </li>
+            {% endif %}
+
             <li>Plateforme : {{ applyFor.platform }}</li>
         </ul>
         <div class="section p-3 mb-3 fw-bold">Détail de l'entreprise</div>
         <ul>
-            <li>Nom :</li>
-            <li>Email :</li>
-            <li>Contact :</li>
-            <li>Téléphone :</li>
+            <li>Nom : {{ applyFor.company }}</li>
+            <li>Contact : {{ applyFor.contact.name }}</li>
+            <li>Email : {{ applyFor.contact.email }}</li>
+            <li>Téléphone : {{ applyFor.contact.phone }}</li>
         </ul>
         <div class="section p-3 mb-3 fw-bold">Détail du poste</div>
         <ul>
-            <li>Job :</li>
-            <li>Email :</li>
-            <li>Contact :</li>
+            <li>Job : {{ applyFor.jobTitle }}</li>
             <li>Lieu :</li>
             <li>Adresse :</li>
         </ul>
