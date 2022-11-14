@@ -4,22 +4,19 @@
 
 {% block body %}
 
-    <section>
-        <div class="col px-5 pb-5">
-            <h1 class="title"><i class="fas fa-sticky-note m-3"></i>Notes</h1>
 
-            <div class="btn-group mb-5">
-                <a class="button me-5 rounded-3 px-3" href="{{ path('app_note_new') }}">
-                    <i class="fas fa-plus-square me-3"></i>
-                    Ajouter une note
-                </a>
-                <a class="button rounded-3 px-3" href="{{ path('app_index_home') }}">
-                    <i class="fas fa-caret-square-left me-3"></i>
-                    Retour
-                </a>
-            </div>
+    <div class="container pb-5">
 
-            <table class="table table-borderless">
+        <div class="col-12 d-flex justify-content-between border-bottom mt-5">
+            <h1 class="text-uppercase text-start mb-0">Mes Note</h1>
+            <small class="d-flex align-items-end justify-content-end">
+                <a class="mini-link" href="{{ path('app_note_new') }}">Pense-bête</a>
+            </small>
+        </div>
+
+        {% include 'apply_for/searchbar.html.twig' %}
+
+        <table class="table table-borderless mt-5">
                 <thead>
                 <tr>
                     <th class="col">#</th>
@@ -54,18 +51,6 @@
                 </tbody>
             </table>
 
-            <div class="btn-group mb-5">
-                <a class="button me-5 rounded-3 px-3" href="{{ path('app_note_new') }}">
-                    <i class="fas fa-plus-square me-3"></i>
-                    Ajouter une note
-                </a>
-                <a class="button rounded-3 px-3" href="{{ path('app_index_home') }}">
-                    <i class="fas fa-caret-square-left me-3"></i>
-                    Retour
-                </a>
-            </div>
-
-        </div>
-    </section>
+    </div>
 
 {% endblock %}
