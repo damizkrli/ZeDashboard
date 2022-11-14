@@ -21,44 +21,153 @@
         </div>
 
         <div class="section p-3 mb-3 fw-bold">Général</div>
-        <ul>
-            <li>Avancement: {% if applyFor.status is same as 'Refusée' %}
-                    <span class="dot-refused"></span>
-                {% elseif applyFor.status is same as 'Transmise' %}
-                    <span class="dot-sent"></span>
-                {% elseif applyFor.status is same as 'Sans réponse' %}
-                    <span class="dot-noResponse"></span>
-                {% elseif applyFor.status is same as 'Appel' %}
-                    <span class="dot-call"></span>
-                {% elseif applyFor.status is same as 'Entretien' %}
-                    <span class="dot-interview"></span>
-                {% elseif applyFor.status is same as 'Relance' %}
-                    <span class="dot-boost"></span>
-                {% elseif applyFor.status is same as 'Acceptée' %}
-                    <span class="dot-accepted"></span>
-                {% endif %}{{ applyFor.status }}</li>
-            <li>Envoyé le : {{ applyFor.sent | date("d/m/y") }}</li>
-            {% if applyFor.response %}
-                <li>Réponse reçue le : {{ applyFor.response | date("d/m/y") }}</li>
-            {% else %}
-                <li>Réponse reçue le : </li>
-            {% endif %}
 
-            <li>Plateforme : {{ applyFor.platform }}</li>
-        </ul>
+        <table class="table table-borderless">
+            <tbody>
+            <tr>
+                <td colspan="2" class="col-md-2">Avancement :</td>
+                <td class="text-start">
+                    {% if applyFor.status is same as 'Refusée' %}
+                        <span class="dot-refused"></span>
+                    {% elseif applyFor.status is same as 'Transmise' %}
+                        <span class="dot-sent"></span>
+                    {% elseif applyFor.status is same as 'Sans réponse' %}
+                        <span class="dot-noResponse"></span>
+                    {% elseif applyFor.status is same as 'Appel' %}
+                        <span class="dot-call"></span>
+                    {% elseif applyFor.status is same as 'Entretien' %}
+                        <span class="dot-interview"></span>
+                    {% elseif applyFor.status is same as 'Relance' %}
+                        <span class="dot-boost"></span>
+                    {% elseif applyFor.status is same as 'Acceptée' %}
+                        <span class="dot-accepted"></span>
+                    {% endif %}{{ applyFor.status }}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-borderless">
+            <tbody>
+            <tr>
+                <td colspan="2" class="col-md-2">Envoyé le :</td>
+                <td class="text-start">{{ applyFor.sent | date("d/m/y") }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+
+        <table class="table table-borderless">
+            <tbody>
+            <tr>
+                <td colspan="2" class="col-md-2">Réponse reçue le :</td>
+                {% if applyFor.response %}
+                    <td>{{ applyFor.response | date("d/m/y") }}</td>
+                {% else %}
+                    <td class="fw-bold">Aucune</td>
+                {% endif %}
+
+            </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-borderless">
+            <tbody>
+            <tr>
+                <td colspan="2" class="col-md-2">Plateforme :</td>
+                <td>{{ applyFor.platform }}</td>
+            </tr>
+            </tbody>
+        </table>
+
         <div class="section p-3 mb-3 fw-bold">Détail de l'entreprise</div>
-        <ul>
-            <li>Nom : {{ applyFor.company }}</li>
-            <li>Contact : {{ applyFor.contact.name }}</li>
-            <li>Email : {{ applyFor.contact.email }}</li>
-            <li>Téléphone : {{ applyFor.contact.phone }}</li>
-        </ul>
+
+        <table class="table table-borderless">
+            <tbody>
+            <tr>
+                <td colspan="2" class="col-md-2">Nom :</td>
+                <td>{{ applyFor.company }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-borderless">
+            <tbody>
+            <tr>
+                <td colspan="2" class="col-md-2">Contact :</td>
+                {% if applyFor.contact %}
+                    <td>{{ applyFor.contact.name }}</td>
+                {% else %}
+                    <td class="fw-bold">Aucun</td>
+                {% endif %}
+            </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-borderless">
+            <tbody>
+            <tr>
+                <td colspan="2" class="col-md-2">Email :</td>
+                {% if applyFor.contact %}
+                    <td>{{ applyFor.contact.email }}</td>
+                {% else %}
+                    <td class="fw-bold">Aucun</td>
+                {% endif %}
+            </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-borderless">
+            <tbody>
+            <tr>
+                <td colspan="2" class="col-md-2">Téléphone :</td>
+                {% if applyFor.contact %}
+                    <td>{{ applyFor.contact.phone }}</td>
+                {% else %}
+                    <td class="fw-bold">Aucun</td>
+                {% endif %}
+            </tr>
+            </tbody>
+        </table>
+
+
         <div class="section p-3 mb-3 fw-bold">Détail du poste</div>
-        <ul>
-            <li>Job : {{ applyFor.jobTitle }}</li>
-            <li>Lieu :</li>
-            <li>Adresse :</li>
-        </ul>
+
+        <table class="table table-borderless">
+            <tbody>
+            <tr>
+                <td colspan="2" class="col-md-2">Job :</td>
+                <td>{{ applyFor.jobTitle }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-borderless">
+            <tbody>
+            <tr>
+                <td colspan="2" class="col-md-2">Lieu :</td>
+                {#                {% if applyfor.place %} #}
+                {# <td>{{ applyFor.place }}</td> #}
+                {#                {% else %} #}
+                {# <td>Aucune</td> #}
+                {#                {% endif %} #}
+            </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-borderless">
+            <tbody>
+            <tr>
+                <td colspan="2" class="col-md-2">Adresse :</td>
+                {#                {% if applyfor.adress %} #}
+                {# <td>{{ applyFor.adress }}</td> #}
+                {#                {% else %} #}
+                {# <td>Aucune</td> #}
+                {#                {% endif %} #}
+            </tr>
+            </tbody>
+        </table>
+
         <div class="section p-3 mb-3">
             <div class="d-flex align-items-center justify-content-between">
                 <div class="fw-bold">Note</div>
