@@ -23,11 +23,24 @@ class CalculateRules
         return count($totalApplies);
     }
 
-    public function calculateSentApplie():int
+    public function calculateSentApplies():int
     {
         $sentApplies = $this->applyForRepository->findBy(['status' => 'Transmise']);
 
         return count($sentApplies);
+    }
+
+    public function calculatePercentSentApplies($refusedApplies, $totalApplies): int
+    {
+        $total = 0;
+
+        // si aucunes données dans les candidatures
+        if ($totalApplies != 0) {
+            $total = 100 * ($refusedApplies / $totalApplies);
+        }
+
+        return $total;
+
     }
 
     public function calculateNoResponseApplies(): int
@@ -37,11 +50,37 @@ class CalculateRules
         return count($noResponseApplies);
     }
 
+    public function calculatePercentResponseApplies($refusedApplies, $totalApplies): int
+    {
+        $total = 0;
+
+        // si aucunes données dans les candidatures
+        if ($totalApplies != 0) {
+            $total = 100 * ($refusedApplies / $totalApplies);
+        }
+
+        return $total;
+
+    }
+
     public function calculateInterviewApplies(): int
     {
         $interviewApplies = $this->applyForRepository->findBy(['status' => 'Entretien']);
 
         return count($interviewApplies);
+    }
+
+    public function calculatePercentInterviewApplies($refusedApplies, $totalApplies): int
+    {
+        $total = 0;
+
+        // si aucunes données dans les candidatures
+        if ($totalApplies != 0) {
+            $total = 100 * ($refusedApplies / $totalApplies);
+        }
+
+        return $total;
+
     }
 
     public function calculateRefusedApplies(): int
@@ -51,6 +90,7 @@ class CalculateRules
         return count($refusedApplies);
     }
 
+
     public function calculateNumberOfCall(): int
     {
         $numCall = $this->applyForRepository->findBy(['status' => 'Appel']);
@@ -58,11 +98,37 @@ class CalculateRules
         return count($this->applyForRepository->findBy(['status' => 'Appel']));
     }
 
+    public function calculatePercentNumberOfCall($refusedApplies, $totalApplies): int
+    {
+        $total = 0;
+
+        // si aucunes données dans les candidatures
+        if ($totalApplies != 0) {
+            $total = 100 * ($refusedApplies / $totalApplies);
+        }
+
+        return $total;
+
+    }
+
     public function calculateAcceptedApplies(): int
     {
         $accpetedApplies = $this->applyForRepository->findBy(['status' => 'Acceptée']);
 
         return count($accpetedApplies);
+    }
+
+    public function calculatePercentAcceptedApplies($acceptedApplies, $totalApplies): int
+    {
+        $total = 0;
+
+        // si aucunes données dans les candidatures
+        if ($totalApplies != 0) {
+            $total = 100 * ($acceptedApplies / $totalApplies);
+        }
+
+        return $total;
+
     }
 
     public function calculatePercentRefusedApplies($refusedApplies, $totalApplies): int

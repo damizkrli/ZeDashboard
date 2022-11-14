@@ -24,7 +24,7 @@ class HomeController extends AbstractController
     public function index(CalculateRules $calculateRules): Response
     {
         $totalApplies = $calculateRules->calculateTotalApplies();
-        $sentApplies = $calculateRules->calculateSentApplie();
+        $sentApplies = $calculateRules->calculateSentApplies();
         $noResponseApplies = $calculateRules->calculateNoResponseApplies();
         $interviewApplies = $calculateRules->calculateInterviewApplies();
         $refusedApplies = $calculateRules->calculateRefusedApplies();
@@ -40,7 +40,12 @@ class HomeController extends AbstractController
             'refusedApplies' => $refusedApplies,
             'numCall' => $numCall,
             'acceptedApplies' => $acceptedApplies,
-            'calculatePercentRefusedApplies' => $calculateRules->calculatePercentRefusedApplies($refusedApplies, $totalApplies)
+            'calculatePercentRefusedApplies' => $calculateRules->calculatePercentRefusedApplies($refusedApplies, $totalApplies),
+            'calculatePercentSentApplies' => $calculateRules->calculatePercentSentApplies($sentApplies, $totalApplies),
+            'calculatePercentResponseApplies' => $calculateRules->calculatePercentResponseApplies($noResponseApplies, $totalApplies),
+            'calculatePercentInterviewApplies' => $calculateRules->calculatePercentInterviewApplies($interviewApplies, $totalApplies),
+            'calculatePercentNumberOfCall' => $calculateRules->calculatePercentNumberOfCall($numCall, $totalApplies),
+            'calculatePercentAcceptedApplies' => $calculateRules->calculatePercentAcceptedApplies($acceptedApplies, $totalApplies),
         ]);
         }
     }
