@@ -22,7 +22,9 @@
                 <div class="col-sm-6 mt-5">
                     <div class="card h-100 border-warning">
                         <div class="card-body">
-                            <h3 class="card-title"><i class="fas fa-address-card me-3 text-warning"></i>{{ contact.name }}</h3>
+                            <h3 class="card-title"><i
+                                        class="fas fa-address-card me-3 text-warning"></i>{{ contact.name | title }}
+                            </h3>
                             <div class="d-flex align-items-center justify-content-between">
                                 <div>
                                     {% if contact.phone %}
