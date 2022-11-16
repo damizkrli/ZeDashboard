@@ -8,7 +8,7 @@
     <div class="container pb-5">
 
         <div class="col-12 d-flex justify-content-between border-bottom mt-5">
-            <h1 class="text-uppercase text-start mb-0">Mes Note</h1>
+            <h1 class="text-uppercase text-start mb-0">Mes Notes</h1>
             <small class="d-flex align-items-end justify-content-end">
                 <a class="mini-link" href="{{ path('app_note_new') }}">Pense-bête</a>
             </small>
@@ -16,40 +16,46 @@
 
         {% include 'apply_for/searchbar.html.twig' %}
 
-        <table class="table table-borderless mt-5">
+        <div class="col">
+
+            <table class="table mt-5 mb-5">
                 <thead>
                 <tr>
-                    <th class="col">#</th>
-                    <th class="col">Titre</th>
-                    <th class="col">Notes</th>
-                    <th class="col"></th>
+                    <th class="text-start text-nowrap" scope="col">Titre</th>
+                    <th class="text-start text-nowrap" scope="col">Date de création</th>
+                    <th class="text-start text-nowrap" scope="col"></th>
                 </tr>
                 </thead>
+
+                {% for note in notes | sort((a, b) => a.name <=> b.name ) %}
                 <tbody>
-                {% for note in notes | sort((a, b) => a.name <=> b.name )%}
-                    <tr>
-                        <td>{{ note.id }}</td>
-                        <td>{{ note.name }}</td>
-                        <td>{{ note.note | raw }}</td>
+                    <tr class="text-start">
+                        <td class="text-start">
+                            <a href="{{ path('app_show_note', {'id': note.id}) }}">
+                                {{ note.name }}
+                            </a>
+                        </td>
+                        <td class="text-start">{{ note.createdAt | date('d/m/y') }}</td>
                         <td>
                             <div class="d-flex justify-content-center">
                                 <a href="{{ path('app_note_edit', {'id': note.id}) }}">
                                     <i class="action fas fa-pen-square me-1"></i>
                                 </a>
-                                <form method="post" action="{{ path('app_note_delete', {'id': note.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                <form method="post" action="{{ path('app_note_delete', {'id': note.id}) }}"
+                                      onsubmit="return confirm('Are you sure you want to delete this item?');">
                                     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ note.id) }}">
                                     <button class="btn border-0 pt-0"><i class="action fas fa-trash"></i></button>
                                 </form>
                             </div>
                         </td>
                     </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="3">Aucune notes...</td>
-                    </tr>
-                {% endfor %}
+                    {% else %}
+                        <h1 class="text-start">Aucune données. Commencez par ajouter une note</h1>
+                    {% endfor %}
                 </tbody>
             </table>
+
+        </div>
 
     </div>
 

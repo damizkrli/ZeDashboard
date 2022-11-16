@@ -4,29 +4,33 @@
 
 {% block body %}
 
-    <section>
+    <div class="container pb-5">
 
-        <div class="col px-5">
-            <h1 class="title">
-                <i class="fas fa-plus-square me-3"></i>
-                Ajouter une note
-            </h1>
+        <div class="col-12 d-flex justify-content-between border-bottom mt-5 triangle-bottom-left">
+            <h1 class="text-uppercase text-start mb-0">Ajouter une note</h1>
+        </div>
 
-                {{ form_start(form) }}
-                {{ form_widget(form) }}
 
-                <div class="m-3">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <button class="button me-5 hover-underline-animation-navbar a-navbar"><i
-                                    class="fas fa-save me-3"></i>{{ button_label|default('Enregistrer') }}</button>
-                        <a class="button me-5 hover-underline-animation-navbar a-navbar" href="{{ path('app_note_index') }}"><i
-                                    class="me-3 fas fa-caret-square-left"></i>Retour</a>
-                    </div>
+        {{ form_start(form) }}
+
+        <div class="m-3 mt-5">
+            <div class="row d-justify-content-start justify-content-start">
+                <div class="col-lg-8 col-12">{{ form_row(form.name) }}</div>
+                <div class="col-lg-4 col-12">{{ form_row(form.created_at) }}</div>
+            </div>
+        </div>
+
+        {{ form_widget(form) }}
+
+        <div class="m-3">
+            <div class="d-flex align-items-center justify-content-center">
+                <button class="button me-5 hover-underline-animation-navbar a-navbar"><i
+                            class="fas fa-save me-3"></i>{{ button_label|default('Enregistrer') }}</button>
+                <a class="button me-5 hover-underline-animation-navbar a-navbar" href="{{ path('app_note_index') }}"><i
+                            class="me-3 fas fa-caret-square-left"></i>Retour</a>
+            </div>
                 </div>
                 {{ form_end(form) }}
 
-
-        </div>
-
-    </section>
+    </div>
 {% endblock %}
