@@ -183,12 +183,9 @@
         <table class="table">
             <tbody>
             <tr>
-                <th>Le 09/11/2022</th>
+                <th>{{ applyFor.note.createdAt | date('d/m/y') }}</th>
                 <th scope="row">
-                    Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Sed porttitor lectus nibh.
-                    Pellentesque in ipsum id orci porta dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et
-                    ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet
-                    ligula. Vestibulum ante ipsum primis in
+                    {{ applyFor.note.note | raw }}
                 </th>
             </tr>
             </tbody>
