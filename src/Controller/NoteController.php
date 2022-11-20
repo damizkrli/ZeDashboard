@@ -33,7 +33,7 @@ class NoteController extends AbstractController
             $noteRepository->add($note, true);
 //            $this->flashyNotifier->info('Une note à été ajoutée.');
 
-            return $this->redirectToRoute('app_note_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_apply_for_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('note/new.html.twig', [
