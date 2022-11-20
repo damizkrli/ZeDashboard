@@ -1,9 +1,17 @@
 <div class="row">
     <div class="col-12 d-flex justify-content-between border-bottom mt-5 triangle-bottom-left">
-        <h1 class="text-uppercase text-start mb-0">{{ totalApplies }} candidature(s)</h1>
-        <small class="d-flex align-items-end justify-content-end">
-            <a class="mini-link" href="{{ path('app_apply_for_index') }}">Voir mes candidatures</a>
-        </small>
+        {% if totalApplies > 1 %}
+            <h1 class="text-uppercase text-start mb-0">{{ totalApplies }} candidatures</h1>
+            <small class="d-flex align-items-end justify-content-end">
+                <a class="mini-link" href="{{ path('app_apply_for_index') }}">Voir mes candidatures</a>
+            </small>
+            {% else %}
+                <h1 class="text-uppercase text-start mb-0">{{ totalApplies }} candidature</h1>
+                <small class="d-flex align-items-end justify-content-end">
+                    <a class="mini-link" href="{{ path('app_apply_for_index') }}">Voir mes candidatures</a>
+                </small>
+        {% endif %}
+
     </div>
 </div>
 

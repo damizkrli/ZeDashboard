@@ -120,7 +120,7 @@
                     </tr>
                     </tbody>
                 {% else %}
-                    <h1 class="text-start">Aucune données. Commencez par ajouter une candidature</h1>
+                    {% include '/macro/noData.html.twig' %}
                 {% endfor %}
             </table>
 

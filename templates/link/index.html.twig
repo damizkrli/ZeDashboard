@@ -45,8 +45,7 @@
                         </td>
                     </tr>
                 {% else %}
-                    <h3 class="mb-3 mt-3">AUCUNE DONNÉES</h3>
-                    </tbody>
+                    {% include '/macro/noData.html.twig' %}
                 {% endfor %}
             </table>
         </div>

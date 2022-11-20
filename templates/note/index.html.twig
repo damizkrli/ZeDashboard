@@ -50,7 +50,7 @@
                         </td>
                     </tr>
                     {% else %}
-                        <h1 class="text-start">Aucune données. Commencez par ajouter une note</h1>
+                        {% include '/macro/noData.html.twig' %}
                     {% endfor %}
                 </tbody>
             </table>

@@ -56,13 +56,7 @@
                                 </td>
                             </tr>
                         {% else %}
-                            <tr>
-                                <td colspan="3">
-                                    <h3 class="fst-italic p-3">
-                                        <i class="fa fa-arrow-down"></i> Commencez par ajouter une entreprise
-                                    </h3>
-                                </td>
-                            </tr>
+                            {% include '/macro/noData.html.twig' %}
                         {% endfor %}
                         </tbody>
                     </table>

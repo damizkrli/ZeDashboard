@@ -42,11 +42,7 @@
                                 </td>
                             </tr>
                         {% else %}
-                            <tr>
-                                <h3 class="fst-italic p-3">
-                                    <i class="fa fa-arrow-down"></i> Commencez par ajouter une plateforme
-                                </h3>
-                            </tr>
+                            {% include '/macro/noData.html.twig' %}
                         {% endfor %}
                         </tbody>
                     </table>
