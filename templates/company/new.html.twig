@@ -3,31 +3,37 @@
 {% block title %}Nouvelle Entreprise{% endblock %}
 
 {% block body %}
-    <section>
 
-        <div class="col px-5">
-            <h1 class="title">
-                <i class="fas fa-plus-square me-3"></i>
-                Ajouter une entreprise
-            </h1>
+    <div class="container pb-5">
 
-            <div class="container col-6">
-
-                {{ form_start(form) }}
-                {{ form_widget(form) }}
-
-        <div class="m-3">
-            <div class="d-flex align-items-center justify-content-around">
-                <button class="button me-5 hover-underline-animation-navbar a-navbar"><i class="fas fa-save me-3"></i>{{ button_label|default('Enregistrer') }}</button>
-                <a class="button me-5 hover-underline-animation-navbar a-navbar" href="{{ path('app_company_index') }}"><i class="me-3 fas fa-caret-square-left"></i>Retour aux entreprises</a>
-                <a class="button me-5 hover-underline-animation-navbar a-navbar" href="{{ path('app_apply_for_index') }}"><i class="me-3 fas fa-caret-square-left"></i>Retour aux candidatures</a>
-            </div>
-        </div>
-        {{ form_end(form) }}
-
-            </div>
+        <div class="col-12 d-flex justify-content-between border-bottom mt-5">
+            <h1 class="text-uppercase text-start mb-0">Mes Entreprises</h1>
+            <small class="d-flex align-items-end justify-content-end">
+                <a class="mini-link" href="{{ path('app_company_new') }}">Nouvelle Entreprise</a>
+            </small>
         </div>
 
-    </section>
+        <div class="col">
+
+            {{ form_start(form) }}
+            <div class="m-3 mt-5">
+                <div class="row d-flex align-items-center justify-content-center">
+                    <div class="col-lg-6 col-12">{{ form_row(form.name) }}</div>
+                </div>
+            {{ form_widget(form) }}
+
+            <div class="m-3">
+                <div class="d-flex align-items-center justify-content-around">
+                    <button class="button me-5 hover-underline-animation-navbar a-navbar"><i
+                                class="fas fa-save me-3"></i>{{ button_label|default('Enregistrer') }}</button>
+                    <a class="button me-5 hover-underline-animation-navbar a-navbar" href="{{ path('app_company_index') }}"><i
+                                class="me-3 fas fa-caret-square-left"></i>Retour aux entreprises</a>
+                </div>
+            </div>
+            {{ form_end(form) }}
+
+        </div>
+
+    </div>
 
 {% endblock %}
