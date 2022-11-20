@@ -41,7 +41,6 @@ class ApplyFor
     #[ORM\JoinColumn(onDelete: "cascade")]
     private ?Company $company;
 
-    #[Assert\Type(type: Company::class)]
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(onDelete: "cascade")]
     private ?Platform $platform;

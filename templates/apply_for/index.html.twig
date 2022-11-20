@@ -22,6 +22,7 @@
             <table class="table mb-5 mt-5">
                 <thead class="table-light">
                 <tr class="table-light">
+                    <th class="text-start text-nowrap" scope="col">Date</th>
                     <th class="text-start text-nowrap" scope="col">Poste</th>
                     <th class="text-start text-nowrap" scope="col">Enterprise</th>
                     <th class="text-start text-nowrap" scope="col">Plateforme</th>
@@ -34,6 +35,7 @@
                 {% for appliesFor in apply_for %}
                     <tbody>
                     <tr class="text-start">
+                        <td>{{ appliesFor.sent | date('d/m/y') }}</td>
                         <td class="text-start">
                             <a href="{{ path('app_apply_for_show', {'id': appliesFor.id}) }}">{{ appliesFor.jobTitle }}</a>
                         </td>
@@ -95,7 +97,7 @@
                                 <a href="{{ path('app_contact_index') }}">{{ appliesFor.contact }}</a>
                             </td>
                             {% else %}
-                            <td></td>
+                            <td class="fst-italic">AUCUN</td>
                         {% endif %}
 
                         <td class="text-start">
