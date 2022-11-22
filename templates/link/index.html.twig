@@ -30,7 +30,7 @@
                     <tbody>
                     <tr>
                         <td>{{ link.name }}</td>
-                        <td>{{ link.url | slice(0, 100) ~ '...' }}</td>
+                        <td>{{ link.url }}</td>
                         <td>
                             <div class="d-flex justify-content-start">
                                 <a href="{{ path('app_edit_link', {'id': link.id}) }}">
