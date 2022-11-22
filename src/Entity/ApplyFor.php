@@ -109,18 +109,6 @@ class ApplyFor
         return $this;
     }
 
-    public function getDetails(): ?string
-    {
-        return $this->details;
-    }
-
-    public function setDetails(?string $details): self
-    {
-        $this->details = $details;
-
-        return $this;
-    }
-
     public function getCompany(): ?Company
     {
         return $this->company;
