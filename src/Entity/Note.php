@@ -32,14 +32,6 @@ class Note
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?DateTimeInterface $created_at = null;
 
-    #[ORM\OneToMany(mappedBy: 'note', targetEntity: ApplyFor::class)]
-    private Collection $applyFors;
-
-    public function __construct()
-    {
-        $this->applyFors = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
