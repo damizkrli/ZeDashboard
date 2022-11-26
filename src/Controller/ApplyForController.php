@@ -37,8 +37,8 @@ class ApplyForController extends AbstractController
 
         return $this->render('apply_for/index.html.twig', [
             'apply_for' => $applyFor,
-            'contacts'  => $contacts,
-            'notes'     => $notes
+            'contacts' => $contacts,
+            'notes' => $notes
         ]);
     }
 
@@ -91,7 +91,7 @@ class ApplyForController extends AbstractController
     #[Route('/{id}', name: 'app_apply_for_delete', methods: ['POST'])]
     public function delete(Request $request, ApplyFor $applyFor): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$applyFor->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $applyFor->getId(), $request->request->get('_token'))) {
             $this->applyForRepository->remove($applyFor, true);
             $this->addFlash(
                 'danger',
