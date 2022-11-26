@@ -60,9 +60,6 @@ class ApplyFor
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $address = null;
 
-    #[ORM\ManyToOne(inversedBy: 'applyFors')]
-    private ?Note $note = null;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -189,18 +186,6 @@ class ApplyFor
     public function setAddress(?string $address): self
     {
         $this->address = $address;
-
-        return $this;
-    }
-
-    public function getNote(): ?Note
-    {
-        return $this->note;
-    }
-
-    public function setNote(?Note $note): self
-    {
-        $this->note = $note;
 
         return $this;
     }

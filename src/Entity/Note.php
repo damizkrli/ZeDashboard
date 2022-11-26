@@ -79,34 +79,4 @@ class Note
         return $this;
     }
 
-    /**
-     * @return Collection<int, ApplyFor>
-     */
-    public function getApplyFors(): Collection
-    {
-        return $this->applyFors;
-    }
-
-    public function addApplyFor(ApplyFor $applyFor): self
-    {
-        if (!$this->applyFors->contains($applyFor)) {
-            $this->applyFors->add($applyFor);
-            $applyFor->setNote($this);
-        }
-
-        return $this;
-    }
-
-    public function removeApplyFor(ApplyFor $applyFor): self
-    {
-        if ($this->applyFors->removeElement($applyFor)) {
-            // set the owning side to null (unless already changed)
-            if ($applyFor->getNote() === $this) {
-                $applyFor->setNote(null);
-            }
-        }
-
-        return $this;
-    }
-
 }
