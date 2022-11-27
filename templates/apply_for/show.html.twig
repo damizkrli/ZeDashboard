@@ -183,14 +183,15 @@
         <table class="table">
             <tbody>
             <tr>
-                {% if applyFor.note %}
-                    <th>{{ applyFor.note.createdAt | date('d/m/y') }}</th>
-                    <th scope="row">
-                        {{ applyFor.note.note | raw }}
-                    </th>
-                {% else %}
-                    {% include 'macro/noData.html.twig' %}
-                {% endif %}
+                {{ dump(applyFor) }}
+{#                {% if applyFor.note %}#}
+{#                    <th>{{ applyFor.note.createdAt | date('d/m/y') }}</th>#}
+{#                    <th scope="row">#}
+{#                        {{ applyFor.note.note | raw }}#}
+{#                    </th>#}
+{#                {% else %}#}
+{#                    {% include 'macro/noData.html.twig' %}#}
+{#                {% endif %}#}
             </tr>
             </tbody>
         </table>

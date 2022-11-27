@@ -60,6 +60,9 @@ class ApplyFor
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $address = null;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $note = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -186,6 +189,18 @@ class ApplyFor
     public function setAddress(?string $address): self
     {
         $this->address = $address;
+
+        return $this;
+    }
+
+    public function getNote(): ?string
+    {
+        return $this->note;
+    }
+
+    public function setNote(?string $note): self
+    {
+        $this->note = $note;
 
         return $this;
     }

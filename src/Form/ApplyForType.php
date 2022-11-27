@@ -9,6 +9,7 @@ use App\Entity\Platform;
 use App\Repository\CompanyRepository;
 use App\Repository\ContactRepository;
 use App\Repository\PlatformRepository;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -64,6 +65,9 @@ class ApplyForType extends AbstractType
                         ->createQueryBuilder('c')
                         ->orderBy('c.name', 'ASC');
                 }
+            ])
+            ->add('note', CKEditorType::class, [
+                'label' => 'Note'
             ])
             ->add('jobTitle', TextType::class, [
                 'label' => "Intitulé du poste"

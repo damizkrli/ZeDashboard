@@ -17,13 +17,11 @@ class ApplyForController extends AbstractController
 {
     private ApplyForRepository $applyForRepository;
     private ContactRepository $contactRepository;
-    private NoteRepository $noteRepository;
 
-    public function __construct(ApplyForRepository $applyForRepository, ContactRepository $contactRepository, NoteRepository $noteRepository)
+    public function __construct(ApplyForRepository $applyForRepository, ContactRepository $contactRepository)
     {
         $this->applyForRepository = $applyForRepository;
         $this->contactRepository = $contactRepository;
-        $this->noteRepository = $noteRepository;
     }
 
     #[Route('/index', name: 'app_apply_for_index', methods: ['GET', 'POST'])]
@@ -33,12 +31,9 @@ class ApplyForController extends AbstractController
 
         $contacts = $this->contactRepository->findAll();
 
-        $notes = $this->noteRepository->findAll();
-
         return $this->render('apply_for/index.html.twig', [
             'apply_for' => $applyFor,
             'contacts' => $contacts,
-            'notes' => $notes
         ]);
     }
 
