@@ -37,14 +37,6 @@ class ApplyFor
     #[Assert\NotBlank(message: "Merci de saisir un status")]
     private ?string $status = "Transmise";
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(onDelete: "cascade")]
-    private ?Company $company;
-
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(onDelete: "cascade")]
-    private ?Platform $platform;
-
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Contact $contact = null;
 
@@ -62,6 +54,12 @@ class ApplyFor
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $note = null;
+
+    #[ORM\Column(length: 150)]
+    private ?string $company = null;
+
+    #[ORM\Column(length: 150)]
+    private ?string $platform = null;
 
     public function getId(): ?int
     {
@@ -105,30 +103,6 @@ class ApplyFor
     public function setStatus(string $status): self
     {
         $this->status = $status;
-
-        return $this;
-    }
-
-    public function getCompany(): ?Company
-    {
-        return $this->company;
-    }
-
-    public function setCompany(?Company $company): self
-    {
-        $this->company = $company;
-
-        return $this;
-    }
-
-    public function getPlatform(): ?Platform
-    {
-        return $this->platform;
-    }
-
-    public function setPlatform(?Platform $platform): self
-    {
-        $this->platform = $platform;
 
         return $this;
     }
@@ -201,6 +175,30 @@ class ApplyFor
     public function setNote(?string $note): self
     {
         $this->note = $note;
+
+        return $this;
+    }
+
+    public function getCompany(): ?string
+    {
+        return $this->company;
+    }
+
+    public function setCompany(string $company): self
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    public function getPlatform(): ?string
+    {
+        return $this->platform;
+    }
+
+    public function setPlatform(string $platform): self
+    {
+        $this->platform = $platform;
 
         return $this;
     }

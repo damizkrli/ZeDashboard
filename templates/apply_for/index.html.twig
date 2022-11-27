@@ -39,8 +39,8 @@
                         <td class="text-start">
                             <a href="{{ path('app_apply_for_show', {'id': appliesFor.id}) }}">{{ appliesFor.jobTitle }}</a>
                         </td>
-                        <td class="text-start">{{ appliesFor.company.name }}</td>
-                        <td class="text-start">{{ appliesFor.platform.name }}</td>
+                        <td class="text-start">{{ appliesFor.company }}</td>
+                        <td class="text-start">{{ appliesFor.platform }}</td>
                         {% if appliesFor.status is same as 'Refusée' %}
                             <td class="text-start">
                                 <div class="d-flex align-items-center justify-content-start">

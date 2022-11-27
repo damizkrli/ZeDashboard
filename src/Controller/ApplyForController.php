@@ -6,7 +6,6 @@ use App\Entity\ApplyFor;
 use App\Form\ApplyForType;
 use App\Repository\ApplyForRepository;
 use App\Repository\ContactRepository;
-use App\Repository\NoteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,7 +26,7 @@ class ApplyForController extends AbstractController
     #[Route('/index', name: 'app_apply_for_index', methods: ['GET', 'POST'])]
     public function index(Request $request): Response
     {
-        $applyFor = $this->applyForRepository->findBy([], ['id' => 'DESC']);
+        $applyFor = $this->applyForRepository->findBy([], ['sent' => 'DESC']);
 
         $contacts = $this->contactRepository->findAll();
 
@@ -48,7 +47,7 @@ class ApplyForController extends AbstractController
             $this->applyForRepository->add($applyFor, true);
             $this->addFlash(
                 'success',
-                'Votre candidature chez ' . $applyFor->getCompany() . ' à été ajouté avec succès.'
+                'Votre candidature à été ajouté avec succès.'
             );
 
             return $this->redirectToRoute('app_apply_for_index', [], Response::HTTP_SEE_OTHER);
@@ -63,7 +62,6 @@ class ApplyForController extends AbstractController
     #[Route('/edit/{id}', name: 'app_apply_for_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, ApplyFor $applyFor): Response
     {
-        // TODO : date retour n'est pas récupérée lors de l'édition
         $form = $this->createForm(ApplyForType::class, $applyFor);
         $form->handleRequest($request);
 
@@ -71,7 +69,7 @@ class ApplyForController extends AbstractController
             $this->applyForRepository->add($applyFor, true);
             $this->addFlash(
                 'info',
-                'Votre candidature chez ' . $applyFor->getCompany() . ' à été modifiée avec succès.'
+                'Votre candidature à été modifiée avec succès.'
             );
 
             return $this->redirectToRoute('app_apply_for_index', [], Response::HTTP_SEE_OTHER);
@@ -90,7 +88,7 @@ class ApplyForController extends AbstractController
             $this->applyForRepository->remove($applyFor, true);
             $this->addFlash(
                 'danger',
-                'Votre candidature chez ' . $applyFor->getCompany() . ' à été supprimée avec succès.'
+                'Votre candidature à été supprimée avec succès.'
             );
         }
 

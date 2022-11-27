@@ -137,7 +137,11 @@
             <tbody>
             <tr>
                 <td colspan="2" class="col-md-2">Job :</td>
-                <td>{{ applyFor.jobTitle }}</td>
+                <td>
+                    <a href="{{ applyFor.link }}" class="text-decoration-underline fst-italic text-primary">
+                        {{ applyFor.jobTitle }}
+                    </a>
+                    </td>
             </tr>
             </tbody>
         </table>
@@ -149,7 +153,7 @@
                 {% if applyFor.place %}
                     <td>{{ applyFor.place }}</td>
                 {% else %}
-                    <td class="fw-bold">Aucune</td>
+                    <td class="fw-bold"></td>
                 {% endif %}
             </tr>
             </tbody>
@@ -162,7 +166,7 @@
                 {% if applyFor.address %}
                     <td>{{ applyFor.address }}</td>
                 {% else %}
-                    <td class="fw-bold">Aucune</td>
+                    <td class="fw-bold"></td>
                 {% endif %}
             </tr>
             </tbody>

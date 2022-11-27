@@ -34,13 +34,14 @@
                         <td>
                             <div class="d-flex justify-content-start">
                                 <a href="{{ path('app_edit_link', {'id': link.id}) }}">
-                                    <i class="action fas fa-pen-square me-3"></i>
+                                    <i class="action far fa-edit me-3"></i>
                                 </a>
                                 <form method="post" action="{{ path('app_delete_link', {'id': link.id}) }}"
                                       onsubmit="return confirm('Êtes vous sûr(e) de vouloir supprimer ce lien ?');">
                                     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ link.id) }}">
-                                    <button class="btn border-0 pt-0"><i class="action fas fa-trash"></i></button>
+                                    <button class="btn border-0 pt-0"><i class="action far fa-trash-alt"></i></button>
                                 </form>
+                                <a href="{{ link.url }}"><i class="far fa-share-square ms-3"></i></a>
                             </div>
                         </td>
                     </tr>

@@ -32,13 +32,9 @@
             <div class="row d-flex align-items-center justify-content-center">
                 <div class="col-lg-4 col-12">
                     {{ form_row(form.platform) }}
-                        {{ include('_modal.html.twig', {modalTitle: 'Ajouter une plateforme'}) }}
-                    {# <small><a href="{{ path('app_platform_index') }}">Vous ne trouver pas votre plateforme ?</a></small>#}
                 </div>
                 <div class="col-lg-4 col-12">
                     {{ form_row(form.company) }}
-                    {{ include('_modal.html.twig', {modalTitle: 'Ajouter une entreprise'}) }}
-                    {#  <small><a href="{{ path('app_company_index') }}">Vous ne trouver pas votre entreprise ?</a></small>#}
                 </div>
             </div>
         </div>
