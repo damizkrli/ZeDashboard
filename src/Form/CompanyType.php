@@ -19,6 +19,7 @@ class CompanyType extends AbstractType
                     'placeholder' => 'Atos'
                 ]
             ])
+            ->add('applyFor', ApplyForType::class)
         ;
     }
 

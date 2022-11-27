@@ -19,6 +19,10 @@ class Company
     #[ORM\OneToOne(mappedBy: 'company', cascade: ['persist', 'remove'])]
     private ?Directory $directory = null;
 
+    #[Assert\Type(type: ApplyFor::class)]
+    #[Assert\valid]
+    protected $applyFor;
+
     public function __toString(): string
     {
         return $this->getName();
@@ -56,5 +60,15 @@ class Company
         $this->directory = $directory;
 
         return $this;
+    }
+
+    public function getApplyFor(): ?ApplyFor
+    {
+        return $this->applyFor;
+    }
+
+    public function setApplyFor(?ApplyFor $applyFor)
+    {
+        $this->applyFor = $applyFor;
     }
 }
