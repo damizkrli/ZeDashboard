@@ -130,6 +130,19 @@
             </tbody>
         </table>
 
+        <table class="table table-borderless">
+            <tbody>
+            <tr>
+                <td colspan="2" class="col-md-2">Adresse :</td>
+                {% if applyFor.address %}
+                    <td>{{ applyFor.address }}</td>
+                {% else %}
+                    <td class="fw-bold"></td>
+                {% endif %}
+            </tr>
+            </tbody>
+        </table>
+
 
         <div class="section p-3 mb-3 fw-bold">Détail du poste</div>
 
@@ -152,19 +165,6 @@
                 <td colspan="2" class="col-md-2">Lieu :</td>
                 {% if applyFor.place %}
                     <td>{{ applyFor.place }}</td>
-                {% else %}
-                    <td class="fw-bold"></td>
-                {% endif %}
-            </tr>
-            </tbody>
-        </table>
-
-        <table class="table table-borderless">
-            <tbody>
-            <tr>
-                <td colspan="2" class="col-md-2">Adresse :</td>
-                {% if applyFor.address %}
-                    <td>{{ applyFor.address }}</td>
                 {% else %}
                     <td class="fw-bold"></td>
                 {% endif %}
