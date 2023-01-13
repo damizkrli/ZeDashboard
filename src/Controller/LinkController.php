@@ -6,6 +6,7 @@ use App\Entity\Link;
 use App\Form\LinkType;
 use App\Repository\LinkRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\ClickableInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -29,6 +30,13 @@ class LinkController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $linkRepository->save($link, true);
+
+            return $this->redirectToRoute('app_add_link', [], Response::HTTP_SEE_OTHER);
+        }
+
+        /** @var ClickableInterface $button  */
+        if ($form->get('saveAndQuit')->isClicked()) {
             $linkRepository->save($link, true);
 
             return $this->redirectToRoute('app_link_index', [], Response::HTTP_SEE_OTHER);
