@@ -18,7 +18,7 @@ class LinkController extends AbstractController
     public function index(LinkRepository $linkRepository): Response
     {
         return $this->render('link/index.html.twig', [
-            'links' => $linkRepository->findAll(),
+            'links' => $linkRepository->findBy([], ['name' => 'ASC']),
         ]);
     }
 
@@ -33,13 +33,6 @@ class LinkController extends AbstractController
             $linkRepository->save($link, true);
 
             return $this->redirectToRoute('app_add_link', [], Response::HTTP_SEE_OTHER);
-        }
-
-        /** @var ClickableInterface $button  */
-        if ($form->get('saveAndQuit')->isClicked()) {
-            $linkRepository->save($link, true);
-
-            return $this->redirectToRoute('app_link_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('link/new.html.twig', [
