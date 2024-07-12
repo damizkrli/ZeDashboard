@@ -4,42 +4,36 @@
 
 {% block body %}
 
-    <div class="container pb-5">
-
-        <div class="col-12 d-flex justify-content-between border-bottom mt-5 mb-5">
+        <div class="col-12 d-flex justify-content-between border-bottom my-5 px-5">
             <h1 class="text-uppercase text-start mb-0">{{ apply_for.jobTitle }} chez {{ apply_for.company }}</h1>
         </div>
 
         {{ form_start(form) }}
         <div class="m-3">
             <div class="row d-flex align-items-center justify-content-center">
-                <div class="col-lg-4 col-12">{{ form_row(form.jobTitle) }}</div>
-                <div class="col-lg-4 col-12">{{ form_row(form.contact) }}</div>
+                <div class="col-lg-3 col-12">{{ form_row(form.jobTitle) }}</div>
+                <div class="col-lg-3 col-12">{{ form_row(form.contact) }}</div>
+                <div class="col-lg-3 col-12">{{ form_row(form.link) }}</div>
             </div>
         </div>
 
         <div class="m-3 mt-3">
             <div class="row d-flex align-items-center justify-content-center">
-                <div class="col-lg-4 col-12">{{ form_row(form.sent) }}</div>
-                <div class="col-lg-4 col-12">{{ form_row(form.response) }}</div>
+                <div class="col-lg-3 col-12">{{ form_row(form.sent) }}</div>
+                <div class="col-lg-3 col-12">{{ form_row(form.response) }}</div>
+                <div class="col-lg-3 col-12">{{ form_row(form.status) }}</div>
             </div>
         </div>
 
         <div class="m-3">
                 <div class="row d-flex align-items-center justify-content-center">
-                    <div class="col-lg-4 col-12">
-                        {{ form_row(form.platform) }}
-                    </div>
-                    <div class="col-lg-4 col-12">
-                        {{ form_row(form.company) }}
-                    </div>
+                    <div class="col-lg-4 col-12">{{ form_row(form.platform) }}</div>
+                    <div class="col-lg-4 col-12">{{ form_row(form.company) }}</div>
                 </div>
             </div>
 
             <div class="m-3">
                 <div class="row d-flex align-items-center justify-content-center">
-                    <div class="col-lg-4 col-12">{{ form_row(form.link) }}</div>
-                    <div class="col-lg-4 col-12">{{ form_row(form.status) }}</div>
                 </div>
             </div>
 
@@ -57,5 +51,5 @@
             </div>
 
             {{ form_end(form) }}
-    </div>
+
 {% endblock %}

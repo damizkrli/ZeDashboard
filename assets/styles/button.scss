@@ -17,9 +17,9 @@
 }
 
 .sent {
-  background-color: transparent;
   border-radius: 0;
-  border: 1px solid blue;
+  background-color: black;
+  color: white;
 }
 
 .interview {
@@ -38,4 +38,10 @@
   background-color: transparent;
   border-radius: 0;
   border: 1px solid green;
+}
+
+.no_response {
+  background-color: black;
+  border-radius: 0;
+  color: whitesmoke;
 }

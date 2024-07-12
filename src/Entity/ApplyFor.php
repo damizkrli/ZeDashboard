@@ -26,11 +26,6 @@ class ApplyFor
     )]
     private ?string $jobTitle = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    #[Assert\NotBlank(message: "Merci de saisir le lien vers l'annonce")]
-    #[Assert\Url(message: "Merci de saisir une URL valide.", protocols: ["https", "ftp"], normalizer: "trim")]
-    private ?string $link = null;
-
     #[ORM\Column(length: 30)]
     #[Assert\NotBlank(message: "Merci de saisir un status")]
     private ?string $status = "Transmise";
@@ -59,6 +54,9 @@ class ApplyFor
     #[ORM\Column(length: 150)]
     private ?string $platform = null;
 
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $link = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -77,18 +75,6 @@ class ApplyFor
     public function setJobTitle(string $jobTitle): self
     {
         $this->jobTitle = $jobTitle;
-
-        return $this;
-    }
-
-    public function getLink(): ?string
-    {
-        return $this->link;
-    }
-
-    public function setLink(?string $link): self
-    {
-        $this->link = $link;
 
         return $this;
     }
@@ -197,6 +183,18 @@ class ApplyFor
     public function setPlatform(string $platform): self
     {
         $this->platform = $platform;
+
+        return $this;
+    }
+
+    public function getLink(): ?string
+    {
+        return $this->link;
+    }
+
+    public function setLink(string $link): static
+    {
+        $this->link = $link;
 
         return $this;
     }

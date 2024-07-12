@@ -5,195 +5,154 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container pb-5">
+    <div class="container-fluid px-5 py-3">
 
-        <div class="col-12 d-flex justify-content-between border-bottom mt-5">
-            <h1 class="text-uppercase text-start mb-0">{{ applyFor.jobTitle }}</h1>
-        </div>
+        <div class="col-12 d-flex justify-content-between">
+            <div>
+                <h1 class="text-uppercase text-start mb-0">{{ applyFor.jobTitle }} - {{ applyFor.company }}</h1>
+            </div>
+            <div class="d-flex align-items-center justify-content-center">
+                <a href="{{ applyFor.link }}">
+                    <i class="fa-solid fa-arrow-up-right-from-square fa-2xl"></i>
+                </a>
 
-        <div class="row">
-            <div class="col d-flex align-item-center justify-content-end mt-5 mb-5">
-                <button class="me-3 sent">Marqué comme envoyé</button>
-                <button class="me-3 interview">Marqué en attente d'entretien</button>
-                <button class="me-3 refused">Marqué comme refusée</button>
-                <button class="me-3 closed">Clôturer</button>
             </div>
         </div>
 
-        <div class="section p-3 mb-3 fw-bold">Général</div>
+        <div class="section p-3 mb-3 mt-3 fw-bold">Général</div>
 
-        <table class="table table-borderless">
-            <tbody>
-            <tr>
-                <td colspan="2" class="col-md-2">Avancement :</td>
-                <td class="text-start">
-                    {% if applyFor.status is same as 'Refusée' %}
-                        <span class="dot-refused"></span>
-                    {% elseif applyFor.status is same as 'Transmise' %}
-                        <span class="dot-sent"></span>
-                    {% elseif applyFor.status is same as 'Sans réponse' %}
-                        <span class="dot-noResponse"></span>
-                    {% elseif applyFor.status is same as 'Appel' %}
-                        <span class="dot-call"></span>
-                    {% elseif applyFor.status is same as 'Entretien' %}
-                        <span class="dot-interview"></span>
-                    {% elseif applyFor.status is same as 'Relance' %}
-                        <span class="dot-boost"></span>
-                    {% elseif applyFor.status is same as 'Acceptée' %}
-                        <span class="dot-accepted"></span>
-                    {% endif %}{{ applyFor.status }}
-                </td>
-            </tr>
-            </tbody>
-        </table>
-
-        <table class="table table-borderless">
-            <tbody>
-            <tr>
-                <td colspan="2" class="col-md-2">Envoyé le :</td>
-                <td class="text-start">{{ applyFor.sent | date("d/m/y") }}</td>
-            </tr>
-            </tbody>
-        </table>
-
-
-        <table class="table table-borderless">
-            <tbody>
-            <tr>
-                <td colspan="2" class="col-md-2">Réponse reçue le :</td>
-                {% if applyFor.response %}
-                    <td>{{ applyFor.response | date("d/m/y") }}</td>
-                {% else %}
-                    <td class="fw-bold">Aucune</td>
-                {% endif %}
-
-            </tr>
-            </tbody>
-        </table>
-
-        <table class="table table-borderless">
-            <tbody>
-            <tr>
-                <td colspan="2" class="col-md-2">Plateforme :</td>
-                <td>{{ applyFor.platform }}</td>
-            </tr>
-            </tbody>
-        </table>
+        <div class="container-fluid">
+            <div class="row mb-3">
+                <div class="col-sm-3">
+                    <div class="row">
+                        <div class="col-sm-6 text-end">Avancement :</div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center justify-content-start">
+                                {% if applyFor.status is same as 'Refusée' %}
+                                    <span class="dot-refused"></span>
+                                {% elseif applyFor.status is same as 'Transmise' %}
+                                    <span class="dot-sent"></span>
+                                {% elseif applyFor.status is same as 'Sans réponse' %}
+                                    <span class="dot-noResponse"></span>
+                                {% elseif applyFor.status is same as 'Appel' %}
+                                    <span class="dot-call"></span>
+                                {% elseif applyFor.status is same as 'Entretien' %}
+                                    <span class="dot-interview"></span>
+                                {% elseif applyFor.status is same as 'Relance' %}
+                                    <span class="dot-boost"></span>
+                                {% elseif applyFor.status is same as 'Acceptée' %}
+                                    <span class="dot-accepted"></span>
+                                {% endif %}{{ applyFor.status }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="row">
+                        <div class="col-md-6 text-end">Envoyé le :</div>
+                        <div class="col-md-6">{{ applyFor.sent | date("d/m/y") }}</div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="row">
+                        <div class="col-md-6 text-end">Réponse reçue le :</div>
+                        <div class="col-md-6">
+                            {% if applyFor.response %}
+                                <div>{{ applyFor.response | date("d/m/y") }}</div>
+                            {% else %}
+                                {% include 'macro/noData.html.twig' %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="row">
+                        <div class="col-md-6 text-end">Plateforme :</div>
+                        <div class="col-md-6">{{ applyFor.platform }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="section p-3 mb-3 fw-bold">Détail de l'entreprise</div>
 
-        <table class="table table-borderless">
-            <tbody>
-            <tr>
-                <td colspan="2" class="col-md-2">Nom :</td>
-                <td>{{ applyFor.company }}</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <table class="table table-borderless">
-            <tbody>
-            <tr>
-                <td colspan="2" class="col-md-2">Contact :</td>
-                {% if applyFor.contact %}
-                    <td>{{ applyFor.contact.name }}</td>
-                {% else %}
-                    <td class="fw-bold">Aucun</td>
-                {% endif %}
-            </tr>
-            </tbody>
-        </table>
-
-        <table class="table table-borderless">
-            <tbody>
-            <tr>
-                <td colspan="2" class="col-md-2">Email :</td>
-                {% if applyFor.contact %}
-                    <td>{{ applyFor.contact.email }}</td>
-                {% else %}
-                    <td class="fw-bold">Aucun</td>
-                {% endif %}
-            </tr>
-            </tbody>
-        </table>
-
-        <table class="table table-borderless">
-            <tbody>
-            <tr>
-                <td colspan="2" class="col-md-2">Téléphone :</td>
-                {% if applyFor.contact %}
-                    <td>{{ applyFor.contact.phone }}</td>
-                {% else %}
-                    <td class="fw-bold">Aucun</td>
-                {% endif %}
-            </tr>
-            </tbody>
-        </table>
-
-        <table class="table table-borderless">
-            <tbody>
-            <tr>
-                <td colspan="2" class="col-md-2">Adresse :</td>
-                {% if applyFor.address %}
-                    <td>{{ applyFor.address }}</td>
-                {% else %}
-                    <td class="fw-bold"></td>
-                {% endif %}
-            </tr>
-            </tbody>
-        </table>
-
-
-        <div class="section p-3 mb-3 fw-bold">Détail du poste</div>
-
-        <table class="table table-borderless">
-            <tbody>
-            <tr>
-                <td colspan="2" class="col-md-2">Job :</td>
-                <td>
-                    <a href="{{ applyFor.link }}" class="text-decoration-underline fst-italic text-primary">
-                        {{ applyFor.jobTitle }}
-                    </a>
-                    </td>
-            </tr>
-            </tbody>
-        </table>
-
-        <table class="table table-borderless">
-            <tbody>
-            <tr>
-                <td colspan="2" class="col-md-2">Lieu :</td>
-                {% if applyFor.place %}
-                    <td>{{ applyFor.place }}</td>
-                {% else %}
-                    <td class="fw-bold"></td>
-                {% endif %}
-            </tr>
-            </tbody>
-        </table>
+        <div class="container-fluid">
+            <div class="row mb-3">
+                <div class="col-sm-3">
+                    <div class="row">
+                        <div class="col-md-6 text-end">Contact :</div>
+                        <div class="col-md-6">
+                            {% if applyFor.contact %}
+                                <td>{{ applyFor.contact.name }}</td>
+                            {% else %}
+                                {% include 'macro/noData.html.twig' %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="row">
+                        <div class="col-md-6 text-end">Email :</div>
+                        <div class="col-md-6">
+                            {% if applyFor.contact %}
+                                <td>{{ applyFor.contact.email }}</td>
+                            {% else %}
+                                {% include 'macro/noData.html.twig' %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="row">
+                        <div class="col-md-6 text-end">Adresse :</div>
+                        {% if applyFor.address %}
+                            <div class="col-md-6">{{ applyFor.address }}</div>
+                            {% else %}
+                                {% include 'macro/noData.html.twig' %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="row">
+                        <div class="col-md-6 text-end">Téléphone :</div>
+                        <div class="col-md-6">
+                            {% if applyFor.contact %}
+                                <td>{{ applyFor.contact.phone }}</td>
+                            {% else %}
+                                {% include 'macro/noData.html.twig' %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="section p-3 mb-3">
             <div class="d-flex align-items-center justify-content-between">
                 <div class="fw-bold">Note</div>
                 <div>
-                    <small class="fst-italic">
-                        <a href="{{ path('app_apply_for_edit', {'id': applyFor.id}) }}">
-                            Ajouter une note <i class="fas fa-pen-alt ms-2"></i>
-                        </a>
-                    </small>
+                    {% if applyFor.note %}
+                        <small class="fst-italic">
+                            <a href="{{ path('app_apply_for_edit', {'id': applyFor.id}) }}">
+                                Modifier <i class="fas fa-pen-alt ms-2"></i>
+                            </a>
+                        </small>
+                    {% else %}
+
+                    {% endif %}
                 </div>
             </div>
         </div>
-        <table class="table">
+        <table class="table border-bottom">
             <tbody>
             <tr>
-               {% if applyFor.note %}
-                   <th scope="row">
-                       {{ applyFor.note | raw }}
-                   </th>
-               {% else %}
-                   {% include 'macro/noData.html.twig' %}
-               {% endif %}
+                {% if applyFor.note %}
+                    <th scope="row">
+                        {{ applyFor.note | raw }}
+                    </th>
+                {% else %}
+                    {% include 'macro/noData.html.twig' %}
+                {% endif %}
             </tr>
             </tbody>
         </table>
