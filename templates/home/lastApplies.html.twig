@@ -14,17 +14,17 @@
                  {% if appliesFor.status is same as 'Transmise' %}
                  border-primary
                  {% elseif appliesFor.status is same as 'Appel' %}
-                 border-warning 
+                 border-warning
                  {% elseif appliesFor.status is same as 'Refusée' %}
-                 border-danger 
+                 border-danger
                  {% elseif appliesFor.status is same as 'Acceptée' %}
-                 border-success 
+                 border-success
                  {% elseif appliesFor.status is same as 'Entretien' %}
-                 border-info 
+                 border-info
                  {% elseif appliesFor.status is same as 'Sans réponse' %}
-                 border-dark 
+                 border-dark
                  {% elseif appliesFor.status is same as 'Relance' %}
-                 border-secondary 
+                 border-secondary
                  {% endif %}
                  position-relative h-100 shadow-lg rounded-0">
                 {% include 'home/pills.html.twig' %}
@@ -52,7 +52,8 @@
                         bg-warning text-light
                     {% endif %}">
                     {% if appliesFor.status is same as 'Refusée' %}
-                        <p class="line">{{ appliesFor.company }}
+                        <p class="line">
+                            {{ appliesFor.company }}
                             sur {{ appliesFor.platform }}</p>
                     {% else %}
                         <p>{{ appliesFor.company }}
