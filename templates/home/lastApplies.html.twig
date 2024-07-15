@@ -51,14 +51,19 @@
                         {% elseif appliesFor.status is same as 'Appel' %}
                         bg-warning text-light
                     {% endif %}">
-                    {% if appliesFor.status is same as 'Refusée' %}
-                        <p class="line">
-                            {{ appliesFor.company }}
-                            sur {{ appliesFor.platform }}</p>
+                    {% if appliesFor.company is same as appliesFor.platform %}
+                        sur {{ appliesFor.company }}
                     {% else %}
-                        <p>{{ appliesFor.company }}
-                            sur {{ appliesFor.platform }}</p>
+                        {% if appliesFor.status is same as 'Refusée' %}
+                            <p class="line">
+                                {{ appliesFor.company }}
+                                sur {{ appliesFor.platform }}</p>
+                        {% else %}
+                            <p>{{ appliesFor.company }}
+                                sur {{ appliesFor.platform }}</p>
+                        {% endif %}
                     {% endif %}
+
                 </div>
             </div>
         </div>
