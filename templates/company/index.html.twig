@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Company index{% endblock %}
+
+{% block body %}
+   <div class="container">
+       <h1>Company index</h1>
+
+       <table class="table">
+           <thead>
+           <tr>
+               <th>Name</th>
+               <th>Activity</th>
+               <th>Address</th>
+               <th>Postal_code</th>
+               <th>City</th>
+               <th>actions</th>
+           </tr>
+           </thead>
+           <tbody>
+           {% for company in companies %}
+               <tr>
+                   <td>{{ company.name }}</td>
+                   <td>{{ company.activity }}</td>
+                   {% if company.address %}
+                       <td>{{ company.address }}</td>
+                   {% else %}
+                       {% include 'macro/noData.html.twig' %}
+                   {% endif %}
+                   {% if company.postalCode %}
+                       <td>{{ company.postalCode }}</td>
+                   {% else %}
+                       {% include 'macro/noData.html.twig' %}
+                   {% endif %}
+                   {% if company.city %}
+                       <td>{{ company.city }}</td>
+                   {% else %}
+                       {% include 'macro/noData.html.twig' %}
+                   {% endif %}
+                   <td>
+                       <a class="btn btn-dark btn-sm" href="{{ path('app_company_show', {'id': company.id}) }}">Voir</a>
+                       |
+                       <a class="btn btn-dark btn-sm" href="{{ path('app_company_edit', {'id': company.id}) }}">Modifier</a>
+                   </td>
+               </tr>
+           {% else %}
+               <tr>
+                   <td colspan="7">no records found</td>
+               </tr>
+           {% endfor %}
+           </tbody>
+       </table>
+
+       <a class="btn btn-dark btn-sm" href="{{ path('app_company_new') }}">Ajouter une entreprise</a>
+   </div>
+{% endblock %}

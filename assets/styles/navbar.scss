@@ -1,35 +1,23 @@
 @import "variables";
 
+.logo {
+  width: 50px;
+  height: 50px;
+}
+
+.app-name {
+  margin: 0;
+  font-size: 50px;
+}
+
 .navbar {
   background-color: $background;
 }
 
-.app-name {
-  font-family: $app-name;
-  color: $dark !important;
-  font-size: 30px;
+.nav-btn:hover, .nav-btn:focus, .nav-btn:active {
+  border: 0;
 }
 
-.hover-underline-animation-navbar {
-  display: inline-block;
-  position: relative;
-  color: $dark !important;
-}
-
-.hover-underline-animation-navbar:after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: #17A2B8;
-  transform-origin: bottom right;
-  transition: transform 0.25s ease-out;
-}
-
-.hover-underline-animation-navbar:hover:after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
+.btn {
+  border: 0 !important;
 }

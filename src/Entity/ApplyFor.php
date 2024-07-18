@@ -39,9 +39,6 @@ class ApplyFor
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?DateTimeInterface $response = null;
 
-    #[ORM\Column(length: 100, nullable: true)]
-    private ?string $place = null;
-
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $address = null;
 
@@ -123,18 +120,6 @@ class ApplyFor
     public function setResponse(?DateTimeInterface $response): self
     {
         $this->response = $response;
-
-        return $this;
-    }
-
-    public function getPlace(): ?string
-    {
-        return $this->place;
-    }
-
-    public function setPlace(?string $place): self
-    {
-        $this->place = $place;
 
         return $this;
     }

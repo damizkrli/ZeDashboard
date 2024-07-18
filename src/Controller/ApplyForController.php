@@ -60,7 +60,7 @@ class ApplyForController extends AbstractController
     }
 
     #[Route('/edit/{id}', name: 'app_apply_for_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, ApplyFor $applyFor): Response
+    public function edit(Request $request, ApplyFor $applyFor, $id): Response
     {
         $form = $this->createForm(ApplyForType::class, $applyFor);
         $form->handleRequest($request);
@@ -72,7 +72,7 @@ class ApplyForController extends AbstractController
                 'Votre candidature à été modifiée avec succès.'
             );
 
-            return $this->redirectToRoute('app_apply_for_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_apply_for_show', ['id' => $id], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('apply_for/edit.html.twig', [

@@ -1,60 +1,22 @@
 @import "bootstrap";
 
-@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Ubuntu:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Khand:wght@300;400;500;600;700&family=Molengo&family=Rubik+Mono+One&display=swap');
 
-/*
-ACTIONS
-save <i class="fas fa-save me-3"></i>
-return <i class="fas fa-caret-square-left me-3"></i>
+$app-name: 'Rubik', monospace;
+$title: 'Khand', sans-serif;
+$text: 'Molengo', sans-serif;
 
-OTHERS
-important <i class="fas fa-exclamation-triangle me-3"></i>
-info <i class="fas fa-exclamation-circle me-3"></i>
+// Color
 
-ENTITIES
-applies <i class="fas fa-briefcase me-3"></i>
-company <i class="fas fa-building me-3"></i>
-platform <i class="fas fa-toolbox me-3"></i>
-manage links <i class="fas fa-tools"></i>
+$background: #B5C2CA;
+$text: #4F4F4F;
+$sent: #B0E0E6;
+$interview: #32CD32;
+$call: #00FA9A;
+$accepted: #FFD700;
+$ignored: #D3D3D3;
+$refused: #DC143C;
 
-CRUD
-new <i class="fas fa-plus-square me-3"></i>
-delete <i class="fas fa-trash-alt me-3"></i>
-edit <i class="fas fa-pen-square me-3"></i>
-
-NAVBAR
-link <i class="fas fa-link me-1"></i>
-home <i class="fas fa-home me-1"></i>
-notes <i class="fas fa-sticky-note me-1"></i>
-applies <i class="fas fa-briefcase me-1"></i>
-*/
-
-$h1-title: 'Patrick Hand', cursive;
-$h3-title: 'Roboto Condensed', sans-serif;
-$text: 'Nanum Gothic', sans-serif;
-$app-name: 'Syne Mono', monospace;
-
-// Black & White
-$light: #FFF548;
-$dark: #000000;
-// Background color
-$background: #FAF9f9;
-
-// Navbar
-$home: #6C757D;
-$applyFor: #0D6EFD;
-$contact: #198754;
-$link: #FCCF0F;
-
-// Other
-$radius: 5px;
-// padding : haut, droite, bas, gauche
-$padding: 3px;
-$padding-side: 8px;
-$margin: 3px;
-$border: 3px;
-$radius-light: 2px;
-$radius-strong: 6px;
+$theme-colors: (
+  "primary": red,
+)

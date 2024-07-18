@@ -25,7 +25,7 @@ class CalculateRules
 
     public function calculateSentApplies():int
     {
-        $sentApplies = $this->applyForRepository->findBy(['status' => 'Transmise']);
+        $sentApplies = $this->applyForRepository->findBy(['status' => 'Envoyée']);
 
         return count($sentApplies);
     }
@@ -45,7 +45,7 @@ class CalculateRules
 
     public function calculateNoResponseApplies(): int
     {
-        $noResponseApplies = $this->applyForRepository->findBy(['status' => 'Sans Réponse']);
+        $noResponseApplies = $this->applyForRepository->findBy(['status' => 'Ignorée']);
 
         return count($noResponseApplies);
     }

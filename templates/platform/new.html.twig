@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Platform{% endblock %}
+
+{% block body %}
+   <div class="container">
+
+       <h1>Create new Platform</h1>
+
+       <div class="d-flex align-items-center justify-content-end">
+           <div>
+               <div class="bg-danger text-white fw-bold rounded rounded-3 mt-3">
+                   {% for message in app.flashes('error') %}
+                       <div class="alert alert-danger">
+                           {{ message }}
+                       </div>
+                   {% endfor %}
+               </div>
+           </div>
+       </div>
+
+       {{ include('platform/_form.html.twig') }}
+
+       <a href="{{ path('app_platform_index') }}">back to list</a>
+   </div>
+{% endblock %}

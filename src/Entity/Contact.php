@@ -54,7 +54,7 @@ class Contact
 
     public function setEmail(?string $email): self
     {
-        $this->email = $email;
+        $this->email = strtolower(trim($email));
 
         return $this;
     }
@@ -81,5 +81,10 @@ class Contact
         $this->linkedin = $linkedin;
 
         return $this;
+    }
+
+    public function isValidEmail(?string $email): bool
+    {
+        return filter_var($this->email, FILTER_VALIDATE_EMAIL) !== false && preg_match('/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/', $this->email);
     }
 }

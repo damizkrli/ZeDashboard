@@ -2,13 +2,12 @@
 
 .button {
   background-color: $background;
-  color: $dark;
+  color: #000000;
   margin: 5px;
   padding: 5px;
-  border: none;
 
   &:hover {
-    color: $dark !important;
+    color: #000000 !important;
   }
 }
 

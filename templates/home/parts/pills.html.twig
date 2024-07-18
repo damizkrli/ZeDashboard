@@ -1,4 +1,4 @@
-{% if appliesFor.status is same as 'Transmise' %}
+{% if appliesFor.status is same as 'Envoyée' %}
     <span class="position-absolute top-0 start-100 translate-middle p-2 bg-primary border border-light rounded-circle">
         <span class="visually-hidden">New alerts</span>
     </span>
@@ -18,7 +18,7 @@
     <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
         <span class="visually-hidden">New alerts</span>
     </span>
-{% elseif appliesFor.status is same as 'Sans réponse' %}
+{% elseif appliesFor.status is same as 'Ignorée' %}
     <span class="position-absolute top-0 start-100 translate-middle p-2 bg-dark border border-light rounded-pill">
         <span class="visually-hidden">New alerts</span>
     </span>

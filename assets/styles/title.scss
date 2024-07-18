@@ -1,22 +1,7 @@
 @import "variables";
 
 h1, .title {
-  font-family: $h1-title;
+  font-family: $title;
   text-align: start;
   margin-top: 3rem;
-  color: $dark;
-}
-
-h2 {
-  color: $light;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-h5 {
-  color: $dark;
-  display: flex;
-  align-items: start;
-  justify-content: start;
 }

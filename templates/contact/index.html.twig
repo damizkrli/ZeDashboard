@@ -17,25 +17,29 @@
             </small>
         </div>
 
-        <div class="row">
+        <div class="row mt-4">
             {% for contact in contacts %}
-                <div class="col-sm-6 mt-5">
+                <div class="col-sm-6 mt-4">
                     <div class="card h-100 border-warning">
                         <div class="card-body">
-                            <h3 class="card-title"><i
-                                        class="fas fa-address-card me-3 text-warning"></i>{{ contact.name | title }}
+                            <h3 class="card-title">
+                                <i class="fas fa-address-card fa-lg me-3 text-warning"></i>
+                                {{ contact.name | title }}
                             </h3>
                             <div class="d-flex align-items-center justify-content-between">
                                 <div>
                                     {% if contact.phone %}
-                                        <p class="card-text"><i class="fas fa-mobile-alt me-3"></i>{{ contact.phone }}
+                                        <p class="card-text">
+                                            <i class="fas fa-mobile-alt me-3 text-warning"></i>
+                                            {{ contact.phone }}
                                         </p>
                                     {% else %}
                                     {% endif %}
-                                </div>
-                                <div>
                                     {% if contact.email %}
-                                        <p class="card-text"><i class="fas fa-envelope me-3"></i>{{ contact.email }}</p>
+                                        <p class="card-text">
+                                            <i class="fas fa-envelope me-3 text-warning"></i>
+                                            {{ contact.email }}
+                                        </p>
                                     {% else %}
 
                                     {% endif %}
@@ -43,19 +47,19 @@
                             </div>
                             {% if contact.linkedin %}
                                 <a href="{{ contact.linkedin }}" target="_blank"><i
-                                            class="fab fa-linkedin me-3"></i>{{ contact.linkedin }}</a>
+                                            class="fab fa-linkedin me-3"></i>
+                                    {{ contact.linkedin }}
+                                </a>
                             {% else %}
 
                             {% endif %}
                         </div>
                         <div class="card-footer border-warning">
                             <div class="d-flex align-items-center justify-content-between">
-                                <div>
-                                    <a href="{{ path('app_contact_edit', {'id': contact.id}) }}">
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <a class="btn me-3" href="{{ path('app_contact_edit', {'id': contact.id}) }}">
                                         <i class="fas fa-pen-square"></i>
                                     </a>
-                                </div>
-                                <div>
                                     <form method="post" action="{{ path('app_contact_delete', {'id': contact.id}) }}"
                                           onsubmit="return confirm('Are you sure you want to delete this item?');">
                                         <input type="hidden" name="_token"

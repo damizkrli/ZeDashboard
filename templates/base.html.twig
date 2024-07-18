@@ -19,46 +19,8 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand app-name ms-5 hover-underline-animation-navbar" href="{{ path('app_index_home') }}">
-            <i class="fas fa-tachometer-alt fa-xl text-danger"></i>
-        </a>
-    <h1>DASHBOARD</h1>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse d-flex align-items-end justify-content-end" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="me-5 hover-underline-animation-navbar a-navbar"
-                   href="{{ path('app_index_home') }}">
-                    <i class="fas fa-home me-1 text-secondary"></i>
-                    ACCUEIL
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="me-5 hover-underline-animation-navbar a-navbar"
-                   href="{{ path('app_apply_for_index') }}">
-                    <i class="fas fa-briefcase me-1 text-primary"></i>
-                    CANDIDATURES
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="me-5 hover-underline-animation-navbar a-navbar"
-                   href="{{ path('app_contact_index') }}">
-                    <i class="fas fa-users me-1 text-success"></i>
-                    CONTACTS
-                </a>
-            </li>
-        </ul>
-    </div>
-</nav>
-
-    {% block body %}{% endblock %}
-
-{# TODO : addflash est en place mais ne fonctionne pas #}
+{% include 'navbar.html.twig' %}
+{% block body %}{% endblock %}
 <script src="https://kit.fontawesome.com/68cdd10128.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

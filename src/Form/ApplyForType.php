@@ -3,9 +3,12 @@
 namespace App\Form;
 
 use App\Entity\ApplyFor;
+use App\Entity\Company;
 use App\Entity\Contact;
+use App\Entity\Platform;
+use App\Repository\CompanyRepository;
 use App\Repository\ContactRepository;
-use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use App\Repository\PlatformRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -19,42 +22,35 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class ApplyForType extends AbstractType
 {
     public const STATUS = [
-        'Acceptée'     => 'Acceptée',
-        'Appel'        => 'Appel',
-        'Entretien'    => 'Entretien',
-        'Refusée'      => 'Refusée',
-        'Sans réponse' => 'Sans réponse',
-        'Transmise'    => 'Transmise',
-        'Relance'      => 'Relance'
-    ];
-
-    // TODO : Ajouter les const pour les plateformes (indeed, hellowork, France Tavail ...)
-    public const PLATEFORM = [
-        'Indeed' => 'Indeed',
-        'HelloWork' => 'HelloWork',
-        'France Travail' => 'France Travail',
-        'ChooseYourBoss' => 'ChooseYourBoss',
-        'Welcome to the Jungle' => 'Welcome to the Jungle',
-        'Licorne Society' => 'Licorne Society',
-        'WeLoveDevs' => 'WeLoveDevs',
-        'Glassdoor' => 'Glassdoor',
+        'Acceptée'  => 'Acceptée',
+        'Appel'     => 'Appel',
+        'Entretien' => 'Entretien',
+        'Refusée'   => 'Refusée',
+        'Ignorée'   => 'Ignorée',
+        'Envoyée'   => 'Envoyée',
+        'Relance'   => 'Relance'
     ];
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('platform', ChoiceType::class, [
-                'choices' => self::PLATEFORM,
-                'placeholder' => 'Choisissez une plateforme',
+            ->add('status', ChoiceType::class, [
+                'choices'     => self::STATUS,
+                'placeholder' => 'Choisissez un statut',
+                'label'       => "Statut",
+                'required'    => false,
+                'empty_data'  => 'Envoyée',
+            ])
+            ->add('platform', EntityType::class, [
+                'class' => Platform::class,
+                'placeholder'   => 'Choisissez une plateforme',
                 'label'         => 'Plateforme',
                 'required'      => false,
-            ])
-            ->add('company', TextType::class, [
-                'attr' => [
-                    'placeholder' => 'Concerto, Cdiscount, ...',
-                ],
-                'label'         => 'Entreprise',
-                'required'      => false,
+                'query_builder' => function (PlatformRepository $platformRepository) {
+                    return $platformRepository
+                        ->createQueryBuilder('p')
+                        ->orderBy('p.name', 'ASC');
+                }
             ])
             ->add('contact', EntityType::class, [
                 'class'         => Contact::class,
@@ -67,33 +63,36 @@ class ApplyForType extends AbstractType
                         ->orderBy('c.name', 'ASC');
                 }
             ])
+            ->add('company', EntityType::class, [
+                'class'         => Company::class,
+                'placeholder' => 'Sélectionner une enterprise',
+                'label' => 'Entreprise',
+                'query_builder' => function (CompanyRepository $companyRepository) {
+                    return $companyRepository
+                        ->createQueryBuilder('c')
+                        ->orderBy('c.name', 'ASC');
+                }
+            ])
             ->add('note', TextareaType::class, [
-                'label' => 'Note',
+                'label'    => 'Note',
                 'required' => false,
-                'attr' => [
+                'attr'     => [
                     'placeholder' => 'Ajouter des informations sur une entreprise...',
-                    'rows' => 12,
-                    'cols' => 5
+                    'rows'        => 10,
+                    'cols'        => 5
                 ]
             ])
             ->add('jobTitle', TextType::class, [
                 'label' => "Intitulé du poste",
-                'attr' => [
+                'attr'  => [
                     'placeholder' => "Développeur Web, Développeur Backend, ..."
                 ]
             ])
             ->add('link', UrlType::class, [
                 'label' => "Lien vers l'annonce",
-                'attr' => [
+                'attr'  => [
                     'placeholder' => 'https://lien-vers-l-annonce.fr'
                 ]
-            ])
-            ->add('status', ChoiceType::class, [
-                'choices'    => self::STATUS,
-                'placeholder' => 'Choisissez un statut',
-                'label'      => "Statut",
-                'required'   => false,
-                'empty_data' => 'Transmise',
             ])
             ->add('sent', DateType::class, [
                 'label'    => 'Envoyé le ',

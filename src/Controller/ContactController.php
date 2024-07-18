@@ -33,6 +33,13 @@ class ContactController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if (!$contact->isValidEmail('email')) {
+                $this->addFlash('error', 'L\'email n\'est pas valide');
+                return $this->renderForm('contact/new.html.twig', [
+                    'contact' => $contact,
+                    'form' => $form,
+                ]);
+            }
             $contactRepository->save($contact, true);
 
             return $this->redirectToRoute('app_contact_index', [], Response::HTTP_SEE_OTHER);

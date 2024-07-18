@@ -4,8 +4,6 @@
 
 {% block body %}
 
-    {# TODO: mettre en place les messages flash #}
-
     <div class="container pb-5">
 
         <div class="col-12 d-flex justify-content-between border-bottom mt-5">
@@ -22,13 +20,13 @@
             <table class="table mb-5 mt-5">
                 <thead class="table-light">
                 <tr class="table-light">
-                    <th class="text-start text-nowrap" scope="col">Date</th>
-                    <th class="text-start text-nowrap" scope="col">Poste</th>
-                    <th class="text-start text-nowrap" scope="col">Enterprise</th>
-                    <th class="text-start text-nowrap" scope="col">Plateforme</th>
-                    <th class="text-start text-nowrap" scope="col">Avancement</th>
-                    <th class="text-start text-nowrap" scope="col">Nom du Contact</th>
-                    <th class="text-start text-nowrap" scope="col"></th>
+                    <th class="text-start text-nowrap text-uppercase" scope="col">Date</th>
+                    <th class="text-start text-nowrap text-uppercase" scope="col">Poste</th>
+                    <th class="text-start text-nowrap text-uppercase" scope="col">Entreprise</th>
+                    <th class="text-start text-nowrap text-uppercase" scope="col">Plateforme</th>
+                    <th class="text-start text-nowrap text-uppercase" scope="col">Statut</th>
+                    <th class="text-start text-nowrap text-uppercase" scope="col">Contact</th>
+                    <th class="text-start text-nowrap text-uppercase" scope="col"></th>
                 </tr>
                 </thead>
 
@@ -48,18 +46,18 @@
                                     <span class="ms-2">Refusée</span>
                                 </div>
                             </td>
-                        {% elseif appliesFor.status is same as 'Transmise' %}
+                        {% elseif appliesFor.status is same as 'Envoyée' %}
                             <td class="text-start">
                                 <div class="d-flex align-items-center justify-content-start">
                                     <span class="dot-sent"></span>
-                                    <span class="ms-2">Transmise</span>
+                                    <span class="ms-2">Envoyée</span>
                                 </div>
                             </td>
-                        {% elseif appliesFor.status is same as 'Sans réponse' %}
+                        {% elseif appliesFor.status is same as 'Ignorée' %}
                             <td class="text-start">
                                 <div class="d-flex align-items-center justify-content-start">
                                     <span class="dot-noResponse"></span>
-                                    <span class="ms-2">Sans réponse</span>
+                                    <span class="ms-2">Ignorée</span>
                                 </div>
                             </td>
                         {% elseif appliesFor.status is same as 'Appel' %}
@@ -70,10 +68,13 @@
                                 </div>
                             </td>
                         {% elseif appliesFor.status is same as 'Entretien' %}
-                            <td class="text-start">
+                            <td class="">
                                 <div class="d-flex align-items-center justify-content-start">
+                                    <span class="d-flex align-items-center justify-content-center border border-1 border-info text-info"
+                                          style="background-color: white; border-radius: 15px; padding-left: 5px; padding-right: 8px;">
                                     <span class="dot-interview"></span>
                                     <span class="ms-2">Entretien</span>
+                                    </span>
                                 </div>
                             </td>
                         {% elseif appliesFor.status is same as 'Relance' %}
@@ -96,7 +97,7 @@
                             <td>
                                 <a href="{{ path('app_contact_index') }}">{{ appliesFor.contact }}</a>
                             </td>
-                            {% else %}
+                        {% else %}
                             <td class="fst-italic">AUCUN</td>
                         {% endif %}
 
@@ -106,13 +107,15 @@
                                     <i class="action fas fa-link"></i>
                                 </a>
 
-                                <a class="btn border-0 pt-0" href="{{ path('app_apply_for_edit', {'id': appliesFor.id}) }}">
+                                <a class="btn border-0 pt-0"
+                                   href="{{ path('app_apply_for_edit', {'id': appliesFor.id}) }}">
                                     <i class="action far fa-edit"></i>
                                 </a>
 
                                 <form method="post" action="{{ path('app_apply_for_delete', {'id': appliesFor.id}) }}"
                                       onsubmit="return confirm('Êtes_vous sur de vouloir supprimer cette candidature ?');">
-                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ appliesFor.id) }}">
+                                    <input type="hidden" name="_token"
+                                           value="{{ csrf_token('delete' ~ appliesFor.id) }}">
                                     <button class="btn border-0 pt-0">
                                         <i class="action fas fa-trash-alt"></i>
                                     </button>

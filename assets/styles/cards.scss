@@ -1,10 +1,17 @@
+// Cards de home/resumeApplyFor.html.twig
+
 @import "variables";
 
 .card-apply {
   border-left: 5px solid green !important;
   margin-right: 15px;
+  max-width: 16rem;
 }
 
-.card, .card-header, .card-body, .card-footer{
+.card, .card-body, .card-footer{
   border-radius:0 !important;
+}
+
+.sent {
+  border: solid 1px $sent ;
 }
